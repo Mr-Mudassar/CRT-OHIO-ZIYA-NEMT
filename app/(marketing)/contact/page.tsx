@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import {
   Phone,
   Mail,
@@ -108,25 +107,70 @@ export default function ContactPage() {
       </nav>
 
       {/* ===== HERO ===== */}
-      <section className="relative py-20 md:py-28 overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/city-road.jpg"
-            alt="Cincinnati city road representing our service area"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-linear-to-r from-primary/90 to-primary-dark/90" />
-        </div>
-        <div className="container-custom relative z-10 text-center">
-          <h1 className="font-heading text-4xl md:text-5xl font-bold text-white mb-4">
-            Contact Us
-          </h1>
-          <p className="text-lg text-white/80 max-w-2xl mx-auto">
-            Have a question about our services or need help booking a ride?
-            We are here to help. Reach out to us using the form below or contact us directly.
-          </p>
+      <section className="relative overflow-hidden">
+        <div className="flex flex-col lg:flex-row">
+          {/* Left side - Dark slate gradient */}
+          <div className="relative lg:w-[60%] bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] px-6 py-16 md:py-24 lg:py-28 lg:px-12 xl:px-20">
+            {/* Decorative dot pattern */}
+            <div
+              className="absolute inset-0 opacity-[0.06]"
+              style={{
+                backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
+                backgroundSize: '24px 24px',
+              }}
+            />
+            <div className="relative z-10 max-w-xl mx-auto lg:mx-0 text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/15 text-white text-sm font-semibold rounded-full mb-6 border border-white/10">
+                <MessageSquare className="h-4 w-4" />
+                Get in Touch
+              </div>
+              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6">
+                Contact Us
+              </h1>
+              <p className="text-lg md:text-xl text-white/85 leading-relaxed">
+                Have a question about our services or need help booking a ride?
+                We are here to help. Reach out to us using the form below or contact us directly.
+              </p>
+            </div>
+            {/* Angled divider - visible on lg+ */}
+            <div
+              className="hidden lg:block absolute top-0 right-0 w-24 h-full bg-white"
+              style={{ clipPath: 'polygon(100% 0, 100% 100%, 0 100%, 100% 0)' }}
+            />
+          </div>
+
+          {/* Right side - White with contact cards */}
+          <div className="relative lg:w-[40%] bg-white px-6 py-12 md:py-16 lg:py-28 lg:px-10 xl:px-14 flex items-center">
+            <div className="w-full max-w-sm mx-auto lg:mx-0 space-y-5">
+              {/* Phone card */}
+              <a
+                href={`tel:${BUSINESS_PHONE.replace(/\D/g, '')}`}
+                className="flex items-center gap-4 bg-white shadow-lg rounded-xl p-4 border border-border hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200"
+              >
+                <div className="flex items-center justify-center w-12 h-12 bg-primary-light text-primary rounded-xl shrink-0">
+                  <Phone className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">Call Us</p>
+                  <p className="font-heading font-bold text-heading">{BUSINESS_PHONE}</p>
+                </div>
+              </a>
+
+              {/* Email card */}
+              <a
+                href={`mailto:${BUSINESS_EMAIL}`}
+                className="flex items-center gap-4 bg-white shadow-lg rounded-xl p-4 border border-border hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200"
+              >
+                <div className="flex items-center justify-center w-12 h-12 bg-primary-light text-primary rounded-xl shrink-0">
+                  <Mail className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">Email Us</p>
+                  <p className="font-heading font-bold text-heading">{BUSINESS_EMAIL}</p>
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -137,7 +181,7 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16">
               {/* Contact Form */}
               <div className="lg:col-span-3">
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-2">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-2">
                   Send Us a Message
                 </h2>
                 <p className="text-muted-foreground mb-8">
@@ -263,7 +307,7 @@ export default function ContactPage() {
               {/* Contact Info Sidebar */}
               <div className="lg:col-span-2">
                 <div className="sticky top-28">
-                  <h2 className="font-heading text-2xl font-bold text-foreground mb-2">
+                  <h2 className="font-heading text-2xl font-extrabold text-heading mb-2">
                     Contact Information
                   </h2>
                   <p className="text-muted-foreground mb-8">
@@ -272,12 +316,12 @@ export default function ContactPage() {
 
                   <div className="space-y-6 mb-10">
                     {CONTACT_INFO.map((info) => (
-                      <div key={info.label} className="flex items-start gap-4">
+                      <div key={info.label} className="card-hover flex items-start gap-4 p-4 rounded-xl">
                         <div className="flex items-center justify-center w-12 h-12 bg-primary-light text-primary rounded-xl shrink-0">
                           {info.icon}
                         </div>
                         <div>
-                          <p className="text-sm font-semibold text-foreground mb-0.5">
+                          <p className="text-sm font-semibold text-heading mb-0.5">
                             {info.label}
                           </p>
                           {info.href ? (
@@ -288,7 +332,7 @@ export default function ContactPage() {
                               {info.value}
                             </a>
                           ) : (
-                            <p className="text-foreground font-medium">{info.value}</p>
+                            <p className="text-heading font-medium">{info.value}</p>
                           )}
                           <p className="text-xs text-muted-foreground mt-0.5">
                             {info.description}
@@ -303,14 +347,14 @@ export default function ContactPage() {
                     <p className="text-sm font-semibold text-emergency mb-1">
                       Medical Emergency?
                     </p>
-                    <p className="text-sm text-foreground">
+                    <p className="text-sm text-heading">
                       {EMERGENCY_DISCLAIMER}
                     </p>
                   </div>
 
                   {/* Quick Book CTA */}
                   <div className="mt-8 bg-muted rounded-xl p-6 text-center">
-                    <p className="font-semibold text-foreground mb-2">
+                    <p className="font-semibold text-heading mb-2">
                       Need a ride instead?
                     </p>
                     <p className="text-sm text-muted-foreground mb-4">
@@ -335,7 +379,7 @@ export default function ContactPage() {
       <section className="bg-white pb-16 md:pb-24">
         <div className="container-custom">
           <div className="max-w-6xl mx-auto">
-            <h2 className="font-heading text-2xl font-bold text-foreground mb-6">
+            <h2 className="font-heading text-2xl font-extrabold text-heading mb-6">
               Our Service Area
             </h2>
             <div className="aspect-[16/6] md:aspect-[16/5] bg-muted rounded-2xl border border-border flex items-center justify-center">
@@ -356,7 +400,7 @@ export default function ContactPage() {
       {/* ===== CTA ===== */}
       <section className="gradient-primary py-16 md:py-20">
         <div className="container-custom text-center">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-white mb-4">
             Ready to Book Your Ride?
           </h2>
           <p className="text-lg text-white/80 max-w-xl mx-auto mb-8">

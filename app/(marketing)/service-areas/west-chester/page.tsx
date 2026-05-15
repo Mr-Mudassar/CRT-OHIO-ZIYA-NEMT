@@ -73,7 +73,7 @@ export default function WestChesterPage() {
               <MapPin className="h-4 w-4" />
               West Chester Township, Ohio
             </div>
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6">
               West Chester Medical Transportation Services
             </h1>
             <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-8">
@@ -106,7 +106,7 @@ export default function WestChesterPage() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-6">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-6">
               About Non-Emergency Medical Transportation in West Chester
             </h2>
             <div className="prose prose-lg max-w-none text-muted-foreground space-y-4">
@@ -141,7 +141,7 @@ export default function WestChesterPage() {
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-10">
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
+              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
                 Medical Facilities Near West Chester
               </h2>
               <p className="text-lg text-muted-foreground">
@@ -171,7 +171,7 @@ export default function WestChesterPage() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="text-center mb-10">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
               Services Available in West Chester
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -184,9 +184,9 @@ export default function WestChesterPage() {
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
-                className="group bg-muted hover:bg-primary-light rounded-xl p-5 text-center transition-colors"
+                className="group bg-muted hover:bg-primary-light rounded-xl p-5 text-center hover:-translate-y-1 hover:shadow-xl transition-all duration-300"
               >
-                <h3 className="font-heading text-sm font-semibold text-foreground group-hover:text-primary transition-colors mb-2">
+                <h3 className="font-heading text-sm font-semibold text-heading group-hover:text-primary transition-colors mb-2">
                   {service.title}
                 </h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
@@ -202,7 +202,7 @@ export default function WestChesterPage() {
       <section className="section-padding bg-muted">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground text-center mb-10">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading text-center mb-10">
               Why West Chester Residents Choose {SITE_NAME}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -211,7 +211,7 @@ export default function WestChesterPage() {
                   <Clock className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-heading text-lg font-semibold text-foreground mb-2">
+                  <h3 className="font-heading text-lg font-semibold text-heading mb-2">
                     Navigating Butler County Roads
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
@@ -227,7 +227,7 @@ export default function WestChesterPage() {
                   <Shield className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-heading text-lg font-semibold text-foreground mb-2">
+                  <h3 className="font-heading text-lg font-semibold text-heading mb-2">
                     Serving Senior Communities
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
@@ -243,7 +243,7 @@ export default function WestChesterPage() {
                   <Heart className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-heading text-lg font-semibold text-foreground mb-2">
+                  <h3 className="font-heading text-lg font-semibold text-heading mb-2">
                     ADA-Accessible Fleet
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
@@ -259,7 +259,7 @@ export default function WestChesterPage() {
                   <CheckCircle2 className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-heading text-lg font-semibold text-foreground mb-2">
+                  <h3 className="font-heading text-lg font-semibold text-heading mb-2">
                     Multiple Payment Options
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
@@ -278,7 +278,7 @@ export default function WestChesterPage() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground text-center mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading text-center mb-4">
               West Chester Area Coverage
             </h2>
             <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
@@ -304,7 +304,7 @@ export default function WestChesterPage() {
       <section className="section-padding gradient-primary text-white">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold mb-4">
               Book Your Ride in West Chester
             </h2>
             <p className="text-lg text-white/80 mb-8">

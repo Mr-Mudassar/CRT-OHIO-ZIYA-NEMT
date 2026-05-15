@@ -90,9 +90,9 @@ export function WhyChooseUsSection() {
               <p className="inline-flex items-center gap-2 text-sm font-semibold text-primary uppercase tracking-wider mb-3 px-3 py-1 bg-primary/5 rounded-full">
                 Why Choose Us
               </p>
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
+              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
                 Your Trusted Transportation{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+                <span className="text-gradient-primary">
                   Partner
                 </span>
               </h2>
@@ -109,7 +109,7 @@ export function WhyChooseUsSection() {
                       <div className={`flex items-center justify-center w-11 h-11 bg-gradient-to-br ${item.gradient} text-white rounded-xl mb-3 shadow-sm`}>
                         {item.icon}
                       </div>
-                      <h3 className="font-heading text-base font-semibold text-foreground mb-1.5">
+                      <h3 className="font-heading text-base font-bold text-heading mb-1.5">
                         {item.title}
                       </h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">

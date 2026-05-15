@@ -42,21 +42,21 @@ export function ContactStripSection() {
         <StaggerContainer staggerDelay={0.1} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
           {CONTACT_ITEMS.map((item) => (
             <StaggerItem key={item.label}>
-              <div className="flex items-start gap-4 p-5 bg-white rounded-2xl border border-border/60 hover:shadow-md hover:border-primary/15 transition-all duration-300">
+              <div className="flex items-center gap-4 p-5 bg-white rounded-2xl border border-border/60 hover:shadow-md hover:border-primary/15 transition-all duration-300 h-full min-h-[88px]">
                 <div className={`flex items-center justify-center w-12 h-12 bg-gradient-to-br ${item.gradient} text-white rounded-xl shrink-0 shadow-sm`}>
                   {item.icon}
                 </div>
-                <div>
+                <div className="min-w-0 flex-1">
                   <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">{item.label}</p>
                   {item.href ? (
                     <a
                       href={item.href}
-                      className="text-sm font-semibold text-foreground hover:text-primary transition-colors"
+                      className="text-sm font-semibold text-foreground hover:text-primary transition-colors block truncate"
                     >
                       {item.value}
                     </a>
                   ) : (
-                    <p className="text-sm font-medium text-foreground">{item.value}</p>
+                    <p className="text-sm font-medium text-foreground truncate">{item.value}</p>
                   )}
                 </div>
               </div>

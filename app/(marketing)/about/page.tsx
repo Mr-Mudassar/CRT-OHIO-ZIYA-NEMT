@@ -4,6 +4,7 @@ import {
   ArrowRight,
   Heart,
   Shield,
+  ShieldCheck,
   Users,
   Clock,
   CheckCircle2,
@@ -141,26 +142,39 @@ export default function AboutPage() {
         {/* Background image */}
         <div className="absolute inset-0">
           <Image
-            src="/images/hero-medical.jpg"
+            src="/images/hero-ambulance.jpg"
             alt="Professional medical transportation services"
             fill
             className="object-cover"
             priority
             quality={85}
           />
-          {/* Gradient overlay for text readability */}
-          <div className="absolute inset-0 bg-linear-to-r from-primary-dark/90 via-primary/85 to-primary/75" />
+          {/* Dark dramatic gradient overlay */}
+          <div className="absolute inset-0 bg-linear-to-br from-heading/90 via-primary/80 to-primary-dark/85" />
+          {/* Subtle dot grid overlay */}
+          <div
+            className="absolute inset-0 opacity-[0.04]"
+            style={{
+              backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
+              backgroundSize: '30px 30px',
+            }}
+          />
         </div>
 
-        <div className="container-custom relative z-10 pt-16 pb-20 md:pt-24 md:pb-32">
+        {/* Animated decorative orbs */}
+        <div className="absolute top-20 right-10 w-72 h-72 bg-accent/10 rounded-full blur-[100px] animate-pulse" />
+        <div className="absolute bottom-10 left-20 w-56 h-56 bg-primary-sky/8 rounded-full blur-[80px] animate-pulse [animation-delay:1s]" />
+
+        <div className="container-custom relative z-10 pt-20 pb-24 md:pt-28 md:pb-36">
           <div className="max-w-3xl">
-            <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">
-              About Care Ride Transportation
-            </p>
-            <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm text-white text-sm font-semibold rounded-full mb-6 border border-white/10">
+              <ShieldCheck className="h-4 w-4" />
+              Trusted NEMT Provider in Ohio
+            </div>
+            <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
               Your Trusted Partner in Medical Transportation
             </h1>
-            <p className="text-lg sm:text-xl text-white/90 leading-relaxed max-w-2xl mb-8">
+            <p className="text-lg sm:text-xl text-white/85 leading-relaxed max-w-2xl mb-10">
               We are a dedicated non-emergency medical transportation provider serving the
               Greater Cincinnati area and surrounding Ohio communities. Our mission is simple:
               get you to your medical appointments safely, comfortably, and on time.
@@ -168,14 +182,14 @@ export default function AboutPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/book"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent hover:bg-accent-dark text-white text-lg font-semibold rounded-xl transition-colors shadow-lg"
+                className="animate-pulse-glow inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent hover:bg-accent-dark text-white text-lg font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-accent/30 hover:-translate-y-1 hover:shadow-xl hover:shadow-accent/40"
               >
                 Book a Ride
                 <ArrowRight className="h-5 w-5" />
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white text-lg font-semibold rounded-xl border border-white/30 transition-colors backdrop-blur-sm"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white text-lg font-semibold rounded-xl border border-white/20 transition-all duration-300 backdrop-blur-sm hover:-translate-y-1 hover:shadow-lg"
               >
                 Get in Touch
               </Link>
@@ -190,10 +204,11 @@ export default function AboutPage() {
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
               <div>
+                <div className="w-16 h-1 bg-gradient-to-r from-accent to-primary rounded-full mb-4" />
                 <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
                   Our Mission
                 </p>
-                <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-6">
+                <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-6">
                   Bridging the Gap Between Patients and Care
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
@@ -216,22 +231,24 @@ export default function AboutPage() {
                 </p>
                 {/* Stats row */}
                 <div className="grid grid-cols-3 gap-4">
-                  <div className="text-center p-4 bg-muted rounded-xl">
-                    <p className="font-heading text-2xl md:text-3xl font-bold text-primary">6+</p>
+                  <div className="text-center p-4 bg-gradient-to-br from-primary/5 to-primary-sky/5 border border-primary/10 rounded-xl">
+                    <p className="font-heading text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-sky">6+</p>
                     <p className="text-xs sm:text-sm text-muted-foreground mt-1">Cities Served</p>
                   </div>
-                  <div className="text-center p-4 bg-muted rounded-xl">
-                    <p className="font-heading text-2xl md:text-3xl font-bold text-primary">24/7</p>
+                  <div className="text-center p-4 bg-gradient-to-br from-primary/5 to-primary-sky/5 border border-primary/10 rounded-xl">
+                    <p className="font-heading text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-sky">24/7</p>
                     <p className="text-xs sm:text-sm text-muted-foreground mt-1">Availability</p>
                   </div>
-                  <div className="text-center p-4 bg-muted rounded-xl">
-                    <p className="font-heading text-2xl md:text-3xl font-bold text-primary">ADA</p>
+                  <div className="text-center p-4 bg-gradient-to-br from-primary/5 to-primary-sky/5 border border-primary/10 rounded-xl">
+                    <p className="font-heading text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-sky">ADA</p>
                     <p className="text-xs sm:text-sm text-muted-foreground mt-1">Compliant</p>
                   </div>
                 </div>
               </div>
               <div className="relative">
-                <div className="relative aspect-4/3 rounded-2xl overflow-hidden shadow-xl">
+                {/* Glowing accent dot decoration */}
+                <div className="absolute -top-3 -right-3 w-6 h-6 bg-accent/20 rounded-full blur-md" />
+                <div className="img-zoom relative aspect-4/3 rounded-2xl overflow-hidden shadow-xl">
                   <Image
                     src="/images/about-team.jpg"
                     alt="Care Ride Transportation team of healthcare and transportation professionals"
@@ -241,7 +258,7 @@ export default function AboutPage() {
                   />
                 </div>
                 {/* Decorative accent */}
-                <div className="absolute -bottom-4 -right-4 w-full h-full rounded-2xl border-2 border-primary/20 -z-10" />
+                <div className="absolute -bottom-4 -right-4 w-full h-full rounded-2xl border-2 border-accent/30 -z-10" />
               </div>
             </div>
           </div>
@@ -257,7 +274,7 @@ export default function AboutPage() {
               <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
                 Our Values
               </p>
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
+              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
                 What Drives Us Every Day
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl">
@@ -266,7 +283,7 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="lg:col-span-2">
-              <div className="relative aspect-video rounded-2xl overflow-hidden shadow-lg">
+              <div className="img-zoom relative aspect-video rounded-2xl overflow-hidden shadow-lg">
                 <Image
                   src="/images/caring-hands.jpg"
                   alt="Caring hands representing our commitment to compassionate transportation"
@@ -281,12 +298,12 @@ export default function AboutPage() {
             {VALUES.map((value) => (
               <div
                 key={value.title}
-                className="flex flex-col p-6 md:p-8 bg-white rounded-2xl border border-border hover:shadow-lg hover:border-primary/20 transition-all duration-300"
+                className="card-hover flex flex-col p-6 md:p-8 bg-white rounded-2xl border border-border hover:shadow-lg hover:border-primary/20 transition-all duration-300"
               >
                 <div className="flex items-center justify-center w-14 h-14 bg-primary-light text-primary rounded-xl mb-5">
                   {value.icon}
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">
+                <h3 className="font-heading text-lg font-semibold text-heading mb-2">
                   {value.title}
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">{value.description}</p>
@@ -303,7 +320,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
               {/* Image column */}
               <div className="relative">
-                <div className="relative aspect-3/4 sm:aspect-4/5 rounded-2xl overflow-hidden shadow-xl">
+                <div className="img-zoom relative aspect-3/4 sm:aspect-4/5 rounded-2xl overflow-hidden shadow-xl">
                   <Image
                     src="/images/nurse-patient.jpg"
                     alt="Nurse assisting a patient, representing the care and attention we bring to medical transportation"
@@ -319,7 +336,7 @@ export default function AboutPage() {
                       <Heart className="h-6 w-6" />
                     </div>
                     <div>
-                      <p className="font-heading text-lg font-bold text-foreground">Trusted Care</p>
+                      <p className="font-heading text-lg font-bold text-heading">Trusted Care</p>
                       <p className="text-sm text-muted-foreground">By patients & facilities</p>
                     </div>
                   </div>
@@ -331,7 +348,7 @@ export default function AboutPage() {
                 <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
                   Who We Serve
                 </p>
-                <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
                   Transportation for Everyone Who Needs It
                 </h2>
                 <p className="text-lg text-muted-foreground mb-8">
@@ -347,7 +364,7 @@ export default function AboutPage() {
                         {item.icon}
                       </div>
                       <div>
-                        <h3 className="font-heading text-lg font-semibold text-foreground mb-1">
+                        <h3 className="font-heading text-lg font-semibold text-heading mb-1">
                           {item.title}
                         </h3>
                         <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
@@ -370,7 +387,7 @@ export default function AboutPage() {
                 <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
                   Our Fleet
                 </p>
-                <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-6">
+                <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-6">
                   Safe, Comfortable, ADA-Compliant Vehicles
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-6">
@@ -388,7 +405,7 @@ export default function AboutPage() {
                 </ul>
               </div>
               <div className="relative">
-                <div className="relative aspect-4/3 rounded-2xl overflow-hidden shadow-xl">
+                <div className="img-zoom relative aspect-4/3 rounded-2xl overflow-hidden shadow-xl">
                   <Image
                     src="/images/elderly-happy.jpg"
                     alt="Happy elderly couple representing our commitment to comfortable and joyful transportation experiences"
@@ -412,7 +429,7 @@ export default function AboutPage() {
             <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
               Where We Operate
             </p>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
               Proudly Serving Southwest Ohio
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
@@ -458,7 +475,7 @@ export default function AboutPage() {
         </div>
 
         <div className="container-custom relative z-10 text-center">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-white mb-4">
             Ready to Experience the Care Ride Difference?
           </h2>
           <p className="text-lg text-white/80 max-w-xl mx-auto mb-8">

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   Stethoscope,
   ArrowRight,
@@ -29,6 +30,17 @@ export const metadata = generatePageMetadata({
 const RELATED_SERVICES = SERVICES.filter((s) =>
   ['ambulatory', 'hospital-discharge', 'recurring'].includes(s.slug)
 )
+
+const IMAGE_MAP: Record<string, string> = {
+  ambulatory: '/images/elderly-happy.jpg',
+  wheelchair: '/images/wheelchair-van.jpg',
+  dialysis: '/images/dialysis-treatment.jpg',
+  'medical-appointments': '/images/doctor-patient.jpg',
+  'hospital-discharge': '/images/hospital-corridor.jpg',
+  facility: '/images/medical-team.jpg',
+  'private-pay': '/images/transport-vehicle.jpg',
+  recurring: '/images/senior-care.jpg',
+}
 
 export default function MedicalAppointmentsServicePage() {
   const serviceJsonLd = generateServiceJsonLd(
@@ -76,21 +88,49 @@ export default function MedicalAppointmentsServicePage() {
         </div>
       </nav>
 
-      {/* Hero */}
-      <section className="gradient-hero section-padding">
+      {/* Hero — Reversed Split Layout (Image Left, Text Right) */}
+      <section className="bg-gradient-to-br from-white to-muted section-padding">
         <div className="container-custom">
-          <div className="max-w-3xl">
-            <div className="w-16 h-16 rounded-2xl bg-primary-light flex items-center justify-center mb-6">
-              <Stethoscope className="h-8 w-8 text-primary" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* Left: Image */}
+            <div className="relative h-[300px] sm:h-[380px] lg:h-[420px] rounded-2xl overflow-hidden shadow-2xl order-2 lg:order-1">
+              <Image
+                src="/images/doctor-patient.jpg"
+                alt="Doctor consulting with patient at medical appointment"
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
             </div>
-            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Medical Appointment Transportation
-            </h1>
-            <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
-              On-time, reliable transportation to doctor visits, specialist appointments, lab work,
-              imaging, and medical procedures. We make sure you get to every appointment safely and
-              without stress.
-            </p>
+            {/* Right: Text */}
+            <div className="order-1 lg:order-2">
+              <div className="w-14 h-14 rounded-2xl bg-primary-light flex items-center justify-center mb-6">
+                <Stethoscope className="h-7 w-7 text-primary" />
+              </div>
+              <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-heading mb-4">
+                Medical Appointment Transportation
+              </h1>
+              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-xl mb-6">
+                On-time, reliable transportation to doctor visits, specialist appointments, lab work,
+                imaging, and medical procedures. We make sure you get to every appointment safely and
+                without stress.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-accent/10 text-accent text-sm font-medium rounded-full border border-accent/20">
+                  <CheckCircle2 className="h-3.5 w-3.5" />
+                  On-Time Guarantee
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-accent/10 text-accent text-sm font-medium rounded-full border border-accent/20">
+                  <CheckCircle2 className="h-3.5 w-3.5" />
+                  All Appointment Types
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-accent/10 text-accent text-sm font-medium rounded-full border border-accent/20">
+                  <CheckCircle2 className="h-3.5 w-3.5" />
+                  Round Trip Available
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -99,7 +139,7 @@ export default function MedicalAppointmentsServicePage() {
       <section className="section-padding">
         <div className="container-custom">
           <div className="max-w-3xl">
-            <h2 className="font-heading text-2xl sm:text-3xl font-bold text-foreground mb-6">
+            <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-6">
               What Is Medical Appointment Transportation?
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
@@ -133,7 +173,7 @@ export default function MedicalAppointmentsServicePage() {
       {/* Types of Appointments We Serve */}
       <section className="section-padding bg-muted">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-foreground mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
             Types of Appointments We Serve
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -151,9 +191,11 @@ export default function MedicalAppointmentsServicePage() {
               'Follow-up visits after hospitalization',
               'Chronic disease management check-ups',
             ].map((item) => (
-              <div key={item} className="flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                <span className="text-foreground text-sm">{item}</span>
+              <div key={item} className="bg-white rounded-xl p-4 border border-border/60 shadow-sm hover:shadow-md transition-all">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                  <span className="text-foreground text-sm">{item}</span>
+                </div>
               </div>
             ))}
           </div>
@@ -163,7 +205,7 @@ export default function MedicalAppointmentsServicePage() {
       {/* What to Expect */}
       <section className="section-padding">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-foreground mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
             What to Expect
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -188,12 +230,15 @@ export default function MedicalAppointmentsServicePage() {
                 title: 'Return Trip Ready',
                 text: 'For round trips, we coordinate your pickup with your appointment end time. Just let us know when you are ready and we will be there.',
               },
-            ].map((item) => (
-              <div key={item.step}>
-                <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg mb-4">
+            ].map((item, index) => (
+              <div key={item.step} className="relative">
+                {index < 3 && (
+                  <div className="hidden lg:block absolute top-6 left-[calc(100%_-_12px)] w-[calc(100%_-_24px)] h-0.5 bg-gradient-to-r from-primary/30 to-primary/10 z-0" />
+                )}
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-primary-dark text-white flex items-center justify-center font-bold text-lg mb-4 shadow-lg shadow-primary/20 relative z-10">
                   {item.step}
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">
+                <h3 className="font-heading text-lg font-semibold text-heading mb-2">
                   {item.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
@@ -206,7 +251,7 @@ export default function MedicalAppointmentsServicePage() {
       {/* Why Choose Care Ride */}
       <section className="section-padding bg-muted">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-foreground mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
             Why Choose Care Ride for Medical Appointments?
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -234,10 +279,12 @@ export default function MedicalAppointmentsServicePage() {
             ].map((item) => (
               <div
                 key={item.title}
-                className="bg-white border border-border rounded-xl p-6 shadow-[var(--shadow-card)]"
+                className="bg-white border border-border rounded-xl p-6 shadow-[var(--shadow-card)] hover:-translate-y-1 hover:shadow-xl transition-all duration-300"
               >
-                <item.icon className="h-8 w-8 text-primary mb-4" />
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">
+                <div className="w-14 h-14 bg-gradient-to-br from-primary/10 to-primary-sky/10 rounded-xl flex items-center justify-center mb-4">
+                  <item.icon className="h-7 w-7 text-primary" />
+                </div>
+                <h3 className="font-heading text-lg font-semibold text-heading mb-2">
                   {item.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
@@ -250,7 +297,7 @@ export default function MedicalAppointmentsServicePage() {
       {/* Related Services */}
       <section className="section-padding">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-foreground mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
             Related Services
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -258,18 +305,30 @@ export default function MedicalAppointmentsServicePage() {
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
-                className="group bg-white border border-border rounded-xl p-6 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] hover:border-primary/30 transition-all duration-300"
+                className="group bg-white border border-border rounded-xl overflow-hidden shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] hover:border-primary/30 transition-all duration-300"
               >
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                  {service.description}
-                </p>
-                <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary">
-                  Learn More
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
-                </span>
+                <div className="relative h-36 overflow-hidden">
+                  <Image
+                    src={IMAGE_MAP[service.slug] || '/images/medical-care.jpg'}
+                    alt={service.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 640px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-heading text-lg font-semibold text-heading mb-2 group-hover:text-primary transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                    {service.description}
+                  </p>
+                  <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+                    Learn More
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
+                  </span>
+                </div>
               </Link>
             ))}
           </div>
@@ -277,9 +336,18 @@ export default function MedicalAppointmentsServicePage() {
       </section>
 
       {/* CTA */}
-      <section className="gradient-primary section-padding">
-        <div className="container-custom text-center">
-          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-white mb-4">
+      <section className="relative section-padding overflow-hidden">
+        <Image
+          src="/images/hero-ambulance.jpg"
+          alt=""
+          fill
+          className="object-cover"
+          sizes="100vw"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#030712]/90 via-primary/85 to-primary-dark/90" />
+        <div className="relative z-10 container-custom text-center">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-white mb-4">
             Book Your Medical Appointment Ride
           </h2>
           <p className="text-white/80 text-lg max-w-2xl mx-auto mb-8">

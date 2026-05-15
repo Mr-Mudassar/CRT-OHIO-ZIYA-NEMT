@@ -31,6 +31,17 @@ const RELATED_SERVICES = SERVICES.filter((s) =>
   ['wheelchair', 'medical-appointments', 'private-pay'].includes(s.slug)
 )
 
+const IMAGE_MAP: Record<string, string> = {
+  ambulatory: '/images/elderly-happy.jpg',
+  wheelchair: '/images/wheelchair-van.jpg',
+  dialysis: '/images/dialysis-treatment.jpg',
+  'medical-appointments': '/images/doctor-patient.jpg',
+  'hospital-discharge': '/images/hospital-corridor.jpg',
+  facility: '/images/medical-team.jpg',
+  'private-pay': '/images/transport-vehicle.jpg',
+  recurring: '/images/senior-care.jpg',
+}
+
 export default function AmbulatoryServicePage() {
   const serviceJsonLd = generateServiceJsonLd(
     SERVICE.title,
@@ -77,31 +88,37 @@ export default function AmbulatoryServicePage() {
         </div>
       </nav>
 
-      {/* Hero with Image Banner */}
-      <section className="relative h-[320px] sm:h-[400px] lg:h-[450px] overflow-hidden">
-        <Image
-          src="/images/elderly-happy.jpg"
-          alt="Elderly passenger smiling during ambulatory transportation"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
-        <div className="absolute inset-0 flex items-center">
-          <div className="container-custom">
-            <div className="max-w-3xl">
-              <div className="w-14 h-14 rounded-2xl bg-white/15 backdrop-blur-sm flex items-center justify-center mb-6">
-                <PersonStanding className="h-7 w-7 text-white" />
+      {/* Hero — Split Layout */}
+      <section className="bg-gradient-to-br from-white to-muted section-padding">
+        <div className="container-custom">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* Left: Text */}
+            <div className="flex gap-4 lg:gap-6">
+              <div className="w-1 shrink-0 rounded-full bg-accent" />
+              <div>
+                <div className="w-14 h-14 rounded-2xl bg-primary-light flex items-center justify-center mb-6">
+                  <PersonStanding className="h-7 w-7 text-primary" />
+                </div>
+                <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-heading mb-4">
+                  Ambulatory Transportation
+                </h1>
+                <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-xl">
+                  Door-to-door medical transportation for passengers who can walk independently or with
+                  minimal assistance. Our trained drivers provide courteous, reliable service to get you
+                  safely to and from your medical appointments.
+                </p>
               </div>
-              <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 drop-shadow-lg">
-                Ambulatory Transportation
-              </h1>
-              <p className="text-lg sm:text-xl text-white/90 leading-relaxed max-w-2xl drop-shadow-md">
-                Door-to-door medical transportation for passengers who can walk independently or with
-                minimal assistance. Our trained drivers provide courteous, reliable service to get you
-                safely to and from your medical appointments.
-              </p>
+            </div>
+            {/* Right: Image */}
+            <div className="relative h-[300px] sm:h-[380px] lg:h-[420px] rounded-2xl overflow-hidden shadow-2xl">
+              <Image
+                src="/images/elderly-happy.jpg"
+                alt="Elderly passenger smiling during ambulatory transportation"
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
             </div>
           </div>
         </div>
@@ -111,7 +128,7 @@ export default function AmbulatoryServicePage() {
       <section className="section-padding">
         <div className="container-custom">
           <div className="max-w-3xl">
-            <h2 className="font-heading text-2xl sm:text-3xl font-bold text-foreground mb-6">
+            <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-6">
               What Is Ambulatory Transportation?
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
@@ -144,7 +161,7 @@ export default function AmbulatoryServicePage() {
       {/* Who Benefits */}
       <section className="section-padding bg-muted">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-foreground mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
             Who Benefits from Ambulatory Transportation?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -158,9 +175,11 @@ export default function AmbulatoryServicePage() {
               'Patients needing reliable rides to lab work, imaging, or diagnostic tests',
               'Individuals managing chronic conditions with frequent doctor visits',
             ].map((item) => (
-              <div key={item} className="flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                <span className="text-foreground">{item}</span>
+              <div key={item} className="bg-white rounded-xl p-4 border border-border/60 shadow-sm hover:shadow-md transition-all">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                  <span className="text-foreground">{item}</span>
+                </div>
               </div>
             ))}
           </div>
@@ -170,7 +189,7 @@ export default function AmbulatoryServicePage() {
       {/* What to Expect */}
       <section className="section-padding">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-foreground mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
             What to Expect
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -195,12 +214,15 @@ export default function AmbulatoryServicePage() {
                 title: 'Safe Arrival',
                 text: 'You are dropped off at your appointment entrance. For round trips, your driver returns at your specified pickup time.',
               },
-            ].map((item) => (
+            ].map((item, index) => (
               <div key={item.step} className="relative">
-                <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg mb-4">
+                {index < 3 && (
+                  <div className="hidden lg:block absolute top-6 left-[calc(100%_-_12px)] w-[calc(100%_-_24px)] h-0.5 bg-gradient-to-r from-primary/30 to-primary/10 z-0" />
+                )}
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-primary-dark text-white flex items-center justify-center font-bold text-lg mb-4 shadow-lg shadow-primary/20 relative z-10">
                   {item.step}
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">
+                <h3 className="font-heading text-lg font-semibold text-heading mb-2">
                   {item.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
@@ -213,7 +235,7 @@ export default function AmbulatoryServicePage() {
       {/* Why Choose Care Ride */}
       <section className="section-padding bg-muted">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-foreground mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
             Why Choose Care Ride for Ambulatory Transportation?
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -241,10 +263,12 @@ export default function AmbulatoryServicePage() {
             ].map((item) => (
               <div
                 key={item.title}
-                className="bg-white border border-border rounded-xl p-6 shadow-[var(--shadow-card)]"
+                className="bg-white border border-border rounded-xl p-6 shadow-[var(--shadow-card)] hover:-translate-y-1 hover:shadow-xl transition-all duration-300"
               >
-                <item.icon className="h-8 w-8 text-primary mb-4" />
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">
+                <div className="w-14 h-14 bg-gradient-to-br from-primary/10 to-primary-sky/10 rounded-xl flex items-center justify-center mb-4">
+                  <item.icon className="h-7 w-7 text-primary" />
+                </div>
+                <h3 className="font-heading text-lg font-semibold text-heading mb-2">
                   {item.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
@@ -257,7 +281,7 @@ export default function AmbulatoryServicePage() {
       {/* Related Services */}
       <section className="section-padding">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-foreground mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
             Related Services
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -265,18 +289,30 @@ export default function AmbulatoryServicePage() {
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
-                className="group bg-white border border-border rounded-xl p-6 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] hover:border-primary/30 transition-all duration-300"
+                className="group bg-white border border-border rounded-xl overflow-hidden shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] hover:border-primary/30 transition-all duration-300"
               >
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                  {service.description}
-                </p>
-                <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary">
-                  Learn More
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
-                </span>
+                <div className="relative h-36 overflow-hidden">
+                  <Image
+                    src={IMAGE_MAP[service.slug] || '/images/medical-care.jpg'}
+                    alt={service.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 640px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-heading text-lg font-semibold text-heading mb-2 group-hover:text-primary transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                    {service.description}
+                  </p>
+                  <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+                    Learn More
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
+                  </span>
+                </div>
               </Link>
             ))}
           </div>
@@ -284,9 +320,18 @@ export default function AmbulatoryServicePage() {
       </section>
 
       {/* CTA */}
-      <section className="gradient-primary section-padding">
-        <div className="container-custom text-center">
-          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-white mb-4">
+      <section className="relative section-padding overflow-hidden">
+        <Image
+          src="/images/hero-ambulance.jpg"
+          alt=""
+          fill
+          className="object-cover"
+          sizes="100vw"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#030712]/90 via-primary/85 to-primary-dark/90" />
+        <div className="relative z-10 container-custom text-center">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-white mb-4">
             Book Your Ambulatory Ride Today
           </h2>
           <p className="text-white/80 text-lg max-w-2xl mx-auto mb-8">

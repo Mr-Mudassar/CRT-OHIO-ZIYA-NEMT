@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   Building2,
   ArrowRight,
@@ -29,6 +30,17 @@ export const metadata = generatePageMetadata({
 const RELATED_SERVICES = SERVICES.filter((s) =>
   ['wheelchair', 'hospital-discharge', 'recurring'].includes(s.slug)
 )
+
+const IMAGE_MAP: Record<string, string> = {
+  ambulatory: '/images/elderly-happy.jpg',
+  wheelchair: '/images/wheelchair-van.jpg',
+  dialysis: '/images/dialysis-treatment.jpg',
+  'medical-appointments': '/images/doctor-patient.jpg',
+  'hospital-discharge': '/images/hospital-corridor.jpg',
+  facility: '/images/medical-team.jpg',
+  'private-pay': '/images/transport-vehicle.jpg',
+  recurring: '/images/senior-care.jpg',
+}
 
 export default function FacilityServicePage() {
   const serviceJsonLd = generateServiceJsonLd(
@@ -76,21 +88,55 @@ export default function FacilityServicePage() {
         </div>
       </nav>
 
-      {/* Hero */}
-      <section className="gradient-hero section-padding">
-        <div className="container-custom">
-          <div className="max-w-3xl">
-            <div className="w-16 h-16 rounded-2xl bg-primary-light flex items-center justify-center mb-6">
-              <Building2 className="h-8 w-8 text-primary" />
+      {/* Hero — Light Blue-Gray with Image Card */}
+      <section className="relative bg-gradient-to-br from-[#f0f4f8] to-[#e8eef5] overflow-hidden">
+        {/* Subtle geometric hexagon pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='52' viewBox='0 0 60 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' fill='none' stroke='%230A4D8C' stroke-width='1'/%3E%3C/svg%3E")`,
+            backgroundSize: '60px 52px',
+          }}
+        />
+        <div className="relative container-custom py-16 md:py-20 lg:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            {/* Left: Text Content */}
+            <div>
+              <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
+                <Building2 className="h-7 w-7 text-primary" />
+              </div>
+              <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-heading mb-4">
+                Facility Transportation
+              </h1>
+              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-xl mb-8">
+                Dedicated medical transportation solutions for nursing homes, assisted living
+                communities, rehabilitation centers, and healthcare facilities. We partner with
+                your staff to ensure every resident gets to their appointments safely and on time.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {['Dedicated Account', 'Group Transport', 'Simplified Billing'].map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium border border-primary/20"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
-            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Facility Transportation
-            </h1>
-            <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
-              Dedicated medical transportation solutions for nursing homes, assisted living
-              communities, rehabilitation centers, and healthcare facilities. We partner with
-              your staff to ensure every resident gets to their appointments safely and on time.
-            </p>
+            {/* Right: Image Card */}
+            <div className="flex justify-center lg:justify-end">
+              <div className="relative rounded-2xl overflow-hidden border-2 border-white shadow-2xl max-w-md w-full aspect-[4/3]">
+                <Image
+                  src="/images/medical-team.jpg"
+                  alt="Medical team providing facility transportation services"
+                  fill
+                  priority
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -99,7 +145,7 @@ export default function FacilityServicePage() {
       <section className="section-padding">
         <div className="container-custom">
           <div className="max-w-3xl">
-            <h2 className="font-heading text-2xl sm:text-3xl font-bold text-foreground mb-6">
+            <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-6">
               What Is Facility Transportation?
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
@@ -134,7 +180,7 @@ export default function FacilityServicePage() {
       {/* Facilities We Serve */}
       <section className="section-padding bg-muted">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-foreground mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
             Facilities We Serve
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -148,9 +194,11 @@ export default function FacilityServicePage() {
               'Dialysis centers coordinating patient rides',
               'Hospitals and health systems managing patient logistics',
             ].map((item) => (
-              <div key={item} className="flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                <span className="text-foreground">{item}</span>
+              <div key={item} className="bg-white rounded-xl p-4 border border-border/60 shadow-sm hover:shadow-md transition-all">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                  <span className="text-foreground">{item}</span>
+                </div>
               </div>
             ))}
           </div>
@@ -160,7 +208,7 @@ export default function FacilityServicePage() {
       {/* What to Expect */}
       <section className="section-padding">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-foreground mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
             How Our Facility Partnership Works
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -185,12 +233,15 @@ export default function FacilityServicePage() {
                 title: 'Reliable Execution',
                 text: 'Our drivers arrive on time, assist residents with care, transport them safely, and return them to your facility after their appointments.',
               },
-            ].map((item) => (
-              <div key={item.step}>
-                <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg mb-4">
+            ].map((item, index) => (
+              <div key={item.step} className="relative">
+                {index < 3 && (
+                  <div className="hidden lg:block absolute top-6 left-[calc(100%_-_12px)] w-[calc(100%_-_24px)] h-0.5 bg-gradient-to-r from-primary/30 to-primary/10 z-0" />
+                )}
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-primary-dark text-white flex items-center justify-center font-bold text-lg mb-4 shadow-lg shadow-primary/20 relative z-10">
                   {item.step}
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">
+                <h3 className="font-heading text-lg font-semibold text-heading mb-2">
                   {item.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
@@ -203,7 +254,7 @@ export default function FacilityServicePage() {
       {/* Why Choose Care Ride */}
       <section className="section-padding bg-muted">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-foreground mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
             Why Facilities Choose Care Ride
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -231,10 +282,12 @@ export default function FacilityServicePage() {
             ].map((item) => (
               <div
                 key={item.title}
-                className="bg-white border border-border rounded-xl p-6 shadow-[var(--shadow-card)]"
+                className="bg-white border border-border rounded-xl p-6 shadow-[var(--shadow-card)] hover:-translate-y-1 hover:shadow-xl transition-all duration-300"
               >
-                <item.icon className="h-8 w-8 text-primary mb-4" />
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">
+                <div className="w-14 h-14 bg-gradient-to-br from-primary/10 to-primary-sky/10 rounded-xl flex items-center justify-center mb-4">
+                  <item.icon className="h-7 w-7 text-primary" />
+                </div>
+                <h3 className="font-heading text-lg font-semibold text-heading mb-2">
                   {item.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
@@ -247,7 +300,7 @@ export default function FacilityServicePage() {
       {/* Related Services */}
       <section className="section-padding">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-foreground mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
             Related Services
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -255,18 +308,30 @@ export default function FacilityServicePage() {
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
-                className="group bg-white border border-border rounded-xl p-6 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] hover:border-primary/30 transition-all duration-300"
+                className="group bg-white border border-border rounded-xl overflow-hidden shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] hover:border-primary/30 transition-all duration-300"
               >
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                  {service.description}
-                </p>
-                <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary">
-                  Learn More
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
-                </span>
+                <div className="relative h-36 overflow-hidden">
+                  <Image
+                    src={IMAGE_MAP[service.slug] || '/images/medical-care.jpg'}
+                    alt={service.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 640px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-heading text-lg font-semibold text-heading mb-2 group-hover:text-primary transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                    {service.description}
+                  </p>
+                  <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+                    Learn More
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
+                  </span>
+                </div>
               </Link>
             ))}
           </div>
@@ -274,9 +339,18 @@ export default function FacilityServicePage() {
       </section>
 
       {/* CTA */}
-      <section className="gradient-primary section-padding">
-        <div className="container-custom text-center">
-          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-white mb-4">
+      <section className="relative section-padding overflow-hidden">
+        <Image
+          src="/images/hero-ambulance.jpg"
+          alt=""
+          fill
+          className="object-cover"
+          sizes="100vw"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#030712]/90 via-primary/85 to-primary-dark/90" />
+        <div className="relative z-10 container-custom text-center">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-white mb-4">
             Partner With Care Ride for Your Facility
           </h2>
           <p className="text-white/80 text-lg max-w-2xl mx-auto mb-8">

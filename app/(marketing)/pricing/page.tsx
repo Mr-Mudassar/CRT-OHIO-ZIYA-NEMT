@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import {
   ArrowRight,
   Phone,
@@ -111,25 +110,47 @@ export default function PricingPage() {
       </nav>
 
       {/* ===== HERO ===== */}
-      <section className="relative py-20 md:py-28 overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/van-transport.jpg"
-            alt="Care Ride Transportation vehicle providing medical transport"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-linear-to-r from-primary/90 to-primary-dark/90" />
-        </div>
+      <section className="relative py-20 md:py-28 overflow-hidden bg-gradient-to-b from-white via-white to-muted">
+        {/* Floating decorative circles */}
+        <div className="absolute top-8 right-8 md:top-12 md:right-20 w-72 h-72 bg-primary/5 rounded-full blur-[80px]" />
+        <div className="absolute bottom-8 left-4 md:bottom-12 md:left-16 w-56 h-56 bg-primary/5 rounded-full blur-[60px]" />
+        <div className="absolute top-1/2 right-1/4 w-40 h-40 bg-[#0891b2]/5 rounded-full blur-[50px]" />
+
         <div className="container-custom relative z-10 text-center">
-          <h1 className="font-heading text-4xl md:text-5xl font-bold text-white mb-4">
-            Transparent, Affordable Pricing
-          </h1>
-          <p className="text-lg text-white/80 max-w-2xl mx-auto">
-            We believe in honest, upfront pricing with no hidden fees. Know your estimated
-            cost before you book, and only pay for the services you need.
-          </p>
+          <div className="max-w-3xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-light text-primary text-sm font-semibold rounded-full mb-6 border border-primary/20">
+              <DollarSign className="h-4 w-4" />
+              Transparent Pricing
+            </div>
+            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold text-heading mb-6">
+              Transparent, Affordable{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-sky">
+                Pricing
+              </span>
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-10">
+              We believe in honest, upfront pricing with no hidden fees. Know your estimated
+              cost before you book, and only pay for the services you need.
+            </p>
+
+            {/* Mini preview cards */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <div className="flex items-center gap-3 bg-white shadow-md rounded-xl px-5 py-3.5 border-l-4 border-primary">
+                <DollarSign className="h-5 w-5 text-primary shrink-0" />
+                <div className="text-left">
+                  <p className="text-sm text-muted-foreground leading-tight">Starting at</p>
+                  <p className="font-heading font-bold text-heading">From ${PRICING_CONFIG.baseFare} base fare</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 bg-white shadow-md rounded-xl px-5 py-3.5 border-l-4 border-primary">
+                <PersonStanding className="h-5 w-5 text-primary shrink-0" />
+                <div className="text-left">
+                  <p className="text-sm text-muted-foreground leading-tight">Ambulatory</p>
+                  <p className="font-heading font-bold text-heading">${PRICING_CONFIG.perMileAmbulatory.toFixed(2)}/mi</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -138,7 +159,7 @@ export default function PricingPage() {
         <div className="container-custom">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
+              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
                 Our Rate Structure
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -149,13 +170,13 @@ export default function PricingPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-12">
               {/* Ambulatory Card */}
-              <div className="relative flex flex-col p-8 bg-white rounded-2xl border-2 border-border hover:border-primary/30 transition-colors">
+              <div className="relative flex flex-col p-8 bg-white rounded-2xl border-2 border-border hover:border-primary/30 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="flex items-center justify-center w-12 h-12 bg-primary-light text-primary rounded-xl">
                     <PersonStanding className="h-6 w-6" />
                   </div>
                   <div>
-                    <h3 className="font-heading text-xl font-bold text-foreground">
+                    <h3 className="font-heading text-xl font-bold text-heading">
                       Ambulatory
                     </h3>
                     <p className="text-sm text-muted-foreground">Walk-on passengers</p>
@@ -193,7 +214,7 @@ export default function PricingPage() {
               </div>
 
               {/* Wheelchair Card */}
-              <div className="relative flex flex-col p-8 bg-white rounded-2xl border-2 border-primary/40 shadow-lg shadow-primary/5">
+              <div className="relative flex flex-col p-8 bg-white rounded-2xl border-2 border-primary/40 shadow-lg shadow-primary/5 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
                 <div className="absolute -top-3 left-6">
                   <span className="inline-flex px-3 py-1 bg-primary text-white text-xs font-semibold rounded-full">
                     Full Accessibility
@@ -204,7 +225,7 @@ export default function PricingPage() {
                     <Accessibility className="h-6 w-6" />
                   </div>
                   <div>
-                    <h3 className="font-heading text-xl font-bold text-foreground">
+                    <h3 className="font-heading text-xl font-bold text-heading">
                       Wheelchair
                     </h3>
                     <p className="text-sm text-muted-foreground">Wheelchair passengers</p>
@@ -249,7 +270,7 @@ export default function PricingPage() {
                   <Percent className="h-6 w-6" />
                 </div>
                 <div>
-                  <h3 className="font-heading text-lg font-bold text-foreground mb-1">
+                  <h3 className="font-heading text-lg font-bold text-heading mb-1">
                     Round-Trip Discount
                   </h3>
                   <p className="text-muted-foreground">
@@ -266,7 +287,7 @@ export default function PricingPage() {
 
             {/* Example Calculation */}
             <div className="bg-muted rounded-2xl p-6 md:p-8 mb-12">
-              <h3 className="font-heading text-xl font-bold text-foreground mb-4">
+              <h3 className="font-heading text-xl font-bold text-heading mb-4">
                 Example Price Calculation
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -349,7 +370,7 @@ export default function PricingPage() {
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
+              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
                 Additional Services & Surcharges
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -361,13 +382,13 @@ export default function PricingPage() {
               {SURCHARGES.map((surcharge) => (
                 <div
                   key={surcharge.label}
-                  className="flex items-start gap-4 p-5 bg-white rounded-xl border border-border"
+                  className="flex items-start gap-4 p-5 bg-white rounded-xl border border-border card-hover"
                 >
                   <div className="flex items-center justify-center w-10 h-10 bg-primary-light text-primary rounded-lg shrink-0">
                     {surcharge.icon}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-foreground">{surcharge.label}</h3>
+                    <h3 className="font-semibold text-heading">{surcharge.label}</h3>
                     <p className="text-sm text-muted-foreground">{surcharge.description}</p>
                   </div>
                   <div className="text-right shrink-0">
@@ -398,7 +419,7 @@ export default function PricingPage() {
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
+              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
                 Accepted Payment Methods
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -426,9 +447,9 @@ export default function PricingPage() {
               ].map((method) => (
                 <div
                   key={method.title}
-                  className="text-center p-5 bg-muted rounded-xl"
+                  className="text-center p-5 bg-muted rounded-xl card-hover"
                 >
-                  <h3 className="font-semibold text-foreground mb-1">{method.title}</h3>
+                  <h3 className="font-semibold text-heading mb-1">{method.title}</h3>
                   <p className="text-sm text-muted-foreground">{method.description}</p>
                 </div>
               ))}
@@ -445,7 +466,7 @@ export default function PricingPage() {
               <div className="flex items-start gap-4">
                 <AlertCircle className="h-6 w-6 text-primary shrink-0 mt-0.5" />
                 <div>
-                  <h3 className="font-heading text-lg font-bold text-foreground mb-2">
+                  <h3 className="font-heading text-lg font-bold text-heading mb-2">
                     Pricing Disclaimer
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-3">
@@ -469,7 +490,7 @@ export default function PricingPage() {
       {/* ===== CTA ===== */}
       <section className="gradient-primary py-16 md:py-20">
         <div className="container-custom text-center">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-white mb-4">
             Get a Free Ride Estimate
           </h2>
           <p className="text-lg text-white/80 max-w-xl mx-auto mb-8">

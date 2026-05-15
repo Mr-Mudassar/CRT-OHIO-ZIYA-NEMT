@@ -24,7 +24,7 @@ export function TrustBadgesSection() {
               >
                 <div className="text-primary">{badge.icon}</div>
                 <div>
-                  <p className="text-sm font-semibold text-foreground leading-tight">{badge.label}</p>
+                  <p className="text-sm font-bold text-heading leading-tight">{badge.label}</p>
                   <p className="text-xs text-muted-foreground">{badge.desc}</p>
                 </div>
               </div>

@@ -29,7 +29,7 @@ export default function PrivacyPage() {
       <section className="gradient-hero section-padding">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-4">
+            <h1 className="font-heading text-4xl md:text-5xl font-extrabold text-heading mb-4">
               Privacy Policy
             </h1>
             <p className="text-muted-foreground">
@@ -60,11 +60,11 @@ export default function PrivacyPage() {
 
               {/* 1. Information We Collect */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   1. Information We Collect
                 </h2>
 
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">
+                <h3 className="font-heading text-lg font-semibold text-heading mb-2">
                   1.1 Information You Provide Directly
                 </h3>
                 <p className="text-muted-foreground leading-relaxed mb-3">
@@ -85,7 +85,7 @@ export default function PrivacyPage() {
                   <li>Partnership inquiry details (organization name, contact information)</li>
                 </ul>
 
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2 mt-6">
+                <h3 className="font-heading text-lg font-semibold text-heading mb-2 mt-6">
                   1.2 Information Collected Automatically
                 </h3>
                 <p className="text-muted-foreground leading-relaxed mb-3">
@@ -100,7 +100,7 @@ export default function PrivacyPage() {
                   <li>Device type (mobile, tablet, desktop)</li>
                 </ul>
 
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2 mt-6">
+                <h3 className="font-heading text-lg font-semibold text-heading mb-2 mt-6">
                   1.3 Information from Third Parties
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
@@ -113,7 +113,7 @@ export default function PrivacyPage() {
 
               {/* 2. How We Use Your Information */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   2. How We Use Your Information
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-3">
@@ -136,7 +136,7 @@ export default function PrivacyPage() {
 
               {/* 3. Cookies and Tracking Technologies */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   3. Cookies and Tracking Technologies
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-3">
@@ -161,7 +161,7 @@ export default function PrivacyPage() {
 
               {/* 4. How We Share Your Information */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   4. How We Share Your Information
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-3">
@@ -191,7 +191,7 @@ export default function PrivacyPage() {
 
               {/* 5. Data Security */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   5. Data Security
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
@@ -206,7 +206,7 @@ export default function PrivacyPage() {
 
               {/* 6. Data Retention */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   6. Data Retention
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
@@ -222,7 +222,7 @@ export default function PrivacyPage() {
 
               {/* 7. Health Information Considerations */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   7. Health Information Considerations
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-3">
@@ -249,7 +249,7 @@ export default function PrivacyPage() {
 
               {/* 8. Your Rights */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   8. Your Rights
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-3">
@@ -278,7 +278,7 @@ export default function PrivacyPage() {
 
               {/* 9. Children's Privacy */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   9. Children&apos;s Privacy
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
@@ -293,7 +293,7 @@ export default function PrivacyPage() {
 
               {/* 10. Third-Party Links */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   10. Third-Party Links
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
@@ -307,7 +307,7 @@ export default function PrivacyPage() {
 
               {/* 11. Changes to This Policy */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   11. Changes to This Privacy Policy
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
@@ -322,7 +322,7 @@ export default function PrivacyPage() {
 
               {/* 12. Contact Us */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   12. Contact Us About Privacy
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">

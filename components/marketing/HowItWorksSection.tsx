@@ -46,9 +46,9 @@ export function HowItWorksSection() {
           <p className="inline-flex items-center gap-2 text-sm font-semibold text-primary uppercase tracking-wider mb-3 px-3 py-1 bg-primary/5 rounded-full">
             How It Works
           </p>
-          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-5">
+          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-extrabold text-heading mb-5">
             Getting a Ride Is{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-dark">
+            <span className="text-gradient-accent">
               Easy
             </span>
           </h2>
@@ -86,7 +86,7 @@ export function HowItWorksSection() {
 
                   {/* Content */}
                   <div className={`p-6 rounded-2xl ${item.bgColor} w-full`}>
-                    <h3 className="font-heading text-xl font-semibold text-foreground mb-3">
+                    <h3 className="font-heading text-xl font-semibold text-heading mb-3">
                       {item.title}
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">

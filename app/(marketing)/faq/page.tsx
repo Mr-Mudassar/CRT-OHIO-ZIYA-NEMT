@@ -169,7 +169,7 @@ export default function FaqPage() {
       <section className="relative py-20 md:py-28 overflow-hidden">
         <div className="absolute inset-0 bg-linear-to-r from-primary to-primary-dark" />
         <div className="container-custom relative z-10 text-center">
-          <h1 className="font-heading text-4xl md:text-5xl font-bold text-white mb-4">
+          <h1 className="font-heading text-4xl md:text-5xl font-extrabold text-white mb-4">
             Frequently Asked Questions
           </h1>
           <p className="text-lg text-white/80 max-w-2xl mx-auto">
@@ -185,18 +185,18 @@ export default function FaqPage() {
           <div className="max-w-3xl mx-auto">
             {FAQS.map((category) => (
               <div key={category.category} className="mb-12 last:mb-0">
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-6 pb-3 border-b border-border">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-6 pb-3 border-b border-border">
                   {category.category}
                 </h2>
                 <div className="space-y-3">
                   {category.questions.map((faq) => (
                     <details
                       key={faq.question}
-                      className="group bg-muted rounded-xl border border-border overflow-hidden"
+                      className="group bg-muted rounded-xl border border-border overflow-hidden hover:shadow-lg hover:border-primary/20 transition-all duration-300"
                     >
                       <summary className="flex items-start gap-3 p-5 cursor-pointer list-none select-none hover:bg-primary-light/50 transition-colors [&::-webkit-details-marker]:hidden">
                         <ChevronDown className="h-5 w-5 text-primary shrink-0 mt-0.5 transition-transform group-open:rotate-180" />
-                        <span className="font-semibold text-foreground leading-snug pr-2">
+                        <span className="font-semibold text-heading leading-snug pr-2">
                           {faq.question}
                         </span>
                       </summary>
@@ -220,7 +220,7 @@ export default function FaqPage() {
       <section className="section-padding bg-muted">
         <div className="container-custom">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
               Still Have Questions?
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
@@ -250,7 +250,7 @@ export default function FaqPage() {
       {/* ===== BOOKING CTA ===== */}
       <section className="gradient-primary py-16 md:py-20">
         <div className="container-custom text-center">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-white mb-4">
             Ready to Book Your Ride?
           </h2>
           <p className="text-lg text-white/80 max-w-xl mx-auto mb-8">

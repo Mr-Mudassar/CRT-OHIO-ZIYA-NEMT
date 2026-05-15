@@ -29,7 +29,7 @@ export default function TermsPage() {
       <section className="gradient-hero section-padding">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-4">
+            <h1 className="font-heading text-4xl md:text-5xl font-extrabold text-heading mb-4">
               Terms &amp; Conditions
             </h1>
             <p className="text-muted-foreground">
@@ -59,7 +59,7 @@ export default function TermsPage() {
 
               {/* 1. Service Description */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   1. Service Description
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-3">
@@ -82,7 +82,7 @@ export default function TermsPage() {
 
               {/* 2. Booking Process */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   2. Booking Process
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-3">
@@ -109,7 +109,7 @@ export default function TermsPage() {
 
               {/* 3. Cancellation Policy */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   3. Cancellation Policy
                 </h2>
                 <ul className="list-disc pl-6 text-muted-foreground space-y-2">
@@ -131,7 +131,7 @@ export default function TermsPage() {
 
               {/* 4. No-Show Policy */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   4. No-Show Policy
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-3">
@@ -157,7 +157,7 @@ export default function TermsPage() {
 
               {/* 5. Payment and Pricing */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   5. Payment and Pricing
                 </h2>
                 <ul className="list-disc pl-6 text-muted-foreground space-y-2">
@@ -183,7 +183,7 @@ export default function TermsPage() {
 
               {/* 6. Passenger Responsibilities */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   6. Passenger Responsibilities
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-3">
@@ -210,7 +210,7 @@ export default function TermsPage() {
 
               {/* 7. Liability and Disclaimers */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   7. Liability and Disclaimers
                 </h2>
                 <ul className="list-disc pl-6 text-muted-foreground space-y-2">
@@ -238,7 +238,7 @@ export default function TermsPage() {
 
               {/* 8. Personal Belongings */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   8. Personal Belongings
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
@@ -253,7 +253,7 @@ export default function TermsPage() {
 
               {/* 9. Website Use */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   9. Website Use
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-3">
@@ -273,7 +273,7 @@ export default function TermsPage() {
 
               {/* 10. User Accounts */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   10. User Accounts
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
@@ -287,7 +287,7 @@ export default function TermsPage() {
 
               {/* 11. Intellectual Property */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   11. Intellectual Property
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
@@ -301,7 +301,7 @@ export default function TermsPage() {
 
               {/* 12. Governing Law */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   12. Governing Law
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
@@ -314,7 +314,7 @@ export default function TermsPage() {
 
               {/* 13. Modifications */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   13. Modifications to These Terms
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
@@ -328,7 +328,7 @@ export default function TermsPage() {
 
               {/* 14. Severability */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   14. Severability
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
@@ -340,7 +340,7 @@ export default function TermsPage() {
 
               {/* 15. Contact */}
               <div>
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+                <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
                   15. Contact Us
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">

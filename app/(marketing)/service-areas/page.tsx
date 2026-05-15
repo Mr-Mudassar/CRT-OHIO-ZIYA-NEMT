@@ -59,31 +59,60 @@ export default function ServiceAreasPage() {
       />
 
       {/* Hero Section with Image */}
-      <section className="relative py-20 md:py-28 overflow-hidden">
+      <section className="relative py-24 md:py-32 overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/city-road.jpg"
-            alt="Greater Cincinnati area - medical transportation service coverage"
+            src="/images/cincinnati-skyline.jpg"
+            alt="Cincinnati skyline - medical transportation service coverage area"
             fill
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary-dark/90" />
+          {/* Dark dramatic gradient overlay */}
+          <div className="absolute inset-0 bg-linear-to-br from-heading/90 via-primary/80 to-primary-dark/85" />
+          {/* Subtle dot grid overlay */}
+          <div
+            className="absolute inset-0 opacity-[0.04]"
+            style={{
+              backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
+              backgroundSize: '30px 30px',
+            }}
+          />
         </div>
+
+        {/* Animated decorative orbs */}
+        <div className="absolute top-16 left-10 w-64 h-64 bg-accent/10 rounded-full blur-[100px] animate-pulse" />
+        <div className="absolute bottom-16 right-16 w-48 h-48 bg-primary-sky/8 rounded-full blur-[80px] animate-pulse [animation-delay:1s]" />
+
         <div className="container-custom relative z-10 text-center">
           <div className="max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm text-white text-sm font-medium rounded-full mb-6 border border-white/20">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm text-white text-sm font-semibold rounded-full mb-6 border border-white/10">
               <MapPin className="h-4 w-4" />
               Serving Southwest Ohio
             </div>
-            <h1 className="font-heading text-4xl md:text-5xl font-bold text-white mb-6">
+            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6">
               Areas We Serve in Ohio
             </h1>
-            <p className="text-lg md:text-xl text-white/80 leading-relaxed">
+            <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-10">
               {SITE_NAME} provides safe, reliable non-emergency medical transportation throughout
               Greater Cincinnati and Southwest Ohio. We connect patients to the care they need,
               no matter where they are in our service area.
             </p>
+            {/* Stats badges */}
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-sm text-white text-sm font-medium rounded-full border border-white/10">
+                <MapPin className="h-4 w-4 text-accent" />
+                6+ Cities
+              </div>
+              <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-sm text-white text-sm font-medium rounded-full border border-white/10">
+                <Phone className="h-4 w-4 text-accent" />
+                24/7 Dispatch
+              </div>
+              <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-sm text-white text-sm font-medium rounded-full border border-white/10">
+                <ArrowRight className="h-4 w-4 text-accent" />
+                Medicaid Accepted
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -92,7 +121,7 @@ export default function ServiceAreasPage() {
       <section className="section-padding bg-muted">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
               Find Medical Transportation Near You
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -108,14 +137,14 @@ export default function ServiceAreasPage() {
                 <Link
                   key={area.slug}
                   href={`/service-areas/${area.slug}`}
-                  className="group bg-white rounded-xl border border-border p-6 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] transition-all duration-300"
+                  className="group bg-white rounded-xl border border-border p-6 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] hover:-translate-y-1 transition-all duration-300"
                 >
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-primary-light rounded-lg flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors duration-300">
                       <MapPin className="h-6 w-6 text-primary group-hover:text-white transition-colors duration-300" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-heading text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                      <h3 className="font-heading text-xl font-semibold text-heading mb-2 group-hover:text-primary transition-colors">
                         {area.name}
                       </h3>
                       <p className="text-sm text-muted-foreground leading-relaxed mb-3">
@@ -148,7 +177,7 @@ export default function ServiceAreasPage() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
               Book a Ride From Any of Our Service Areas
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
@@ -179,7 +208,7 @@ export default function ServiceAreasPage() {
       <section className="section-padding bg-muted">
         <div className="container-custom">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+            <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
               Don&apos;t See Your City Listed?
             </h2>
             <p className="text-muted-foreground mb-6">

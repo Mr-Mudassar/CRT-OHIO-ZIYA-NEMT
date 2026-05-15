@@ -17,9 +17,9 @@ export function ServiceAreaSection() {
               <p className="inline-flex items-center gap-2 text-sm font-semibold text-primary uppercase tracking-wider mb-3 px-3 py-1 bg-primary/5 rounded-full">
                 Service Areas
               </p>
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-5">
+              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-5">
                 Serving Greater Cincinnati{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-sky">
+                <span className="text-gradient-primary">
                   & Beyond
                 </span>
               </h2>

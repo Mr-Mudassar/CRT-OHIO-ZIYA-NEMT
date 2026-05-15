@@ -43,6 +43,11 @@ const FAQS = [
         answer:
           'Absolutely. Many of our bookings are made by family members, caregivers, or healthcare facility staff on behalf of patients. Simply provide the passenger\'s information during the booking process.',
       },
+      {
+        question: 'Do you provide same-day rides?',
+        answer:
+          'We do our best to accommodate same-day ride requests when our schedule permits. However, same-day availability is not guaranteed, especially for wheelchair transportation which requires specific vehicles. For the best availability, we recommend booking at least 24 to 48 hours in advance. If you need a same-day ride, call us directly and we will do everything we can to help.',
+      },
     ],
   },
   {
@@ -68,6 +73,11 @@ const FAQS = [
   {
     category: 'Services & Vehicles',
     questions: [
+      {
+        question: 'Is this a taxi service?',
+        answer:
+          'No, Care Ride Transportation is not a taxi service. We are a licensed non-emergency medical transportation (NEMT) provider. Our services are specifically designed for patients who need safe, reliable transportation to and from medical appointments, treatments, and healthcare facilities. Unlike taxis, our drivers are trained in passenger assistance, wheelchair securement, and medical sensitivity.',
+      },
       {
         question: 'Do you provide wheelchair-accessible transportation?',
         answer:

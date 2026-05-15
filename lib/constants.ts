@@ -78,14 +78,15 @@ export const SERVICES = [
 
 export const NAV_LINKS = [
   { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
   {
     label: 'Services',
     href: '/services',
     children: SERVICES.map((s) => ({ label: s.title, href: `/services/${s.slug}` })),
   },
-  { label: 'Service Areas', href: '/service-areas' },
   { label: 'Pricing', href: '/pricing' },
+  { label: 'Partner With Us', href: '/partner' },
+  { label: 'Become a Driver', href: '/become-a-driver' },
+  { label: 'About', href: '/about' },
   { label: 'FAQ', href: '/faq' },
   { label: 'Contact', href: '/contact' },
 ] as const

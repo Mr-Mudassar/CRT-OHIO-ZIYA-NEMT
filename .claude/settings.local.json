@@ -11,7 +11,10 @@
       "Bash(curl -sL \"https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?w=1200&q=80\" -o senior-care.jpg)",
       "Bash(npx tsc --noEmit --pretty)",
       "Bash(wc -l \"d:\\\\Projects\\\\Personal\\\\MED STATS BILLING\\\\CrtOhio/app/\\(marketing\\)\"/*/*.tsx \"d:\\\\Projects\\\\Personal\\\\MED STATS BILLING\\\\CrtOhio/app/\\(marketing\\)\"/*.tsx)",
-      "Bash(ls -lh \"d:\\\\Projects\\\\Personal\\\\MED STATS BILLING\\\\CrtOhio/app/\\(marketing\\)/services/\")"
+      "Bash(ls -lh \"d:\\\\Projects\\\\Personal\\\\MED STATS BILLING\\\\CrtOhio/app/\\(marketing\\)/services/\")",
+      "Bash(find \"d:/Projects/Personal/MED STATS BILLING/CrtOhio/app/\\(auth\\)\" -type f)",
+      "WebFetch(domain:www.prisma.io)",
+      "Bash(pnpm prisma db seed --config prisma/prisma.config.ts)"
     ]
   }
 }

@@ -72,7 +72,7 @@ export function Footer() {
               <Image
                 src="/CRTOhio-logo.png"
                 alt={SITE_NAME}
-                width={180}
+                width={140}
                 height={60}
                 className="w-auto"
               />

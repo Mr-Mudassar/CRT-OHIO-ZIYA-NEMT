@@ -1,0 +1,144 @@
+import { redirect } from 'next/navigation'
+import Link from 'next/link'
+import { auth } from '@/lib/auth'
+import { db } from '@/lib/db'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
+import { Car, Plus } from 'lucide-react'
+import {
+  formatRideStatus,
+  formatTransportType,
+  formatDateTime,
+  formatPrice,
+} from '@/lib/ride-helpers'
+
+export default async function UserRidesPage() {
+  const session = await auth()
+  if (!session?.user?.id) redirect('/login')
+
+  const rides = await db.ride.findMany({
+    where: { userId: session.user.id },
+    orderBy: { pickupDateTime: 'desc' },
+    select: {
+      id: true,
+      publicId: true,
+      pickupAddress: true,
+      dropoffAddress: true,
+      pickupDateTime: true,
+      status: true,
+      transportType: true,
+      estimatedPrice: true,
+    },
+  })
+
+  return (
+    <div className="mx-auto max-w-5xl space-y-6">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-heading">My Rides</h1>
+          <p className="mt-1 text-sm text-muted-foreground">
+            View all of your ride requests and their current status.
+          </p>
+        </div>
+        <Button className="bg-accent text-white hover:bg-accent-dark" render={<Link href="/book" />}>
+          <Plus className="size-4" />
+          Book a Ride
+        </Button>
+      </div>
+
+      {rides.length === 0 ? (
+        <Card>
+          <CardContent className="py-12">
+            <div className="flex flex-col items-center justify-center text-center">
+              <Car className="mb-4 size-12 text-muted-foreground/40" />
+              <h3 className="text-lg font-semibold text-heading">No rides yet</h3>
+              <p className="mt-1 mb-4 max-w-sm text-sm text-muted-foreground">
+                You haven&apos;t booked any rides yet. Get started by booking your
+                first ride.
+              </p>
+              <Button className="bg-accent text-white hover:bg-accent-dark" render={<Link href="/book" />}>
+                <Plus className="size-4" />
+                Book Your First Ride
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      ) : (
+        <Card>
+          <CardHeader>
+            <CardTitle>
+              All Rides ({rides.length})
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-0">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Date</TableHead>
+                  <TableHead>Pickup</TableHead>
+                  <TableHead className="hidden md:table-cell">Drop-off</TableHead>
+                  <TableHead className="hidden sm:table-cell">Type</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead className="hidden sm:table-cell text-right">Price</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {rides.map((ride) => {
+                  const statusConfig = formatRideStatus(ride.status)
+                  return (
+                    <TableRow key={ride.id}>
+                      <TableCell>
+                        <Link
+                          href={`/account/rides/${ride.id}`}
+                          className="font-medium text-primary hover:underline"
+                        >
+                          {formatDateTime(ride.pickupDateTime)}
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        <span className="max-w-[200px] truncate block text-sm">
+                          {ride.pickupAddress}
+                        </span>
+                      </TableCell>
+                      <TableCell className="hidden md:table-cell">
+                        <span className="max-w-[200px] truncate block text-sm">
+                          {ride.dropoffAddress}
+                        </span>
+                      </TableCell>
+                      <TableCell className="hidden sm:table-cell">
+                        <span className="text-sm">
+                          {formatTransportType(ride.transportType)}
+                        </span>
+                      </TableCell>
+                      <TableCell>
+                        <Badge
+                          className={`${statusConfig.className} border-0 text-xs`}
+                        >
+                          {statusConfig.label}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="hidden sm:table-cell text-right">
+                        <span className="text-sm font-medium">
+                          {formatPrice(ride.estimatedPrice)}
+                        </span>
+                      </TableCell>
+                    </TableRow>
+                  )
+                })}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+      )}
+    </div>
+  )
+}

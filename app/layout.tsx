@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
-import { Poppins, Inter } from 'next/font/google'
+import { Poppins, Inter, Geist } from 'next/font/google'
 import './globals.css'
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from '@/lib/constants'
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -55,7 +58,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${poppins.variable} ${inter.variable} h-full`}>
+    <html lang="en" className={cn("h-full", poppins.variable, inter.variable, "font-sans", geist.variable)}>
       <body className="min-h-full flex flex-col antialiased">
         <a href="#main-content" className="skip-to-content">
           Skip to main content

@@ -86,7 +86,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+    <form onSubmit={handleSubmit} className="bg-white rounded-xl p-6 md:p-8 border border-border shadow-[var(--shadow-card)] space-y-5" noValidate>
       {error && (
         <div className="rounded-lg bg-emergency-light border border-emergency/30 px-4 py-3 text-sm text-emergency">
           {error}

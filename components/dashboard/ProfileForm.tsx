@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
-import { User, Lock, Loader2, CheckCircle2, AlertCircle } from 'lucide-react'
+import { User, Lock, Loader2, CheckCircle2, AlertCircle, Eye, EyeOff } from 'lucide-react'
 
 // --- Schemas ---
 const profileSchema = z.object({
@@ -102,6 +102,9 @@ export function ProfileForm({
   // --- Password form ---
   const [passwordStatus, setPasswordStatus] = useState<StatusMessage | null>(null)
   const [passwordLoading, setPasswordLoading] = useState(false)
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false)
+  const [showNewPassword, setShowNewPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   const passwordForm = useForm<ChangePasswordFormData>({
     resolver: zodResolver(changePasswordSchema),
@@ -243,13 +246,24 @@ export function ProfileForm({
             {/* Current password */}
             <div className="space-y-2">
               <Label htmlFor="currentPassword">Current Password</Label>
-              <Input
-                id="currentPassword"
-                type="password"
-                placeholder="Enter your current password"
-                {...passwordForm.register('currentPassword')}
-                aria-invalid={!!passwordForm.formState.errors.currentPassword}
-              />
+              <div className="relative">
+                <Input
+                  id="currentPassword"
+                  type={showCurrentPassword ? 'text' : 'password'}
+                  placeholder="Enter your current password"
+                  {...passwordForm.register('currentPassword')}
+                  aria-invalid={!!passwordForm.formState.errors.currentPassword}
+                  className="pr-10"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label={showCurrentPassword ? 'Hide password' : 'Show password'}
+                >
+                  {showCurrentPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+                </button>
+              </div>
               {passwordForm.formState.errors.currentPassword && (
                 <p className="text-xs text-destructive">
                   {passwordForm.formState.errors.currentPassword.message}
@@ -262,13 +276,24 @@ export function ProfileForm({
             {/* New password */}
             <div className="space-y-2">
               <Label htmlFor="newPassword">New Password</Label>
-              <Input
-                id="newPassword"
-                type="password"
-                placeholder="Enter your new password"
-                {...passwordForm.register('newPassword')}
-                aria-invalid={!!passwordForm.formState.errors.newPassword}
-              />
+              <div className="relative">
+                <Input
+                  id="newPassword"
+                  type={showNewPassword ? 'text' : 'password'}
+                  placeholder="Enter your new password"
+                  {...passwordForm.register('newPassword')}
+                  aria-invalid={!!passwordForm.formState.errors.newPassword}
+                  className="pr-10"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowNewPassword(!showNewPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label={showNewPassword ? 'Hide password' : 'Show password'}
+                >
+                  {showNewPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+                </button>
+              </div>
               {passwordForm.formState.errors.newPassword && (
                 <p className="text-xs text-destructive">
                   {passwordForm.formState.errors.newPassword.message}
@@ -279,13 +304,24 @@ export function ProfileForm({
             {/* Confirm password */}
             <div className="space-y-2">
               <Label htmlFor="confirmPassword">Confirm New Password</Label>
-              <Input
-                id="confirmPassword"
-                type="password"
-                placeholder="Confirm your new password"
-                {...passwordForm.register('confirmPassword')}
-                aria-invalid={!!passwordForm.formState.errors.confirmPassword}
-              />
+              <div className="relative">
+                <Input
+                  id="confirmPassword"
+                  type={showConfirmPassword ? 'text' : 'password'}
+                  placeholder="Confirm your new password"
+                  {...passwordForm.register('confirmPassword')}
+                  aria-invalid={!!passwordForm.formState.errors.confirmPassword}
+                  className="pr-10"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
+                >
+                  {showConfirmPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+                </button>
+              </div>
               {passwordForm.formState.errors.confirmPassword && (
                 <p className="text-xs text-destructive">
                   {passwordForm.formState.errors.confirmPassword.message}

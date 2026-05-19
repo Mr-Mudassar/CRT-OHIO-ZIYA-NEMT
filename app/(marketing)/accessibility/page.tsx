@@ -43,7 +43,7 @@ export default function AccessibilityPage() {
               <Accessibility className="h-4 w-4" />
               Our Commitment
             </div>
-            <h1 className="font-heading text-4xl md:text-5xl font-extrabold text-heading mb-4">
+            <h1 className="font-heading text-4xl md:text-5xl font-extrabold text-primary mb-4">
               Accessibility Statement
             </h1>
             <p className="text-lg text-muted-foreground">
@@ -57,7 +57,7 @@ export default function AccessibilityPage() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-heading text-3xl font-extrabold text-heading mb-6">
+            <h2 className="font-heading text-3xl font-extrabold text-primary mb-6">
               Our Commitment to Accessibility
             </h2>
             <div className="text-muted-foreground space-y-4 leading-relaxed">
@@ -83,7 +83,7 @@ export default function AccessibilityPage() {
       <section className="section-padding bg-muted">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
-            <h2 className="font-heading text-3xl font-extrabold text-heading text-center mb-10">
+            <h2 className="font-heading text-3xl font-extrabold text-primary text-center mb-10">
               Website Accessibility Features
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -92,7 +92,7 @@ export default function AccessibilityPage() {
                   <Keyboard className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-heading text-lg font-semibold text-heading mb-2">
+                  <h3 className="font-heading text-lg font-semibold text-primary mb-2">
                     Keyboard Navigation
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
@@ -110,7 +110,7 @@ export default function AccessibilityPage() {
                   <Eye className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-heading text-lg font-semibold text-heading mb-2">
+                  <h3 className="font-heading text-lg font-semibold text-primary mb-2">
                     Color Contrast
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
@@ -127,7 +127,7 @@ export default function AccessibilityPage() {
                   <Volume2 className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-heading text-lg font-semibold text-heading mb-2">
+                  <h3 className="font-heading text-lg font-semibold text-primary mb-2">
                     Screen Reader Compatibility
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
@@ -144,7 +144,7 @@ export default function AccessibilityPage() {
                   <Smartphone className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-heading text-lg font-semibold text-heading mb-2">
+                  <h3 className="font-heading text-lg font-semibold text-primary mb-2">
                     Responsive Design
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
@@ -161,7 +161,7 @@ export default function AccessibilityPage() {
                   <Monitor className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-heading text-lg font-semibold text-heading mb-2">
+                  <h3 className="font-heading text-lg font-semibold text-primary mb-2">
                     Reduced Motion Support
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
@@ -178,7 +178,7 @@ export default function AccessibilityPage() {
                   <CheckCircle2 className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-heading text-lg font-semibold text-heading mb-2">
+                  <h3 className="font-heading text-lg font-semibold text-primary mb-2">
                     Form Accessibility
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
@@ -203,7 +203,7 @@ export default function AccessibilityPage() {
                 <Car className="h-7 w-7 text-primary" />
               </div>
               <div>
-                <h2 className="font-heading text-3xl font-extrabold text-heading mb-2">
+                <h2 className="font-heading text-3xl font-extrabold text-primary mb-2">
                   Transportation Fleet Accessibility
                 </h2>
                 <p className="text-muted-foreground">
@@ -240,7 +240,7 @@ export default function AccessibilityPage() {
       <section className="section-padding bg-muted">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-heading text-3xl font-extrabold text-heading mb-6">
+            <h2 className="font-heading text-3xl font-extrabold text-primary mb-6">
               Our Ongoing Accessibility Efforts
             </h2>
             <div className="text-muted-foreground space-y-4 leading-relaxed">
@@ -270,7 +270,7 @@ export default function AccessibilityPage() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-heading text-3xl font-extrabold text-heading mb-6">
+            <h2 className="font-heading text-3xl font-extrabold text-primary mb-6">
               Known Limitations
             </h2>
             <div className="text-muted-foreground space-y-4 leading-relaxed">
@@ -298,7 +298,7 @@ export default function AccessibilityPage() {
       <section className="section-padding bg-muted">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-heading text-3xl font-extrabold text-heading mb-6">
+            <h2 className="font-heading text-3xl font-extrabold text-primary mb-6">
               Report an Accessibility Concern
             </h2>
             <div className="text-muted-foreground space-y-4 leading-relaxed">
@@ -320,7 +320,7 @@ export default function AccessibilityPage() {
             </div>
 
             <div className="bg-white rounded-xl p-6 mt-8 shadow-[var(--shadow-card)] space-y-4">
-              <h3 className="font-heading text-xl font-semibold text-heading">
+              <h3 className="font-heading text-xl font-semibold text-primary">
                 Contact Us About Accessibility
               </h3>
               <div className="space-y-3">
@@ -366,7 +366,7 @@ export default function AccessibilityPage() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-heading text-3xl font-extrabold text-heading mb-6">
+            <h2 className="font-heading text-3xl font-extrabold text-primary mb-6">
               Regulatory Compliance
             </h2>
             <div className="text-muted-foreground space-y-4 leading-relaxed">

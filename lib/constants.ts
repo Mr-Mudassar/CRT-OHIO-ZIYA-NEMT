@@ -92,13 +92,14 @@ export const NAV_LINKS = [
 ] as const
 
 export const PRICING_CONFIG = {
-  baseFare: 25,
-  perMileAmbulatory: 3.5,
-  perMileWheelchair: 4.5,
-  afterHoursMultiplier: 1.5,
-  doorAssist: 10,
-  buildingAssist: 15,
-  stairs: 20,
-  waitPerMinute: 1,
-  roundTripDiscount: 0.9,
+  baseFareAmbulatory: 40,
+  baseFareWheelchair: 75,
+  perMileAmbulatory: 2.75,
+  perMileWheelchair: 3.75,
+  afterHoursMultiplier: 1.25,   // +25% on base (before 7am / after 7pm / weekends)
+  buildingAssist: 10,
+  stairs: 15,
+  waitGraceMinutes: 10,
+  waitPerMinute: 0.5,
+  roundTripDiscount: 0.9,       // 10% off total
 } as const

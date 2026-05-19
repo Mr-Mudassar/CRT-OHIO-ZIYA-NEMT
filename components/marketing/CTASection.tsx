@@ -74,7 +74,7 @@ export function CTASection() {
               <div className="flex flex-col sm:flex-row gap-4 mb-10">
                 <Link
                   href="/book"
-                  className="group inline-flex items-center justify-center gap-2 px-10 py-4 bg-accent hover:bg-accent-dark text-white text-lg font-bold rounded-2xl transition-all duration-300 shadow-lg shadow-accent/30 hover:shadow-xl hover:shadow-accent/40 hover:-translate-y-1 animate-pulse-glow"
+                  className="group inline-flex items-center justify-center gap-2 px-10 py-4 bg-white hover:bg-white/90 text-primary text-lg font-bold rounded-2xl transition-all duration-300 shadow-lg shadow-white/30 hover:shadow-xl hover:shadow-white/40 hover:-translate-y-1 animate-pulse-glow"
                 >
                   Book a Ride Now
                   <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />

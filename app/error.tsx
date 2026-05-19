@@ -26,7 +26,7 @@ export default function Error({
             <AlertTriangle className="h-10 w-10 text-emergency" />
           </div>
 
-          <h1 className="text-2xl md:text-4xl font-extrabold text-heading font-heading mb-4">
+          <h1 className="text-2xl md:text-4xl font-extrabold text-primary font-heading mb-4">
             Something Went Wrong
           </h1>
 
@@ -45,7 +45,7 @@ export default function Error({
             </button>
             <Link
               href="/"
-              className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-border text-heading hover:border-primary/30 hover:bg-white font-semibold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+              className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-border text-primary hover:border-primary/30 hover:bg-white font-semibold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
             >
               <Home className="h-4 w-4" />
               Go Home

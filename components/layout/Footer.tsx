@@ -30,39 +30,6 @@ export function Footer() {
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
 
-      {/* CTA Strip */}
-      <div className="relative border-b border-white/5">
-        <div className="container-custom py-10 md:py-14">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <h3 className="font-heading text-2xl md:text-3xl font-extrabold text-accent! mb-2">
-                Need a Ride? We&apos;re Here to Help.
-              </h3>
-              <p className="text-white/60 text-sm md:text-base">
-                Book online in minutes or give us a call for immediate
-                assistance.
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3 shrink-0">
-              <Link
-                href="/book"
-                className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-accent hover:bg-accent-dark text-white font-bold rounded-xl transition-all duration-300 shadow-lg shadow-accent/20 hover:shadow-accent/30 hover:-translate-y-0.5"
-              >
-                Book a Ride
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <a
-                href={`tel:${BUSINESS_PHONE.replace(/\D/g, "")}`}
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-xl border border-white/10 transition-all duration-300 hover:-translate-y-0.5"
-              >
-                <Phone className="h-4 w-4" />
-                {BUSINESS_PHONE}
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Main Footer */}
       <div className="container-custom py-14 md:py-16 relative">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
@@ -72,9 +39,9 @@ export function Footer() {
               <Image
                 src="/CRTOhio-logo.png"
                 alt={SITE_NAME}
-                width={140}
+                width={180}
                 height={60}
-                className="w-auto"
+                className="h-14 w-auto"
               />
             </Link>
             <p className="text-white/50 text-sm leading-relaxed mb-2">

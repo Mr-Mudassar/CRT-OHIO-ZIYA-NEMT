@@ -18,10 +18,10 @@
   --color-emergency: #DC3545;
   --color-emergency-light: #FDE8EA;
 
-  /* Neutrals — heading is now near-black for max contrast */
+  /* Neutrals */
   --color-background: #FFFFFF;
   --color-foreground: #0F172A;
-  --color-heading: #030712;
+  --color-heading: #0A4D8C;
   --color-muted: #F0F7FF;
   --color-muted-foreground: #64748B;
   --color-border: #E2E8F0;
@@ -92,12 +92,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Headings — bold near-black for max visibility on any bg */
+/* Headings — font/spacing only (color handled via @layer base below) */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: var(--color-heading);
 }
 
 /* ===== Skip to Content (Accessibility) ===== */
@@ -213,8 +212,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(43, 182, 115, 0.4); }
-  50% { box-shadow: 0 0 25px 8px rgba(43, 182, 115, 0.2); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(10, 77, 140, 0.4); }
+  50% { box-shadow: 0 0 25px 8px rgba(10, 77, 140, 0.2); }
 }
 
 @keyframes pulse-ring {
@@ -225,6 +224,35 @@ h1, h2, h3, h4, h5, h6 {
 @keyframes gradient-shift {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
+}
+
+/* Validation shake */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
+}
+
+.animate-shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+/* Booking step transitions */
+@keyframes step-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-step-in {
+  animation: step-slide-in 0.3s ease-out;
 }
 
 @keyframes slide-in-up {
@@ -354,7 +382,7 @@ html {
 /* Selection color */
 ::selection {
   background-color: rgba(10, 77, 140, 0.2);
-  color: var(--color-heading);
+  color: var(--color-primary);
 }
 
 /* Dot pattern background */
@@ -441,5 +469,9 @@ html {
   }
   html {
     @apply font-sans;
+  }
+  /* Heading default color — inside @layer base so Tailwind utilities (text-white etc.) can override */
+  h1, h2, h3, h4, h5, h6 {
+    color: #0A4D8C;
   }
 }

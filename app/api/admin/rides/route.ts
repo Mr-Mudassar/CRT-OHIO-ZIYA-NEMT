@@ -23,6 +23,8 @@ export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl
   const statusFilter = searchParams.get('status') as RideStatus | null
   const searchQuery = searchParams.get('q')
+  const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10) || 1)
+  const limit = Math.min(50, Math.max(1, parseInt(searchParams.get('limit') || '10', 10) || 10))
 
   const where: Prisma.RideWhereInput = {}
 
@@ -31,28 +33,42 @@ export async function GET(request: NextRequest) {
   }
 
   if (searchQuery) {
-    where.passengerName = {
-      contains: searchQuery,
-      mode: 'insensitive',
-    }
+    where.OR = [
+      { passengerName: { contains: searchQuery, mode: 'insensitive' } },
+      { passengerEmail: { contains: searchQuery, mode: 'insensitive' } },
+      { pickupAddress: { contains: searchQuery, mode: 'insensitive' } },
+      { dropoffAddress: { contains: searchQuery, mode: 'insensitive' } },
+      { publicId: { contains: searchQuery, mode: 'insensitive' } },
+    ]
   }
 
-  const rides = await db.ride.findMany({
-    where,
-    orderBy: { pickupDateTime: 'desc' },
-    include: {
-      user: {
-        select: {
-          id: true,
-          name: true,
-          email: true,
+  const [rides, total] = await Promise.all([
+    db.ride.findMany({
+      where,
+      orderBy: { pickupDateTime: 'desc' },
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          },
+        },
+        _count: {
+          select: { communications: true },
         },
       },
-      _count: {
-        select: { communications: true },
-      },
-    },
-  })
+      skip: (page - 1) * limit,
+      take: limit,
+    }),
+    db.ride.count({ where }),
+  ])
 
-  return NextResponse.json({ rides })
+  return NextResponse.json({
+    rides,
+    total,
+    page,
+    limit,
+    totalPages: Math.ceil(total / limit),
+  })
 }

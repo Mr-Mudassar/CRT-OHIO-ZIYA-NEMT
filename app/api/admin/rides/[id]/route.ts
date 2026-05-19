@@ -3,6 +3,8 @@ import { auth } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { z } from 'zod'
 import type { RideStatus } from '@prisma/client'
+import { sendEmail } from '@/lib/email/send'
+import { RideStatusUpdateEmail } from '@/lib/email/templates/RideStatusUpdate'
 
 const VALID_STATUSES: RideStatus[] = [
   'NEW_REQUEST',
@@ -182,6 +184,50 @@ export async function PATCH(
 
     return updated
   })
+
+  // Send email notification to the passenger on status change
+  if (statusChanged && data.status) {
+    const recipientEmail = updatedRide.passengerEmail || updatedRide.user?.email
+    if (recipientEmail) {
+      const pickupDt = updatedRide.pickupDateTime
+        ? new Intl.DateTimeFormat('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true,
+          }).format(new Date(updatedRide.pickupDateTime))
+        : 'TBD'
+
+      const statusLabels: Record<string, string> = {
+        CONFIRMED: 'Ride Confirmed',
+        DECLINED: 'Ride Declined',
+        CANCELLED: 'Ride Cancelled',
+        IN_PROGRESS: 'Ride In Progress',
+        COMPLETED: 'Ride Completed',
+        UNDER_REVIEW: 'Ride Under Review',
+        NO_SHOW: 'Ride Marked No Show',
+      }
+      const subject = `Care Ride — ${statusLabels[data.status] || 'Status Update'} (${updatedRide.publicId})`
+
+      await sendEmail({
+        to: recipientEmail,
+        subject,
+        react: RideStatusUpdateEmail({
+          publicId: updatedRide.publicId,
+          passengerName: updatedRide.passengerName,
+          pickupAddress: updatedRide.pickupAddress,
+          dropoffAddress: updatedRide.dropoffAddress,
+          pickupDateTime: pickupDt,
+          newStatus: data.status,
+          declineReason: data.declineReason || updatedRide.declineReason || undefined,
+        }),
+      }).catch((err) => {
+        console.error('[Status Email Error]', err)
+      })
+    }
+  }
 
   return NextResponse.json({ ride: updatedRide })
 }

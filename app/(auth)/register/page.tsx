@@ -203,7 +203,7 @@ export default function RegisterPage() {
           <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-primary-light">
             <ShieldCheck className="size-7 text-primary" />
           </div>
-          <h1 className="text-2xl font-bold text-heading">Verify Your Email</h1>
+          <h1 className="text-2xl font-bold text-primary">Verify Your Email</h1>
           <p className="text-muted-foreground mt-2">
             We sent a 6-digit code to <span className="font-medium text-foreground">{email}</span>
           </p>
@@ -229,7 +229,7 @@ export default function RegisterPage() {
                   value={digit}
                   onChange={(e) => handleOtpChange(i, e.target.value)}
                   onKeyDown={(e) => handleOtpKeyDown(i, e)}
-                  className="h-12 w-11 rounded-lg border border-border bg-white text-center text-lg font-bold text-heading focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  className="h-12 w-11 rounded-lg border border-border bg-white text-center text-lg font-bold text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   disabled={isLoading}
                 />
               ))}
@@ -290,7 +290,7 @@ export default function RegisterPage() {
   return (
     <div className="bg-white rounded-2xl shadow-xl border border-border p-8">
       <div className="text-center mb-8">
-        <h1 className="text-2xl font-bold text-heading">Create Your Account</h1>
+        <h1 className="text-2xl font-bold text-primary">Create Your Account</h1>
         <p className="text-muted-foreground mt-2">
           Sign up to book and track your rides
         </p>

@@ -18,7 +18,10 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { SearchIcon, ArrowLeftIcon, FilterIcon, XIcon } from 'lucide-react'
+import { Pagination } from '@/components/shared/Pagination'
 import type { RideStatus, Prisma } from '@prisma/client'
+
+const ITEMS_PER_PAGE = 10
 
 const STATUS_CONFIG: Record<
   RideStatus,
@@ -83,7 +86,7 @@ function formatPrice(price: unknown): string {
 export default async function AdminRidesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ status?: string; q?: string }>
+  searchParams: Promise<{ status?: string; q?: string; page?: string }>
 }) {
   const session = await auth()
   if (!session?.user || session.user.role !== 'ADMIN') {
@@ -93,6 +96,7 @@ export default async function AdminRidesPage({
   const params = await searchParams
   const statusFilter = params.status as RideStatus | undefined
   const searchQuery = params.q || ''
+  const currentPage = Math.max(1, parseInt(params.page || '1', 10) || 1)
 
   const where: Prisma.RideWhereInput = {}
 
@@ -101,20 +105,32 @@ export default async function AdminRidesPage({
   }
 
   if (searchQuery) {
-    where.passengerName = {
-      contains: searchQuery,
-      mode: 'insensitive',
-    }
+    where.OR = [
+      { passengerName: { contains: searchQuery, mode: 'insensitive' } },
+      { passengerEmail: { contains: searchQuery, mode: 'insensitive' } },
+      { pickupAddress: { contains: searchQuery, mode: 'insensitive' } },
+      { dropoffAddress: { contains: searchQuery, mode: 'insensitive' } },
+      { publicId: { contains: searchQuery, mode: 'insensitive' } },
+    ]
   }
 
-  const [rides, rideCount] = await Promise.all([
+  const [rides, totalCount] = await Promise.all([
     db.ride.findMany({
       where,
       orderBy: { pickupDateTime: 'desc' },
       include: { user: true },
+      skip: (currentPage - 1) * ITEMS_PER_PAGE,
+      take: ITEMS_PER_PAGE,
     }),
     db.ride.count({ where }),
   ])
+
+  const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE)
+
+  // Build search params for pagination links
+  const paginationParams: Record<string, string> = {}
+  if (statusFilter) paginationParams.status = statusFilter
+  if (searchQuery) paginationParams.q = searchQuery
 
   const hasFilters = !!(statusFilter || searchQuery)
 
@@ -132,7 +148,7 @@ export default async function AdminRidesPage({
           <div>
             <h1 className="text-2xl font-bold font-heading">All Rides</h1>
             <p className="text-sm text-muted-foreground">
-              {rideCount} ride{rideCount !== 1 ? 's' : ''} found
+              {totalCount} ride{totalCount !== 1 ? 's' : ''} found
             </p>
           </div>
         </div>
@@ -179,7 +195,7 @@ export default async function AdminRidesPage({
                   id="q"
                   name="q"
                   type="text"
-                  placeholder="Search passenger name..."
+                  placeholder="Search name, email, address, or ID..."
                   defaultValue={searchQuery}
                   className="h-10 w-full rounded-lg border border-border bg-white pl-10 pr-3 text-sm text-foreground outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
                 />
@@ -220,73 +236,83 @@ export default async function AdminRidesPage({
               No rides match your filters.
             </p>
           ) : (
-            <div className="overflow-x-auto -mx-6">
-              <div className="inline-block min-w-full px-6">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Date</TableHead>
-                      <TableHead>Passenger</TableHead>
-                      <TableHead className="hidden md:table-cell">Pickup</TableHead>
-                      <TableHead className="hidden md:table-cell">Drop-off</TableHead>
-                      <TableHead className="hidden lg:table-cell">Type</TableHead>
-                      <TableHead className="hidden lg:table-cell">Payer</TableHead>
-                      <TableHead>Status</TableHead>
-                      <TableHead className="hidden sm:table-cell">Price</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {rides.map((ride) => {
-                      const statusConfig = STATUS_CONFIG[ride.status]
-                      return (
-                        <TableRow key={ride.id}>
-                          <TableCell>
-                            <Link
-                              href={`/admin/rides/${ride.id}`}
-                              className="text-primary font-medium underline-offset-4 hover:underline whitespace-nowrap"
+            <>
+              <div className="overflow-x-auto -mx-6">
+                <div className="inline-block min-w-full px-6">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Date</TableHead>
+                        <TableHead>Passenger</TableHead>
+                        <TableHead className="hidden md:table-cell">Pickup</TableHead>
+                        <TableHead className="hidden md:table-cell">Drop-off</TableHead>
+                        <TableHead className="hidden lg:table-cell">Type</TableHead>
+                        <TableHead className="hidden lg:table-cell">Payer</TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead className="hidden sm:table-cell">Price</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {rides.map((ride) => {
+                        const statusConfig = STATUS_CONFIG[ride.status]
+                        return (
+                          <TableRow key={ride.id}>
+                            <TableCell>
+                              <Link
+                                href={`/admin/rides/${ride.id}`}
+                                className="text-primary font-medium underline-offset-4 hover:underline whitespace-nowrap"
+                              >
+                                {formatDate(ride.pickupDateTime)}
+                              </Link>
+                            </TableCell>
+                            <TableCell className="font-medium">
+                              {ride.passengerName}
+                            </TableCell>
+                            <TableCell
+                              className="hidden md:table-cell max-w-[180px] truncate text-muted-foreground"
+                              title={ride.pickupAddress}
                             >
-                              {formatDate(ride.pickupDateTime)}
-                            </Link>
-                          </TableCell>
-                          <TableCell className="font-medium">
-                            {ride.passengerName}
-                          </TableCell>
-                          <TableCell
-                            className="hidden md:table-cell max-w-[180px] truncate text-muted-foreground"
-                            title={ride.pickupAddress}
-                          >
-                            {ride.pickupAddress}
-                          </TableCell>
-                          <TableCell
-                            className="hidden md:table-cell max-w-[180px] truncate text-muted-foreground"
-                            title={ride.dropoffAddress}
-                          >
-                            {ride.dropoffAddress}
-                          </TableCell>
-                          <TableCell className="hidden lg:table-cell capitalize text-muted-foreground">
-                            {ride.transportType}
-                          </TableCell>
-                          <TableCell className="hidden lg:table-cell capitalize text-muted-foreground">
-                            {ride.payerType.replace('_', ' ')}
-                          </TableCell>
-                          <TableCell>
-                            <Badge
-                              variant="secondary"
-                              className={statusConfig.className}
+                              {ride.pickupAddress}
+                            </TableCell>
+                            <TableCell
+                              className="hidden md:table-cell max-w-[180px] truncate text-muted-foreground"
+                              title={ride.dropoffAddress}
                             >
-                              {statusConfig.label}
-                            </Badge>
-                          </TableCell>
-                          <TableCell className="hidden sm:table-cell font-medium">
-                            {formatPrice(ride.estimatedPrice)}
-                          </TableCell>
-                        </TableRow>
-                      )
-                    })}
-                  </TableBody>
-                </Table>
+                              {ride.dropoffAddress}
+                            </TableCell>
+                            <TableCell className="hidden lg:table-cell capitalize text-muted-foreground">
+                              {ride.transportType}
+                            </TableCell>
+                            <TableCell className="hidden lg:table-cell capitalize text-muted-foreground">
+                              {ride.payerType.replace('_', ' ')}
+                            </TableCell>
+                            <TableCell>
+                              <Badge
+                                variant="secondary"
+                                className={statusConfig.className}
+                              >
+                                {statusConfig.label}
+                              </Badge>
+                            </TableCell>
+                            <TableCell className="hidden sm:table-cell font-medium">
+                              {formatPrice(ride.estimatedPrice)}
+                            </TableCell>
+                          </TableRow>
+                        )
+                      })}
+                    </TableBody>
+                  </Table>
+                </div>
               </div>
-            </div>
+
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                totalItems={totalCount}
+                basePath="/admin/rides"
+                searchParams={paginationParams}
+              />
+            </>
           )}
         </CardContent>
       </Card>

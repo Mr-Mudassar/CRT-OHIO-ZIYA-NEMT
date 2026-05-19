@@ -14,7 +14,10 @@
       "Bash(ls -lh \"d:\\\\Projects\\\\Personal\\\\MED STATS BILLING\\\\CrtOhio/app/\\(marketing\\)/services/\")",
       "Bash(find \"d:/Projects/Personal/MED STATS BILLING/CrtOhio/app/\\(auth\\)\" -type f)",
       "WebFetch(domain:www.prisma.io)",
-      "Bash(pnpm prisma db seed --config prisma/prisma.config.ts)"
+      "Bash(pnpm prisma db seed --config prisma/prisma.config.ts)",
+      "Bash(while read f)",
+      "Bash(do sed -i 's/text-heading/text-primary/g' \"$f\")",
+      "Bash(done)"
     ]
   }
 }

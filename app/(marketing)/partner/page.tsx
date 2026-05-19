@@ -15,6 +15,7 @@ import {
 } from 'lucide-react'
 import { generatePageMetadata, generateBreadcrumbJsonLd } from '@/lib/seo'
 import { SITE_NAME, BUSINESS_PHONE, BUSINESS_EMAIL } from '@/lib/constants'
+import { PartnerInquiryForm } from '@/components/marketing/PartnerInquiryForm'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Partner With Care Ride — Healthcare Facility Transportation Partnerships',
@@ -22,17 +23,6 @@ export const metadata: Metadata = generatePageMetadata({
     'Partner with Care Ride Transportation to provide reliable non-emergency medical transportation for your patients. Reduce no-shows, improve outcomes, and get a dedicated account manager. Hospitals, nursing homes, dialysis centers, and clinics welcome.',
   path: '/partner',
 })
-
-const PARTNER_TYPES = [
-  { value: '', label: 'Select organization type' },
-  { value: 'hospital', label: 'Hospital' },
-  { value: 'nursing_home', label: 'Nursing Home' },
-  { value: 'dialysis_center', label: 'Dialysis Center' },
-  { value: 'clinic', label: 'Clinic' },
-  { value: 'assisted_living', label: 'Assisted Living Facility' },
-  { value: 'rehabilitation', label: 'Rehabilitation Center' },
-  { value: 'other', label: 'Other' },
-]
 
 const BENEFITS = [
   {
@@ -110,7 +100,7 @@ export default function PartnerPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="#inquiry-form"
-                className="inline-flex items-center justify-center px-8 py-3.5 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors shadow-sm"
+                className="inline-flex items-center justify-center px-8 py-3.5 bg-white hover:bg-white/90 text-primary font-semibold rounded-lg transition-colors shadow-sm"
               >
                 Submit a Partnership Inquiry
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -131,7 +121,7 @@ export default function PartnerPage() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
-            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading text-center mb-6">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary text-center mb-6">
               Transportation Barriers Hurt Patient Outcomes
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
@@ -169,7 +159,7 @@ export default function PartnerPage() {
       <section className="section-padding bg-muted">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary mb-4">
               Benefits of Partnering With Us
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -185,7 +175,7 @@ export default function PartnerPage() {
                   <div className="w-12 h-12 bg-primary-light rounded-lg flex items-center justify-center mb-4">
                     <Icon className="h-6 w-6 text-primary" />
                   </div>
-                  <h3 className="font-heading text-lg font-semibold text-heading mb-2">
+                  <h3 className="font-heading text-lg font-semibold text-primary mb-2">
                     {benefit.title}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
@@ -202,7 +192,7 @@ export default function PartnerPage() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
-            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading text-center mb-10">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary text-center mb-10">
               How Our Partnership Works
             </h2>
             <div className="space-y-8">
@@ -237,7 +227,7 @@ export default function PartnerPage() {
                     <span className="text-white font-bold text-lg">{item.step}</span>
                   </div>
                   <div>
-                    <h3 className="font-heading text-xl font-semibold text-heading mb-2">
+                    <h3 className="font-heading text-xl font-semibold text-primary mb-2">
                       {item.title}
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">{item.description}</p>
@@ -253,7 +243,7 @@ export default function PartnerPage() {
       <section className="section-padding bg-muted">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-10">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary mb-10">
               Facilities We Partner With
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -285,7 +275,7 @@ export default function PartnerPage() {
         <div className="container-custom">
           <div className="max-w-2xl mx-auto">
             <div className="text-center mb-10">
-              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
+              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary mb-4">
                 Submit a Partnership Inquiry
               </h2>
               <p className="text-muted-foreground">
@@ -301,122 +291,7 @@ export default function PartnerPage() {
               </p>
             </div>
 
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label
-                    htmlFor="organizationName"
-                    className="block text-sm font-medium text-foreground mb-1.5"
-                  >
-                    Organization Name <span className="text-emergency">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="organizationName"
-                    name="organizationName"
-                    required
-                    className="w-full px-4 py-2.5 border border-border rounded-lg text-sm text-foreground bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                    placeholder="e.g., Good Samaritan Hospital"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="contactName"
-                    className="block text-sm font-medium text-foreground mb-1.5"
-                  >
-                    Contact Name <span className="text-emergency">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="contactName"
-                    name="contactName"
-                    required
-                    className="w-full px-4 py-2.5 border border-border rounded-lg text-sm text-foreground bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                    placeholder="Your full name"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-foreground mb-1.5"
-                  >
-                    Email Address <span className="text-emergency">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    className="w-full px-4 py-2.5 border border-border rounded-lg text-sm text-foreground bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                    placeholder="you@organization.com"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="phone"
-                    className="block text-sm font-medium text-foreground mb-1.5"
-                  >
-                    Phone Number <span className="text-emergency">*</span>
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    required
-                    className="w-full px-4 py-2.5 border border-border rounded-lg text-sm text-foreground bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                    placeholder="(513) 555-0100"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="organizationType"
-                  className="block text-sm font-medium text-foreground mb-1.5"
-                >
-                  Organization Type <span className="text-emergency">*</span>
-                </label>
-                <select
-                  id="organizationType"
-                  name="organizationType"
-                  required
-                  className="w-full px-4 py-2.5 border border-border rounded-lg text-sm text-foreground bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                >
-                  {PARTNER_TYPES.map((type) => (
-                    <option key={type.value} value={type.value}>
-                      {type.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-foreground mb-1.5"
-                >
-                  Tell Us About Your Transportation Needs
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  className="w-full px-4 py-2.5 border border-border rounded-lg text-sm text-foreground bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
-                  placeholder="Describe your patient transportation needs, estimated volume, any specific requirements..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full md:w-auto inline-flex items-center justify-center px-8 py-3.5 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors shadow-sm"
-              >
-                Submit Partnership Inquiry
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </button>
-            </form>
+            <PartnerInquiryForm />
           </div>
         </div>
       </section>
@@ -425,7 +300,7 @@ export default function PartnerPage() {
       <section className="section-padding gradient-primary text-white">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-heading text-3xl md:text-4xl font-extrabold mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold mb-4 text-white">
               Ready to Discuss a Partnership?
             </h2>
             <p className="text-lg text-white/80 mb-8">
@@ -435,7 +310,7 @@ export default function PartnerPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href={`tel:${BUSINESS_PHONE.replace(/\D/g, '')}`}
-                className="inline-flex items-center justify-center px-8 py-3.5 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors shadow-sm w-full sm:w-auto"
+                className="inline-flex items-center justify-center px-8 py-3.5 bg-white hover:bg-white/90 text-primary font-semibold rounded-lg transition-colors shadow-sm w-full sm:w-auto"
               >
                 <Phone className="mr-2 h-5 w-5" />
                 {BUSINESS_PHONE}

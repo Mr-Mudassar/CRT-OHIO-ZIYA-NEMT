@@ -1,53 +1,60 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import { CalendarCheck, ArrowLeft } from 'lucide-react'
+import { auth } from '@/lib/auth'
+import { db } from '@/lib/db'
 import { generatePageMetadata } from '@/lib/seo'
+import { BookingWizard } from '@/components/booking/BookingWizard'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Book a Ride',
-  description: 'Book your non-emergency medical transportation ride with Care Ride Transportation. Easy online booking for Cincinnati, Mason, West Chester, and surrounding Ohio areas.',
+  description:
+    'Book your non-emergency medical transportation ride with Care Ride Transportation. Easy online booking for Cincinnati, Mason, West Chester, and surrounding Ohio areas.',
   path: '/book',
 })
 
-export default function BookPage() {
-  return (
-    <div className="container-custom py-12 md:py-20">
-      <div className="max-w-2xl mx-auto text-center">
-        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-accent/10 mb-6">
-          <CalendarCheck className="h-10 w-10 text-accent" />
-        </div>
+export default async function BookPage() {
+  // Check if user is logged in for prefill
+  let userPrefill: {
+    name?: string
+    email?: string
+    phone?: string
+    dob?: string
+  } | null = null
 
-        <h1 className="text-3xl md:text-4xl font-bold font-heading text-foreground mb-4">
+  try {
+    const session = await auth()
+    if (session?.user?.id) {
+      const user = await db.user.findUnique({
+        where: { id: session.user.id },
+        select: { name: true, email: true, phone: true, dateOfBirth: true },
+      })
+      if (user) {
+        userPrefill = {
+          name: user.name || undefined,
+          email: user.email,
+          phone: user.phone || undefined,
+          dob: user.dateOfBirth
+            ? user.dateOfBirth.toISOString().split('T')[0]
+            : undefined,
+        }
+      }
+    }
+  } catch {
+    // Guest booking — no prefill
+  }
+
+  return (
+    <div className="container-custom py-8 md:py-12">
+      <div className="mb-8 text-center">
+        <h1 className="text-2xl md:text-3xl font-bold font-heading text-foreground">
           Book Your Ride
         </h1>
-
-        <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-          Our online booking system is coming soon! In the meantime, please call us or use the contact form to schedule your ride.
+        <p className="mt-2 text-muted-foreground">
+          Complete the form below to request a ride. All fields marked with{' '}
+          <span className="text-red-500">*</span> are required.
         </p>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href="tel:5135550100"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors text-lg"
-          >
-            Call to Book
-          </a>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-3.5 border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold rounded-lg transition-colors text-lg"
-          >
-            Contact Us
-          </Link>
-        </div>
-
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 mt-8 text-sm text-muted-foreground hover:text-primary transition-colors"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Back to Home
-        </Link>
       </div>
+
+      <BookingWizard userPrefill={userPrefill} />
     </div>
   )
 }

@@ -182,7 +182,7 @@ export default function AboutPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/book"
-                className="animate-pulse-glow inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent hover:bg-accent-dark text-white text-lg font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-accent/30 hover:-translate-y-1 hover:shadow-xl hover:shadow-accent/40"
+                className="animate-pulse-glow inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-white/90 text-primary text-lg font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-white/30 hover:-translate-y-1 hover:shadow-xl hover:shadow-white/40"
               >
                 Book a Ride
                 <ArrowRight className="h-5 w-5" />
@@ -208,7 +208,7 @@ export default function AboutPage() {
                 <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
                   Our Mission
                 </p>
-                <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-6">
+                <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary mb-6">
                   Bridging the Gap Between Patients and Care
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
@@ -274,7 +274,7 @@ export default function AboutPage() {
               <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
                 Our Values
               </p>
-              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
+              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary mb-4">
                 What Drives Us Every Day
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl">
@@ -303,7 +303,7 @@ export default function AboutPage() {
                 <div className="flex items-center justify-center w-14 h-14 bg-primary-light text-primary rounded-xl mb-5">
                   {value.icon}
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-heading mb-2">
+                <h3 className="font-heading text-lg font-semibold text-primary mb-2">
                   {value.title}
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">{value.description}</p>
@@ -336,7 +336,7 @@ export default function AboutPage() {
                       <Heart className="h-6 w-6" />
                     </div>
                     <div>
-                      <p className="font-heading text-lg font-bold text-heading">Trusted Care</p>
+                      <p className="font-heading text-lg font-bold text-primary">Trusted Care</p>
                       <p className="text-sm text-muted-foreground">By patients & facilities</p>
                     </div>
                   </div>
@@ -348,7 +348,7 @@ export default function AboutPage() {
                 <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
                   Who We Serve
                 </p>
-                <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
+                <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary mb-4">
                   Transportation for Everyone Who Needs It
                 </h2>
                 <p className="text-lg text-muted-foreground mb-8">
@@ -364,7 +364,7 @@ export default function AboutPage() {
                         {item.icon}
                       </div>
                       <div>
-                        <h3 className="font-heading text-lg font-semibold text-heading mb-1">
+                        <h3 className="font-heading text-lg font-semibold text-primary mb-1">
                           {item.title}
                         </h3>
                         <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
@@ -387,7 +387,7 @@ export default function AboutPage() {
                 <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
                   Our Fleet
                 </p>
-                <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-6">
+                <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary mb-6">
                   Safe, Comfortable, ADA-Compliant Vehicles
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-6">
@@ -429,7 +429,7 @@ export default function AboutPage() {
             <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
               Where We Operate
             </p>
-            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary mb-4">
               Proudly Serving Southwest Ohio
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
@@ -485,7 +485,7 @@ export default function AboutPage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/book"
-              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-accent hover:bg-accent-dark text-white text-lg font-semibold rounded-xl transition-colors shadow-lg"
+              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-white hover:bg-white/90 text-primary text-lg font-semibold rounded-xl transition-colors shadow-lg"
             >
               Book a Ride
               <ArrowRight className="h-5 w-5" />

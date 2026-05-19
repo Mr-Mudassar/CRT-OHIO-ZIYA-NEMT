@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server'
 import { driverApplicationSchema } from '@/lib/validations/driver-application'
+import { sendEmail } from '@/lib/email/send'
+import { DriverApplicationAdminEmail } from '@/lib/email/templates/DriverApplicationAdmin'
 
 export async function POST(request: Request) {
   try {
@@ -14,12 +16,28 @@ export async function POST(request: Request) {
       )
     }
 
-    // For now, log the application (in production, save to DB and send email)
-    console.log('[Driver Application]', {
-      name: result.data.fullName,
-      email: result.data.email,
-      phone: result.data.phone,
-    })
+    const data = result.data
+
+    const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL
+    if (adminEmail) {
+      await sendEmail({
+        to: adminEmail,
+        subject: `Driver Application: ${data.fullName}`,
+        react: DriverApplicationAdminEmail({
+          fullName: data.fullName,
+          email: data.email,
+          phone: data.phone,
+          licenseStatus: data.licenseStatus,
+          licenseNumber: data.licenseNumber,
+          yearsExperience: data.yearsExperience,
+          cleanDrivingRecord: data.cleanDrivingRecord,
+          hasCprCert: data.hasCprCert,
+          wheelchairExperience: data.wheelchairExperience,
+          availability: data.availability,
+          previousTransportExperience: data.previousTransportExperience,
+        }),
+      }).catch((err) => console.error('[Driver Application Email Error]', err))
+    }
 
     return NextResponse.json(
       { message: 'Application submitted successfully' },

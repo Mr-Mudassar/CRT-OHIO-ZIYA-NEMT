@@ -55,7 +55,7 @@ export function QuickBookingSection() {
                 <Calendar className="h-4 w-4" />
                 Quick Booking
               </div>
-              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4 leading-tight">
+              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary mb-4 leading-tight">
                 Book Your Ride in{' '}
                 <span className="text-primary">Minutes</span>
               </h2>
@@ -85,7 +85,7 @@ export function QuickBookingSection() {
               onSubmit={handleSubmit}
               className="bg-white rounded-2xl border border-border shadow-xl p-6 sm:p-8 space-y-5"
             >
-              <h3 className="font-heading text-xl font-bold text-heading mb-1">
+              <h3 className="font-heading text-xl font-bold text-primary mb-1">
                 Start Your Ride Request
               </h3>
               <p className="text-sm text-muted-foreground mb-4">
@@ -94,7 +94,7 @@ export function QuickBookingSection() {
 
               {/* Pickup Address */}
               <div>
-                <label htmlFor="qb-pickup" className="block text-sm font-semibold text-heading mb-1.5">
+                <label htmlFor="qb-pickup" className="block text-sm font-semibold text-primary mb-1.5">
                   Pickup Address
                 </label>
                 <div className="relative">
@@ -113,7 +113,7 @@ export function QuickBookingSection() {
 
               {/* Drop-off Address */}
               <div>
-                <label htmlFor="qb-dropoff" className="block text-sm font-semibold text-heading mb-1.5">
+                <label htmlFor="qb-dropoff" className="block text-sm font-semibold text-primary mb-1.5">
                   Drop-off Address
                 </label>
                 <div className="relative">
@@ -133,7 +133,7 @@ export function QuickBookingSection() {
               {/* Date & Time — side by side */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="qb-date" className="block text-sm font-semibold text-heading mb-1.5">
+                  <label htmlFor="qb-date" className="block text-sm font-semibold text-primary mb-1.5">
                     Date
                   </label>
                   <div className="relative">
@@ -150,7 +150,7 @@ export function QuickBookingSection() {
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="qb-time" className="block text-sm font-semibold text-heading mb-1.5">
+                  <label htmlFor="qb-time" className="block text-sm font-semibold text-primary mb-1.5">
                     Time
                   </label>
                   <div className="relative">
@@ -169,7 +169,7 @@ export function QuickBookingSection() {
 
               {/* Phone Number */}
               <div>
-                <label htmlFor="qb-phone" className="block text-sm font-semibold text-heading mb-1.5">
+                <label htmlFor="qb-phone" className="block text-sm font-semibold text-primary mb-1.5">
                   Phone Number
                 </label>
                 <div className="relative">
@@ -189,7 +189,7 @@ export function QuickBookingSection() {
               {/* Submit */}
               <button
                 type="submit"
-                className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent hover:bg-accent-dark text-white text-lg font-bold rounded-xl transition-all duration-300 shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30 hover:-translate-y-0.5"
+                className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-primary-dark text-white text-lg font-bold rounded-xl transition-all duration-300 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5"
               >
                 Book Now
                 <ArrowRight className="h-5 w-5" />

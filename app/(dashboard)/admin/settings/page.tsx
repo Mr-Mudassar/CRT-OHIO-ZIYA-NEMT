@@ -182,8 +182,12 @@ export default async function AdminSettingsPage() {
         <CardContent>
           <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <div>
-              <dt className="text-sm font-medium text-muted-foreground">Base Fare</dt>
-              <dd className="mt-1 text-lg font-bold">${PRICING_CONFIG.baseFare.toFixed(2)}</dd>
+              <dt className="text-sm font-medium text-muted-foreground">Base Fare (Ambulatory)</dt>
+              <dd className="mt-1 text-lg font-bold">${PRICING_CONFIG.baseFareAmbulatory.toFixed(2)}</dd>
+            </div>
+            <div>
+              <dt className="text-sm font-medium text-muted-foreground">Base Fare (Wheelchair)</dt>
+              <dd className="mt-1 text-lg font-bold">${PRICING_CONFIG.baseFareWheelchair.toFixed(2)}</dd>
             </div>
             <div>
               <dt className="text-sm font-medium text-muted-foreground">Per Mile (Ambulatory)</dt>
@@ -194,12 +198,8 @@ export default async function AdminSettingsPage() {
               <dd className="mt-1 text-lg font-bold">${PRICING_CONFIG.perMileWheelchair.toFixed(2)}</dd>
             </div>
             <div>
-              <dt className="text-sm font-medium text-muted-foreground">After Hours Multiplier</dt>
-              <dd className="mt-1 text-lg font-bold">{PRICING_CONFIG.afterHoursMultiplier}x</dd>
-            </div>
-            <div>
-              <dt className="text-sm font-medium text-muted-foreground">Door Assist Surcharge</dt>
-              <dd className="mt-1 text-lg font-bold">${PRICING_CONFIG.doorAssist.toFixed(2)}</dd>
+              <dt className="text-sm font-medium text-muted-foreground">After Hours Surcharge</dt>
+              <dd className="mt-1 text-lg font-bold">+{((PRICING_CONFIG.afterHoursMultiplier - 1) * 100).toFixed(0)}% on base</dd>
             </div>
             <div>
               <dt className="text-sm font-medium text-muted-foreground">Building Assist Surcharge</dt>
@@ -208,6 +208,10 @@ export default async function AdminSettingsPage() {
             <div>
               <dt className="text-sm font-medium text-muted-foreground">Stairs Surcharge</dt>
               <dd className="mt-1 text-lg font-bold">${PRICING_CONFIG.stairs.toFixed(2)}</dd>
+            </div>
+            <div>
+              <dt className="text-sm font-medium text-muted-foreground">Wait Grace Period</dt>
+              <dd className="mt-1 text-lg font-bold">{PRICING_CONFIG.waitGraceMinutes} min</dd>
             </div>
             <div>
               <dt className="text-sm font-medium text-muted-foreground">Waiting Time (per min)</dt>

@@ -151,7 +151,7 @@ export default function ServicesPage() {
                           <Icon className="h-5 w-5 text-primary group-hover:text-white transition-colors duration-300" />
                         )}
                       </div>
-                      <h2 className="font-heading text-lg font-semibold text-heading group-hover:text-primary transition-colors">
+                      <h2 className="font-heading text-lg font-semibold text-primary group-hover:text-primary transition-colors">
                         {service.title}
                       </h2>
                     </div>
@@ -176,7 +176,7 @@ export default function ServicesPage() {
       <section className="section-padding bg-muted">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-4">
+            <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-4">
               Why Choose Care Ride Transportation?
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -212,7 +212,7 @@ export default function ServicesPage() {
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary-sky flex items-center justify-center mx-auto mb-4">
                   <span className="text-white text-sm font-bold">{item.num}</span>
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-heading mb-2">
+                <h3 className="font-heading text-lg font-semibold text-primary mb-2">
                   {item.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
@@ -246,7 +246,7 @@ export default function ServicesPage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/book"
-              className="inline-flex items-center px-8 py-3.5 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors shadow-lg"
+              className="inline-flex items-center px-8 py-3.5 bg-white hover:bg-white/90 text-primary font-semibold rounded-lg transition-colors shadow-lg"
             >
               Book a Ride Online
               <ArrowRight className="ml-2 h-5 w-5" />

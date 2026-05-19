@@ -40,7 +40,7 @@ function ResetPasswordForm() {
           <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-emergency-light">
             <ShieldAlert className="size-7 text-emergency" />
           </div>
-          <h1 className="text-2xl font-bold text-heading">Invalid Reset Link</h1>
+          <h1 className="text-2xl font-bold text-primary">Invalid Reset Link</h1>
           <p className="text-muted-foreground mt-3 leading-relaxed">
             This password reset link is invalid or has expired.
             Please request a new one.
@@ -120,7 +120,7 @@ function ResetPasswordForm() {
   return (
     <div className="bg-white rounded-2xl shadow-xl border border-border p-8">
       <div className="text-center mb-8">
-        <h1 className="text-2xl font-bold text-heading">Set New Password</h1>
+        <h1 className="text-2xl font-bold text-primary">Set New Password</h1>
         <p className="text-muted-foreground mt-2">
           Enter your new password below
         </p>

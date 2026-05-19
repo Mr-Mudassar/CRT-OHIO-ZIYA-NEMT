@@ -132,7 +132,7 @@ export default function HospitalDischargeServicePage() {
       <section className="section-padding">
         <div className="container-custom">
           <div className="max-w-3xl">
-            <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-6">
+            <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-6">
               What Is Hospital Discharge Transportation?
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
@@ -168,7 +168,7 @@ export default function HospitalDischargeServicePage() {
       {/* Who Benefits */}
       <section className="section-padding bg-muted">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-8">
             Who Benefits from Hospital Discharge Transportation?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -196,7 +196,7 @@ export default function HospitalDischargeServicePage() {
       {/* What to Expect */}
       <section className="section-padding">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-8">
             What to Expect
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -229,7 +229,7 @@ export default function HospitalDischargeServicePage() {
                 <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-primary-dark text-white flex items-center justify-center font-bold text-lg mb-4 shadow-lg shadow-primary/20 relative z-10">
                   {item.step}
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-heading mb-2">
+                <h3 className="font-heading text-lg font-semibold text-primary mb-2">
                   {item.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
@@ -242,7 +242,7 @@ export default function HospitalDischargeServicePage() {
       {/* Why Choose Care Ride */}
       <section className="section-padding bg-muted">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-8">
             Why Choose Care Ride for Hospital Discharge?
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -275,7 +275,7 @@ export default function HospitalDischargeServicePage() {
                 <div className="w-14 h-14 bg-gradient-to-br from-primary/10 to-primary-sky/10 rounded-xl flex items-center justify-center mb-4">
                   <item.icon className="h-7 w-7 text-primary" />
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-heading mb-2">
+                <h3 className="font-heading text-lg font-semibold text-primary mb-2">
                   {item.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
@@ -289,7 +289,7 @@ export default function HospitalDischargeServicePage() {
       <section className="section-padding">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto bg-primary-light border border-primary/20 rounded-xl p-8">
-            <h2 className="font-heading text-xl font-extrabold text-heading mb-4">
+            <h2 className="font-heading text-xl font-extrabold text-primary mb-4">
               For Hospital Discharge Planners
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
@@ -316,7 +316,7 @@ export default function HospitalDischargeServicePage() {
       {/* Related Services */}
       <section className="section-padding bg-muted">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-8">
             Related Services
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -337,7 +337,7 @@ export default function HospitalDischargeServicePage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                 </div>
                 <div className="p-6">
-                  <h3 className="font-heading text-lg font-semibold text-heading mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="font-heading text-lg font-semibold text-primary mb-2 group-hover:text-primary transition-colors">
                     {service.title}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-3">
@@ -376,7 +376,7 @@ export default function HospitalDischargeServicePage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/book"
-              className="inline-flex items-center px-8 py-3.5 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors shadow-lg"
+              className="inline-flex items-center px-8 py-3.5 bg-white hover:bg-white/90 text-primary font-semibold rounded-lg transition-colors shadow-lg"
             >
               Book a Ride Online
               <ArrowRight className="ml-2 h-5 w-5" />

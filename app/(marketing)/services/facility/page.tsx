@@ -105,7 +105,7 @@ export default function FacilityServicePage() {
               <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
                 <Building2 className="h-7 w-7 text-primary" />
               </div>
-              <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-heading mb-4">
+              <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary mb-4">
                 Facility Transportation
               </h1>
               <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-xl mb-8">
@@ -145,7 +145,7 @@ export default function FacilityServicePage() {
       <section className="section-padding">
         <div className="container-custom">
           <div className="max-w-3xl">
-            <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-6">
+            <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-6">
               What Is Facility Transportation?
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
@@ -180,7 +180,7 @@ export default function FacilityServicePage() {
       {/* Facilities We Serve */}
       <section className="section-padding bg-muted">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-8">
             Facilities We Serve
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -208,7 +208,7 @@ export default function FacilityServicePage() {
       {/* What to Expect */}
       <section className="section-padding">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-8">
             How Our Facility Partnership Works
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -241,7 +241,7 @@ export default function FacilityServicePage() {
                 <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-primary-dark text-white flex items-center justify-center font-bold text-lg mb-4 shadow-lg shadow-primary/20 relative z-10">
                   {item.step}
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-heading mb-2">
+                <h3 className="font-heading text-lg font-semibold text-primary mb-2">
                   {item.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
@@ -254,7 +254,7 @@ export default function FacilityServicePage() {
       {/* Why Choose Care Ride */}
       <section className="section-padding bg-muted">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-8">
             Why Facilities Choose Care Ride
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -287,7 +287,7 @@ export default function FacilityServicePage() {
                 <div className="w-14 h-14 bg-gradient-to-br from-primary/10 to-primary-sky/10 rounded-xl flex items-center justify-center mb-4">
                   <item.icon className="h-7 w-7 text-primary" />
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-heading mb-2">
+                <h3 className="font-heading text-lg font-semibold text-primary mb-2">
                   {item.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
@@ -300,7 +300,7 @@ export default function FacilityServicePage() {
       {/* Related Services */}
       <section className="section-padding">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-8">
             Related Services
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -321,7 +321,7 @@ export default function FacilityServicePage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                 </div>
                 <div className="p-6">
-                  <h3 className="font-heading text-lg font-semibold text-heading mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="font-heading text-lg font-semibold text-primary mb-2 group-hover:text-primary transition-colors">
                     {service.title}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-3">
@@ -360,7 +360,7 @@ export default function FacilityServicePage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/partner"
-              className="inline-flex items-center px-8 py-3.5 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors shadow-lg"
+              className="inline-flex items-center px-8 py-3.5 bg-white hover:bg-white/90 text-primary font-semibold rounded-lg transition-colors shadow-lg"
             >
               Partner With Us
               <ArrowRight className="ml-2 h-5 w-5" />

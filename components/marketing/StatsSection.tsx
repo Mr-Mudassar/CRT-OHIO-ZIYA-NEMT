@@ -47,7 +47,7 @@ export function StatsSection() {
                 <div className={`inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br ${stat.gradient} text-white rounded-2xl mb-4 shadow-md group-hover:scale-110 transition-transform duration-300`}>
                   {stat.icon}
                 </div>
-                <div className="text-3xl md:text-4xl font-extrabold text-heading mb-1">
+                <div className="text-3xl md:text-4xl font-extrabold text-primary mb-1">
                   <CountUp end={stat.value} suffix={stat.suffix} duration={2 + index * 0.3} />
                 </div>
                 <p className="text-sm text-muted-foreground font-medium">{stat.label}</p>

@@ -115,7 +115,7 @@ export default function BecomeADriverPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="#apply"
-                className="inline-flex items-center justify-center px-8 py-3.5 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors shadow-sm"
+                className="inline-flex items-center justify-center px-8 py-3.5 bg-white hover:bg-white/90 text-primary font-bold rounded-lg transition-colors shadow-lg"
               >
                 Apply Now
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -136,7 +136,7 @@ export default function BecomeADriverPage() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary mb-4">
               Why Drive With {SITE_NAME}?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -152,7 +152,7 @@ export default function BecomeADriverPage() {
                   <div className="w-12 h-12 bg-primary-light rounded-lg flex items-center justify-center mb-4">
                     <Icon className="h-6 w-6 text-primary" />
                   </div>
-                  <h3 className="font-heading text-lg font-semibold text-heading mb-2">
+                  <h3 className="font-heading text-lg font-semibold text-primary mb-2">
                     {benefit.title}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
@@ -169,7 +169,7 @@ export default function BecomeADriverPage() {
       <section className="section-padding bg-muted">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
-            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading text-center mb-10">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary text-center mb-10">
               What You&apos;ll Do as a {SITE_NAME} Driver
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -202,7 +202,7 @@ export default function BecomeADriverPage() {
                 <Award className="h-4 w-4" />
                 Requirements
               </div>
-              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
+              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary mb-4">
                 What We Look For
               </h2>
               <p className="text-muted-foreground">
@@ -227,7 +227,7 @@ export default function BecomeADriverPage() {
         <div className="container-custom">
           <div className="max-w-2xl mx-auto">
             <div className="text-center mb-10">
-              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
+              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary mb-4">
                 Apply to Drive With Us
               </h2>
               <p className="text-muted-foreground">
@@ -253,7 +253,7 @@ export default function BecomeADriverPage() {
       <section className="section-padding gradient-primary text-white">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-heading text-3xl md:text-4xl font-extrabold mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold mb-4 text-white">
               Have Questions About Driving With Us?
             </h2>
             <p className="text-lg text-white/80 mb-8">
@@ -263,7 +263,7 @@ export default function BecomeADriverPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href={`tel:${BUSINESS_PHONE.replace(/\D/g, '')}`}
-                className="inline-flex items-center justify-center px-8 py-3.5 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors shadow-sm w-full sm:w-auto"
+                className="inline-flex items-center justify-center px-8 py-3.5 bg-white hover:bg-white/90 text-primary font-semibold rounded-lg transition-colors shadow-sm w-full sm:w-auto"
               >
                 <Phone className="mr-2 h-5 w-5" />
                 {BUSINESS_PHONE}

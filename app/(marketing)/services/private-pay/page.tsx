@@ -97,7 +97,7 @@ export default function PrivatePayServicePage() {
               <div className="w-14 h-14 rounded-2xl bg-amber-50 flex items-center justify-center mb-6">
                 <Wallet className="h-7 w-7 text-amber-600" />
               </div>
-              <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-heading mb-4">
+              <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary mb-4">
                 Private Pay Medical Transportation
               </h1>
               <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl mb-6">
@@ -142,7 +142,7 @@ export default function PrivatePayServicePage() {
       <section className="section-padding">
         <div className="container-custom">
           <div className="max-w-3xl">
-            <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-6">
+            <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-6">
               What Is Private Pay Transportation?
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
@@ -176,7 +176,7 @@ export default function PrivatePayServicePage() {
       {/* Who Benefits */}
       <section className="section-padding bg-muted">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-8">
             Who Benefits from Private Pay Transportation?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -204,7 +204,7 @@ export default function PrivatePayServicePage() {
       {/* Pricing Transparency */}
       <section className="section-padding">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-8">
             How Our Pricing Works
           </h2>
           <div className="max-w-3xl">
@@ -235,7 +235,7 @@ export default function PrivatePayServicePage() {
                   key={item.title}
                   className="bg-white border border-border rounded-xl p-5 shadow-[var(--shadow-card)] hover:border-primary/20 hover:-translate-y-1 hover:shadow-xl transition-all duration-300"
                 >
-                  <h3 className="font-heading text-base font-semibold text-heading mb-1">
+                  <h3 className="font-heading text-base font-semibold text-primary mb-1">
                     {item.title}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
@@ -258,7 +258,7 @@ export default function PrivatePayServicePage() {
       {/* What to Expect */}
       <section className="section-padding bg-muted">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-8">
             What to Expect
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -291,7 +291,7 @@ export default function PrivatePayServicePage() {
                 <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-primary-dark text-white flex items-center justify-center font-bold text-lg mb-4 shadow-lg shadow-primary/20 relative z-10">
                   {item.step}
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-heading mb-2">
+                <h3 className="font-heading text-lg font-semibold text-primary mb-2">
                   {item.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
@@ -304,7 +304,7 @@ export default function PrivatePayServicePage() {
       {/* Why Choose Care Ride */}
       <section className="section-padding">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-8">
             Why Choose Care Ride for Private Pay?
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -337,7 +337,7 @@ export default function PrivatePayServicePage() {
                 <div className="w-14 h-14 bg-gradient-to-br from-primary/10 to-primary-sky/10 rounded-xl flex items-center justify-center mb-4">
                   <item.icon className="h-7 w-7 text-primary" />
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-heading mb-2">
+                <h3 className="font-heading text-lg font-semibold text-primary mb-2">
                   {item.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
@@ -350,7 +350,7 @@ export default function PrivatePayServicePage() {
       {/* Related Services */}
       <section className="section-padding bg-muted">
         <div className="container-custom">
-          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-heading mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-8">
             Related Services
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -371,7 +371,7 @@ export default function PrivatePayServicePage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                 </div>
                 <div className="p-6">
-                  <h3 className="font-heading text-lg font-semibold text-heading mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="font-heading text-lg font-semibold text-primary mb-2 group-hover:text-primary transition-colors">
                     {service.title}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-3">
@@ -410,7 +410,7 @@ export default function PrivatePayServicePage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/book"
-              className="inline-flex items-center px-8 py-3.5 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors shadow-lg"
+              className="inline-flex items-center px-8 py-3.5 bg-white hover:bg-white/90 text-primary font-semibold rounded-lg transition-colors shadow-lg"
             >
               Get a Price Estimate
               <ArrowRight className="ml-2 h-5 w-5" />

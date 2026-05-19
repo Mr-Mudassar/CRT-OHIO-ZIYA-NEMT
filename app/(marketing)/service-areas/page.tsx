@@ -121,7 +121,7 @@ export default function ServiceAreasPage() {
       <section className="section-padding bg-muted">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary mb-4">
               Find Medical Transportation Near You
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -144,7 +144,7 @@ export default function ServiceAreasPage() {
                       <MapPin className="h-6 w-6 text-primary group-hover:text-white transition-colors duration-300" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-heading text-xl font-semibold text-heading mb-2 group-hover:text-primary transition-colors">
+                      <h3 className="font-heading text-xl font-semibold text-primary mb-2 group-hover:text-primary transition-colors">
                         {area.name}
                       </h3>
                       <p className="text-sm text-muted-foreground leading-relaxed mb-3">
@@ -177,7 +177,7 @@ export default function ServiceAreasPage() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary mb-4">
               Book a Ride From Any of Our Service Areas
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
@@ -187,7 +187,7 @@ export default function ServiceAreasPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/book"
-                className="inline-flex items-center justify-center px-8 py-3.5 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors shadow-sm w-full sm:w-auto"
+                className="inline-flex items-center justify-center px-8 py-3.5 bg-primary hover:bg-primary-dark text-white font-semibold rounded-lg transition-colors shadow-sm w-full sm:w-auto"
               >
                 Book Your Ride Now
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -208,7 +208,7 @@ export default function ServiceAreasPage() {
       <section className="section-padding bg-muted">
         <div className="container-custom">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="font-heading text-2xl font-extrabold text-heading mb-4">
+            <h2 className="font-heading text-2xl font-extrabold text-primary mb-4">
               Don&apos;t See Your City Listed?
             </h2>
             <p className="text-muted-foreground mb-6">

@@ -113,7 +113,7 @@ export function HeroSection() {
             >
               <Link
                 href="/book"
-                className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent hover:bg-accent-dark text-white text-lg font-bold rounded-2xl transition-all duration-300 shadow-lg shadow-accent/30 hover:shadow-xl hover:shadow-accent/40 hover:-translate-y-1 animate-pulse-glow"
+                className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-white/90 text-primary text-lg font-bold rounded-2xl transition-all duration-300 shadow-lg shadow-white/30 hover:shadow-xl hover:shadow-white/40 hover:-translate-y-1 animate-pulse-glow"
               >
                 Book a Ride
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -172,7 +172,7 @@ export function HeroSection() {
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground font-medium">On-Time Rate</p>
-                    <p className="text-2xl font-extrabold text-heading">98.5%</p>
+                    <p className="text-2xl font-extrabold text-primary">98.5%</p>
                   </div>
                 </div>
               </div>
@@ -186,7 +186,7 @@ export function HeroSection() {
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground font-medium">Happy Riders</p>
-                    <p className="text-2xl font-extrabold text-heading">10,000+</p>
+                    <p className="text-2xl font-extrabold text-primary">10,000+</p>
                   </div>
                 </div>
               </div>
@@ -199,7 +199,7 @@ export function HeroSection() {
                     <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
                   ))}
                 </div>
-                <p className="text-sm font-bold text-heading">Excellent Service</p>
+                <p className="text-sm font-bold text-primary">Excellent Service</p>
                 <p className="text-xs text-muted-foreground">Based on 200+ reviews</p>
               </div>
             </FloatingElement>

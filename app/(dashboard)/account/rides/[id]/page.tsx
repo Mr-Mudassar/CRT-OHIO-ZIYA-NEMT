@@ -94,7 +94,7 @@ export default async function UserRideDetailPage({
             <ArrowLeft className="size-4" />
           </Button>
           <div>
-            <h1 className="text-xl font-bold text-heading">Ride Details</h1>
+            <h1 className="text-xl font-bold text-primary">Ride Details</h1>
             <p className="text-xs text-muted-foreground">ID: {ride.publicId}</p>
           </div>
         </div>

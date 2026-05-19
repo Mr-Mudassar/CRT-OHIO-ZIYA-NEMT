@@ -1,5 +1,4 @@
 import { Header } from '@/components/layout/Header'
-import { EmergencyBanner } from '@/components/layout/EmergencyBanner'
 
 export default function BookingLayout({
   children,
@@ -8,7 +7,6 @@ export default function BookingLayout({
 }) {
   return (
     <>
-      <EmergencyBanner />
       <Header />
       <main id="main-content" className="flex-1 bg-muted">
         {children}

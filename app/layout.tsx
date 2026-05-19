@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import { Poppins, Inter, Geist } from 'next/font/google'
 import './globals.css'
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from '@/lib/constants'
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
+import { Providers } from '@/components/providers/Providers'
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -63,7 +64,7 @@ export default function RootLayout({
         <a href="#main-content" className="skip-to-content">
           Skip to main content
         </a>
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   )

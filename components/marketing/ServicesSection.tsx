@@ -51,7 +51,7 @@ export function ServicesSection() {
           <p className="inline-flex items-center gap-2 text-sm font-semibold text-primary uppercase tracking-wider mb-3 px-3 py-1 bg-primary/5 rounded-full">
             Our Services
           </p>
-          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-extrabold text-heading mb-5">
+          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary mb-5">
             Comprehensive Medical{' '}
             <span className="text-gradient-primary">
               Transportation
@@ -88,7 +88,7 @@ export function ServicesSection() {
 
                 {/* Content */}
                 <div className="flex flex-col flex-1 p-5">
-                  <h3 className="font-heading text-lg font-semibold text-heading mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="font-heading text-lg font-semibold text-primary mb-2 group-hover:text-primary transition-colors">
                     {service.title}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">

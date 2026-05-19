@@ -5,9 +5,9 @@ import {
   MapPin,
   Clock,
   ArrowRight,
-  Send,
   MessageSquare,
 } from 'lucide-react'
+import { ContactForm } from '@/components/marketing/ContactForm'
 import { generatePageMetadata, generateBreadcrumbJsonLd } from '@/lib/seo'
 import {
   SITE_NAME,
@@ -60,16 +60,6 @@ const CONTACT_INFO = [
   },
 ]
 
-const SUBJECT_OPTIONS = [
-  'General Inquiry',
-  'Booking Question',
-  'Insurance & Billing',
-  'Service Area Question',
-  'Partnership Inquiry',
-  'Feedback or Complaint',
-  'Other',
-]
-
 export default function ContactPage() {
   const breadcrumbJsonLd = generateBreadcrumbJsonLd(BREADCRUMBS)
 
@@ -107,66 +97,55 @@ export default function ContactPage() {
       </nav>
 
       {/* ===== HERO ===== */}
-      <section className="relative overflow-hidden">
-        <div className="flex flex-col lg:flex-row">
-          {/* Left side - Dark slate gradient */}
-          <div className="relative lg:w-[60%] bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] px-6 py-16 md:py-24 lg:py-28 lg:px-12 xl:px-20">
-            {/* Decorative dot pattern */}
-            <div
-              className="absolute inset-0 opacity-[0.06]"
-              style={{
-                backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
-                backgroundSize: '24px 24px',
-              }}
-            />
-            <div className="relative z-10 max-w-xl mx-auto lg:mx-0 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/15 text-white text-sm font-semibold rounded-full mb-6 border border-white/10">
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary-dark to-primary">
+        {/* Decorative elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3" />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-primary-sky/10 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4" />
+        </div>
+
+        <div className="container-custom relative z-10 py-16 md:py-24">
+          <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+            {/* Left - Text */}
+            <div className="flex-1 text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/15 text-white text-sm font-semibold rounded-full mb-6 border border-white/20 backdrop-blur-sm">
                 <MessageSquare className="h-4 w-4" />
                 Get in Touch
               </div>
               <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6">
                 Contact Us
               </h1>
-              <p className="text-lg md:text-xl text-white/85 leading-relaxed">
+              <p className="text-lg md:text-xl text-white/85 leading-relaxed max-w-lg mx-auto lg:mx-0">
                 Have a question about our services or need help booking a ride?
-                We are here to help. Reach out to us using the form below or contact us directly.
+                We&apos;re here to help. Reach out using the form below or contact us directly.
               </p>
             </div>
-            {/* Angled divider - visible on lg+ */}
-            <div
-              className="hidden lg:block absolute top-0 right-0 w-24 h-full bg-white"
-              style={{ clipPath: 'polygon(100% 0, 100% 100%, 0 100%, 100% 0)' }}
-            />
-          </div>
 
-          {/* Right side - White with contact cards */}
-          <div className="relative lg:w-[40%] bg-white px-6 py-12 md:py-16 lg:py-28 lg:px-10 xl:px-14 flex items-center">
-            <div className="w-full max-w-sm mx-auto lg:mx-0 space-y-5">
-              {/* Phone card */}
+            {/* Right - Contact cards */}
+            <div className="w-full max-w-sm space-y-4">
               <a
                 href={`tel:${BUSINESS_PHONE.replace(/\D/g, '')}`}
-                className="flex items-center gap-4 bg-white shadow-lg rounded-xl p-4 border border-border hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200"
+                className="flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/15 hover:bg-white/20 hover:-translate-y-0.5 transition-all duration-200"
               >
-                <div className="flex items-center justify-center w-12 h-12 bg-primary-light text-primary rounded-xl shrink-0">
-                  <Phone className="h-5 w-5" />
+                <div className="flex items-center justify-center w-12 h-12 bg-white/20 rounded-xl shrink-0">
+                  <Phone className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Call Us</p>
-                  <p className="font-heading font-bold text-heading">{BUSINESS_PHONE}</p>
+                  <p className="text-sm text-white/70">Call Us</p>
+                  <p className="font-heading font-bold text-white">{BUSINESS_PHONE}</p>
                 </div>
               </a>
 
-              {/* Email card */}
               <a
                 href={`mailto:${BUSINESS_EMAIL}`}
-                className="flex items-center gap-4 bg-white shadow-lg rounded-xl p-4 border border-border hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200"
+                className="flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/15 hover:bg-white/20 hover:-translate-y-0.5 transition-all duration-200"
               >
-                <div className="flex items-center justify-center w-12 h-12 bg-primary-light text-primary rounded-xl shrink-0">
-                  <Mail className="h-5 w-5" />
+                <div className="flex items-center justify-center w-12 h-12 bg-white/20 rounded-xl shrink-0">
+                  <Mail className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Email Us</p>
-                  <p className="font-heading font-bold text-heading">{BUSINESS_EMAIL}</p>
+                  <p className="text-sm text-white/70">Email Us</p>
+                  <p className="font-heading font-bold text-white">{BUSINESS_EMAIL}</p>
                 </div>
               </a>
             </div>
@@ -181,133 +160,19 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16">
               {/* Contact Form */}
               <div className="lg:col-span-3">
-                <h2 className="font-heading text-2xl font-extrabold text-heading mb-2">
+                <h2 className="font-heading text-2xl font-extrabold text-primary mb-2">
                   Send Us a Message
                 </h2>
                 <p className="text-muted-foreground mb-8">
                   Fill out the form below and our team will get back to you within one business day.
                 </p>
-                <form className="space-y-5">
-                  {/* Name */}
-                  <div>
-                    <label
-                      htmlFor="contact-name"
-                      className="block text-sm font-medium text-foreground mb-1.5"
-                    >
-                      Full Name <span className="text-emergency">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      id="contact-name"
-                      name="name"
-                      required
-                      placeholder="Your full name"
-                      className="w-full px-4 py-3 bg-white border border-border rounded-xl text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
-                    />
-                  </div>
-
-                  {/* Email + Phone row */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                      <label
-                        htmlFor="contact-email"
-                        className="block text-sm font-medium text-foreground mb-1.5"
-                      >
-                        Email Address <span className="text-emergency">*</span>
-                      </label>
-                      <input
-                        type="email"
-                        id="contact-email"
-                        name="email"
-                        required
-                        placeholder="you@example.com"
-                        className="w-full px-4 py-3 bg-white border border-border rounded-xl text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="contact-phone"
-                        className="block text-sm font-medium text-foreground mb-1.5"
-                      >
-                        Phone Number
-                      </label>
-                      <input
-                        type="tel"
-                        id="contact-phone"
-                        name="phone"
-                        placeholder="(555) 123-4567"
-                        className="w-full px-4 py-3 bg-white border border-border rounded-xl text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Subject */}
-                  <div>
-                    <label
-                      htmlFor="contact-subject"
-                      className="block text-sm font-medium text-foreground mb-1.5"
-                    >
-                      Subject <span className="text-emergency">*</span>
-                    </label>
-                    <select
-                      id="contact-subject"
-                      name="subject"
-                      required
-                      defaultValue=""
-                      className="w-full px-4 py-3 bg-white border border-border rounded-xl text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors appearance-none"
-                    >
-                      <option value="" disabled>
-                        Select a subject
-                      </option>
-                      {SUBJECT_OPTIONS.map((option) => (
-                        <option key={option} value={option}>
-                          {option}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  {/* Message */}
-                  <div>
-                    <label
-                      htmlFor="contact-message"
-                      className="block text-sm font-medium text-foreground mb-1.5"
-                    >
-                      Message <span className="text-emergency">*</span>
-                    </label>
-                    <textarea
-                      id="contact-message"
-                      name="message"
-                      required
-                      rows={5}
-                      placeholder="Tell us how we can help you..."
-                      className="w-full px-4 py-3 bg-white border border-border rounded-xl text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors resize-y min-h-[120px]"
-                    />
-                  </div>
-
-                  {/* Submit */}
-                  <button
-                    type="submit"
-                    className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 bg-accent hover:bg-accent-dark text-white font-semibold rounded-xl transition-colors shadow-sm"
-                  >
-                    <Send className="h-4 w-4" />
-                    Send Message
-                  </button>
-
-                  <p className="text-xs text-muted-foreground">
-                    By submitting this form, you agree to our{' '}
-                    <Link href="/privacy" className="text-primary hover:underline">
-                      Privacy Policy
-                    </Link>
-                    . We will never share your information with third parties.
-                  </p>
-                </form>
+                <ContactForm />
               </div>
 
               {/* Contact Info Sidebar */}
               <div className="lg:col-span-2">
                 <div className="sticky top-28">
-                  <h2 className="font-heading text-2xl font-extrabold text-heading mb-2">
+                  <h2 className="font-heading text-2xl font-extrabold text-primary mb-2">
                     Contact Information
                   </h2>
                   <p className="text-muted-foreground mb-8">
@@ -321,7 +186,7 @@ export default function ContactPage() {
                           {info.icon}
                         </div>
                         <div>
-                          <p className="text-sm font-semibold text-heading mb-0.5">
+                          <p className="text-sm font-semibold text-primary mb-0.5">
                             {info.label}
                           </p>
                           {info.href ? (
@@ -332,7 +197,7 @@ export default function ContactPage() {
                               {info.value}
                             </a>
                           ) : (
-                            <p className="text-heading font-medium">{info.value}</p>
+                            <p className="text-primary font-medium">{info.value}</p>
                           )}
                           <p className="text-xs text-muted-foreground mt-0.5">
                             {info.description}
@@ -347,14 +212,14 @@ export default function ContactPage() {
                     <p className="text-sm font-semibold text-emergency mb-1">
                       Medical Emergency?
                     </p>
-                    <p className="text-sm text-heading">
+                    <p className="text-sm text-primary">
                       {EMERGENCY_DISCLAIMER}
                     </p>
                   </div>
 
                   {/* Quick Book CTA */}
                   <div className="mt-8 bg-muted rounded-xl p-6 text-center">
-                    <p className="font-semibold text-heading mb-2">
+                    <p className="font-semibold text-primary mb-2">
                       Need a ride instead?
                     </p>
                     <p className="text-sm text-muted-foreground mb-4">
@@ -362,7 +227,7 @@ export default function ContactPage() {
                     </p>
                     <Link
                       href="/book"
-                      className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-accent hover:bg-accent-dark text-white font-semibold rounded-xl transition-colors"
+                      className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl transition-colors"
                     >
                       Book a Ride
                       <ArrowRight className="h-4 w-4" />
@@ -379,19 +244,21 @@ export default function ContactPage() {
       <section className="bg-white pb-16 md:pb-24">
         <div className="container-custom">
           <div className="max-w-6xl mx-auto">
-            <h2 className="font-heading text-2xl font-extrabold text-heading mb-6">
+            <h2 className="font-heading text-2xl font-extrabold text-primary mb-6">
               Our Service Area
             </h2>
-            <div className="aspect-[16/6] md:aspect-[16/5] bg-muted rounded-2xl border border-border flex items-center justify-center">
-              <div className="text-center p-8">
-                <MapPin className="h-12 w-12 text-primary/30 mx-auto mb-3" />
-                <p className="text-muted-foreground font-medium mb-1">
-                  Google Maps Integration Coming Soon
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  Serving Cincinnati, Mason, West Chester, Liberty Township, Hamilton, Middletown, and surrounding areas
-                </p>
-              </div>
+            <div className="aspect-[16/6] md:aspect-[16/5] rounded-2xl border border-border overflow-hidden">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d200000!2d-84.5120!3d39.3500!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Care Ride Transportation Service Area — Greater Cincinnati, Ohio"
+                className="w-full h-full"
+              />
             </div>
           </div>
         </div>
@@ -409,7 +276,7 @@ export default function ContactPage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/book"
-              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-accent hover:bg-accent-dark text-white text-lg font-semibold rounded-xl transition-colors shadow-lg"
+              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-white hover:bg-white/90 text-primary text-lg font-semibold rounded-xl transition-colors shadow-lg"
             >
               Book a Ride Now
               <ArrowRight className="h-5 w-5" />

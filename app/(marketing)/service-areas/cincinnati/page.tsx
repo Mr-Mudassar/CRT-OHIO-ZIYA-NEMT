@@ -79,7 +79,7 @@ export default function CincinnatiPage() {
               <MapPin className="h-4 w-4" />
               Greater Cincinnati, Ohio
             </div>
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6">
+            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-white">
               Cincinnati Medical Transportation Services
             </h1>
             <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-8">
@@ -90,7 +90,7 @@ export default function CincinnatiPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/book"
-                className="inline-flex items-center justify-center px-8 py-3.5 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors shadow-sm"
+                className="inline-flex items-center justify-center px-8 py-3.5 bg-white hover:bg-white/90 text-primary font-semibold rounded-lg transition-colors shadow-sm"
               >
                 Book Your Ride in Cincinnati
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -111,7 +111,7 @@ export default function CincinnatiPage() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
-            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-6">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary mb-6">
               About Non-Emergency Medical Transportation in Cincinnati
             </h2>
             <div className="prose prose-lg max-w-none text-muted-foreground space-y-4">
@@ -144,7 +144,7 @@ export default function CincinnatiPage() {
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-10">
-              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
+              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary mb-4">
                 Cincinnati Hospitals and Medical Centers We Serve
               </h2>
               <p className="text-lg text-muted-foreground">
@@ -174,7 +174,7 @@ export default function CincinnatiPage() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="text-center mb-10">
-            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary mb-4">
               Services Available in Cincinnati
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -189,7 +189,7 @@ export default function CincinnatiPage() {
                 href={`/services/${service.slug}`}
                 className="group bg-muted hover:bg-primary-light rounded-xl p-5 text-center hover:-translate-y-1 hover:shadow-xl transition-all duration-300"
               >
-                <h3 className="font-heading text-sm font-semibold text-heading group-hover:text-primary transition-colors mb-2">
+                <h3 className="font-heading text-sm font-semibold text-primary group-hover:text-primary transition-colors mb-2">
                   {service.title}
                 </h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
@@ -205,7 +205,7 @@ export default function CincinnatiPage() {
       <section className="section-padding bg-muted">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
-            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading text-center mb-10">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary text-center mb-10">
               Why Cincinnati Residents Choose {SITE_NAME}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -214,7 +214,7 @@ export default function CincinnatiPage() {
                   <Clock className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-heading text-lg font-semibold text-heading mb-2">
+                  <h3 className="font-heading text-lg font-semibold text-primary mb-2">
                     We Know Cincinnati Traffic
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
@@ -230,7 +230,7 @@ export default function CincinnatiPage() {
                   <Shield className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-heading text-lg font-semibold text-heading mb-2">
+                  <h3 className="font-heading text-lg font-semibold text-primary mb-2">
                     Safe, Professional Drivers
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
@@ -245,7 +245,7 @@ export default function CincinnatiPage() {
                   <Heart className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-heading text-lg font-semibold text-heading mb-2">
+                  <h3 className="font-heading text-lg font-semibold text-primary mb-2">
                     Medicaid and Insurance Accepted
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
@@ -261,7 +261,7 @@ export default function CincinnatiPage() {
                   <CheckCircle2 className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-heading text-lg font-semibold text-heading mb-2">
+                  <h3 className="font-heading text-lg font-semibold text-primary mb-2">
                     Door-to-Door, Not Just Curb-to-Curb
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
@@ -281,7 +281,7 @@ export default function CincinnatiPage() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
-            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading text-center mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary text-center mb-4">
               Cincinnati Neighborhoods and Areas We Cover
             </h2>
             <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
@@ -314,7 +314,7 @@ export default function CincinnatiPage() {
       <section className="section-padding gradient-primary text-white">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-heading text-3xl md:text-4xl font-extrabold mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold mb-4 text-white">
               Book Your Ride in Cincinnati
             </h2>
             <p className="text-lg text-white/80 mb-8">
@@ -324,7 +324,7 @@ export default function CincinnatiPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/book"
-                className="inline-flex items-center justify-center px-8 py-3.5 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors shadow-sm w-full sm:w-auto"
+                className="inline-flex items-center justify-center px-8 py-3.5 bg-white hover:bg-white/90 text-primary font-semibold rounded-lg transition-colors shadow-sm w-full sm:w-auto"
               >
                 Book Online Now
                 <ArrowRight className="ml-2 h-5 w-5" />

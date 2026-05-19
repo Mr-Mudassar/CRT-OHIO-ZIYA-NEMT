@@ -8,7 +8,6 @@ import {
   PersonStanding,
   Accessibility,
   Clock,
-  DoorOpen,
   Building2,
   Footprints,
   Timer,
@@ -40,14 +39,8 @@ const INCLUDED_FEATURES = [
 
 const SURCHARGES = [
   {
-    icon: <DoorOpen className="h-5 w-5" />,
-    label: 'Door Assist',
-    description: 'Driver assists passenger from their door to the vehicle and back',
-    amount: PRICING_CONFIG.doorAssist,
-  },
-  {
     icon: <Building2 className="h-5 w-5" />,
-    label: 'Building Assist',
+    label: 'Building / Inside Assist',
     description: 'Driver assists passenger through building lobby, elevators, or hallways',
     amount: PRICING_CONFIG.buildingAssist,
   },
@@ -60,14 +53,14 @@ const SURCHARGES = [
   {
     icon: <Clock className="h-5 w-5" />,
     label: 'After-Hours Service',
-    description: 'Rides outside standard business hours (evenings, weekends, holidays)',
+    description: 'Rides before 7 AM, after 7 PM, or on weekends',
     amount: null,
-    note: `${((PRICING_CONFIG.afterHoursMultiplier - 1) * 100).toFixed(0)}% surcharge on total fare`,
+    note: `+${((PRICING_CONFIG.afterHoursMultiplier - 1) * 100).toFixed(0)}% on base fare`,
   },
   {
     icon: <Timer className="h-5 w-5" />,
     label: 'Waiting Time',
-    description: 'Additional waiting beyond standard pickup window',
+    description: `Additional waiting beyond the ${PRICING_CONFIG.waitGraceMinutes}-minute grace period`,
     amount: PRICING_CONFIG.waitPerMinute,
     unit: 'per minute',
   },
@@ -122,7 +115,7 @@ export default function PricingPage() {
               <DollarSign className="h-4 w-4" />
               Transparent Pricing
             </div>
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold text-heading mb-6">
+            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary mb-6">
               Transparent, Affordable{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-sky">
                 Pricing
@@ -139,14 +132,14 @@ export default function PricingPage() {
                 <DollarSign className="h-5 w-5 text-primary shrink-0" />
                 <div className="text-left">
                   <p className="text-sm text-muted-foreground leading-tight">Starting at</p>
-                  <p className="font-heading font-bold text-heading">From ${PRICING_CONFIG.baseFare} base fare</p>
+                  <p className="font-heading font-bold text-primary">From ${PRICING_CONFIG.baseFareAmbulatory} base fare</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 bg-white shadow-md rounded-xl px-5 py-3.5 border-l-4 border-primary">
                 <PersonStanding className="h-5 w-5 text-primary shrink-0" />
                 <div className="text-left">
                   <p className="text-sm text-muted-foreground leading-tight">Ambulatory</p>
-                  <p className="font-heading font-bold text-heading">${PRICING_CONFIG.perMileAmbulatory.toFixed(2)}/mi</p>
+                  <p className="font-heading font-bold text-primary">${PRICING_CONFIG.perMileAmbulatory.toFixed(2)}/mi</p>
                 </div>
               </div>
             </div>
@@ -159,7 +152,7 @@ export default function PricingPage() {
         <div className="container-custom">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
+              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary mb-4">
                 Our Rate Structure
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -176,7 +169,7 @@ export default function PricingPage() {
                     <PersonStanding className="h-6 w-6" />
                   </div>
                   <div>
-                    <h3 className="font-heading text-xl font-bold text-heading">
+                    <h3 className="font-heading text-xl font-bold text-primary">
                       Ambulatory
                     </h3>
                     <p className="text-sm text-muted-foreground">Walk-on passengers</p>
@@ -185,7 +178,7 @@ export default function PricingPage() {
                 <div className="mb-6">
                   <div className="flex items-baseline gap-2 mb-2">
                     <span className="font-heading text-4xl font-bold text-primary">
-                      ${PRICING_CONFIG.baseFare}
+                      ${PRICING_CONFIG.baseFareAmbulatory}
                     </span>
                     <span className="text-muted-foreground">base fare</span>
                   </div>
@@ -225,7 +218,7 @@ export default function PricingPage() {
                     <Accessibility className="h-6 w-6" />
                   </div>
                   <div>
-                    <h3 className="font-heading text-xl font-bold text-heading">
+                    <h3 className="font-heading text-xl font-bold text-primary">
                       Wheelchair
                     </h3>
                     <p className="text-sm text-muted-foreground">Wheelchair passengers</p>
@@ -234,7 +227,7 @@ export default function PricingPage() {
                 <div className="mb-6">
                   <div className="flex items-baseline gap-2 mb-2">
                     <span className="font-heading text-4xl font-bold text-primary">
-                      ${PRICING_CONFIG.baseFare}
+                      ${PRICING_CONFIG.baseFareWheelchair}
                     </span>
                     <span className="text-muted-foreground">base fare</span>
                   </div>
@@ -270,7 +263,7 @@ export default function PricingPage() {
                   <Percent className="h-6 w-6" />
                 </div>
                 <div>
-                  <h3 className="font-heading text-lg font-bold text-heading mb-1">
+                  <h3 className="font-heading text-lg font-bold text-primary mb-1">
                     Round-Trip Discount
                   </h3>
                   <p className="text-muted-foreground">
@@ -287,7 +280,7 @@ export default function PricingPage() {
 
             {/* Example Calculation */}
             <div className="bg-muted rounded-2xl p-6 md:p-8 mb-12">
-              <h3 className="font-heading text-xl font-bold text-heading mb-4">
+              <h3 className="font-heading text-xl font-bold text-primary mb-4">
                 Example Price Calculation
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -299,7 +292,7 @@ export default function PricingPage() {
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground">Base fare</span>
                       <span className="font-medium text-foreground">
-                        ${PRICING_CONFIG.baseFare.toFixed(2)}
+                        ${PRICING_CONFIG.baseFareAmbulatory.toFixed(2)}
                       </span>
                     </div>
                     <div className="flex justify-between text-sm">
@@ -313,7 +306,7 @@ export default function PricingPage() {
                     <div className="border-t border-border pt-2 flex justify-between">
                       <span className="font-semibold text-foreground">Estimated Total</span>
                       <span className="font-bold text-primary text-lg">
-                        ${(PRICING_CONFIG.baseFare + 10 * PRICING_CONFIG.perMileAmbulatory).toFixed(2)}
+                        ${(PRICING_CONFIG.baseFareAmbulatory + 10 * PRICING_CONFIG.perMileAmbulatory).toFixed(2)}
                       </span>
                     </div>
                   </div>
@@ -326,7 +319,7 @@ export default function PricingPage() {
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground">Base fare</span>
                       <span className="font-medium text-foreground">
-                        ${PRICING_CONFIG.baseFare.toFixed(2)}
+                        ${PRICING_CONFIG.baseFareWheelchair.toFixed(2)}
                       </span>
                     </div>
                     <div className="flex justify-between text-sm">
@@ -343,7 +336,7 @@ export default function PricingPage() {
                       </span>
                       <span className="font-medium text-accent-dark">
                         -${(
-                          (PRICING_CONFIG.baseFare + 15 * PRICING_CONFIG.perMileWheelchair * 2) *
+                          (PRICING_CONFIG.baseFareWheelchair + 15 * PRICING_CONFIG.perMileWheelchair * 2) *
                           (1 - PRICING_CONFIG.roundTripDiscount)
                         ).toFixed(2)}
                       </span>
@@ -352,7 +345,7 @@ export default function PricingPage() {
                       <span className="font-semibold text-foreground">Estimated Total</span>
                       <span className="font-bold text-primary text-lg">
                         ${(
-                          (PRICING_CONFIG.baseFare + 15 * PRICING_CONFIG.perMileWheelchair * 2) *
+                          (PRICING_CONFIG.baseFareWheelchair + 15 * PRICING_CONFIG.perMileWheelchair * 2) *
                           PRICING_CONFIG.roundTripDiscount
                         ).toFixed(2)}
                       </span>
@@ -370,7 +363,7 @@ export default function PricingPage() {
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
+              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary mb-4">
                 Additional Services & Surcharges
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -388,7 +381,7 @@ export default function PricingPage() {
                     {surcharge.icon}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-heading">{surcharge.label}</h3>
+                    <h3 className="font-semibold text-primary">{surcharge.label}</h3>
                     <p className="text-sm text-muted-foreground">{surcharge.description}</p>
                   </div>
                   <div className="text-right shrink-0">
@@ -419,7 +412,7 @@ export default function PricingPage() {
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-heading mb-4">
+              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-primary mb-4">
                 Accepted Payment Methods
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -449,7 +442,7 @@ export default function PricingPage() {
                   key={method.title}
                   className="text-center p-5 bg-muted rounded-xl card-hover"
                 >
-                  <h3 className="font-semibold text-heading mb-1">{method.title}</h3>
+                  <h3 className="font-semibold text-primary mb-1">{method.title}</h3>
                   <p className="text-sm text-muted-foreground">{method.description}</p>
                 </div>
               ))}
@@ -466,7 +459,7 @@ export default function PricingPage() {
               <div className="flex items-start gap-4">
                 <AlertCircle className="h-6 w-6 text-primary shrink-0 mt-0.5" />
                 <div>
-                  <h3 className="font-heading text-lg font-bold text-heading mb-2">
+                  <h3 className="font-heading text-lg font-bold text-primary mb-2">
                     Pricing Disclaimer
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-3">
@@ -500,7 +493,7 @@ export default function PricingPage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/book"
-              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-accent hover:bg-accent-dark text-white text-lg font-semibold rounded-xl transition-colors shadow-lg"
+              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-white hover:bg-white/90 text-primary text-lg font-semibold rounded-xl transition-colors shadow-lg"
             >
               Get Your Estimate
               <ArrowRight className="h-5 w-5" />

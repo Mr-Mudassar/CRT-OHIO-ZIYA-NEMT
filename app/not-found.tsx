@@ -17,7 +17,7 @@ export default function NotFound() {
           </p>
 
           {/* Heading */}
-          <h1 className="text-2xl md:text-4xl font-extrabold text-heading font-heading mb-4 -mt-4">
+          <h1 className="text-2xl md:text-4xl font-extrabold text-primary font-heading mb-4 -mt-4">
             Page Not Found
           </h1>
 
@@ -30,14 +30,14 @@ export default function NotFound() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               href="/"
-              className="group inline-flex items-center gap-2 px-7 py-3.5 bg-accent hover:bg-accent-dark text-white font-bold rounded-xl transition-all duration-300 shadow-lg shadow-accent/20 hover:shadow-accent/30 hover:-translate-y-0.5"
+              className="group inline-flex items-center gap-2 px-7 py-3.5 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl transition-all duration-300 shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:-translate-y-0.5"
             >
               <Home className="h-4 w-4" />
               Go Home
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-border text-heading hover:border-primary/30 hover:bg-white font-semibold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+              className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-border text-primary hover:border-primary/30 hover:bg-white font-semibold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
             >
               <ArrowLeft className="h-4 w-4" />
               Contact Us

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { signOut } from 'next-auth/react'
 import {
@@ -108,12 +109,15 @@ export function DashboardShell({
         )}
       >
         {/* Logo area */}
-        <div className="flex h-14 items-center justify-between px-4">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-white text-sm font-bold">
-              CR
-            </div>
-            <span className="text-sm font-semibold text-heading">Care Ride</span>
+        <div className="flex h-16 items-center justify-between px-4">
+          <Link href="/" className="flex flex-1 items-center justify-center">
+            <Image
+              src="/CRTOhio-logo.png"
+              alt="Care Ride Transportation"
+              width={180}
+              height={60}
+              className="h-12 w-auto"
+            />
           </Link>
           <button
             className="lg:hidden flex items-center justify-center size-8 rounded-lg hover:bg-muted transition-colors"

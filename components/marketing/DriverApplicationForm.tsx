@@ -109,7 +109,7 @@ export function DriverApplicationForm() {
         <div className="mx-auto mb-4 flex size-16 items-center justify-center rounded-full bg-accent-light">
           <CheckCircle className="size-8 text-accent" />
         </div>
-        <h3 className="text-xl font-bold text-heading mb-2">Application Submitted!</h3>
+        <h3 className="text-xl font-bold text-primary mb-2">Application Submitted!</h3>
         <p className="text-muted-foreground leading-relaxed">
           Thank you for your interest in joining our team. Our hiring team will review your application
           and reach out within two business days.

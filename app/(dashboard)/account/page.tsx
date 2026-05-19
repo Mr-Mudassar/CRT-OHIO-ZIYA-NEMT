@@ -48,7 +48,7 @@ export default async function AccountDashboardPage() {
     <div className="mx-auto max-w-5xl space-y-6">
       {/* Welcome */}
       <div>
-        <h1 className="text-2xl font-bold text-heading">
+        <h1 className="text-2xl font-bold text-primary">
           Welcome back, {displayName}
         </h1>
         <p className="mt-1 text-muted-foreground">
@@ -66,7 +66,7 @@ export default async function AccountDashboardPage() {
             <Car className="size-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-heading">{totalRides}</div>
+            <div className="text-2xl font-bold text-primary">{totalRides}</div>
           </CardContent>
         </Card>
 
@@ -116,7 +116,7 @@ export default async function AccountDashboardPage() {
           {recentRides.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-12 text-center">
               <Car className="mb-4 size-12 text-muted-foreground/40" />
-              <h3 className="text-lg font-semibold text-heading">No rides yet</h3>
+              <h3 className="text-lg font-semibold text-primary">No rides yet</h3>
               <p className="mt-1 mb-4 max-w-sm text-sm text-muted-foreground">
                 You haven&apos;t booked any rides yet. Book your first ride and we will
                 get you where you need to go.

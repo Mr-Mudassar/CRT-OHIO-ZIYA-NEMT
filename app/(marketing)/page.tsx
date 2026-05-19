@@ -7,7 +7,7 @@ import { ServicesSection } from '@/components/marketing/ServicesSection'
 import { HowItWorksSection } from '@/components/marketing/HowItWorksSection'
 import { WhyChooseUsSection } from '@/components/marketing/WhyChooseUsSection'
 import { ServiceAreaSection } from '@/components/marketing/ServiceAreaSection'
-import { QuickBookingSection } from '@/components/marketing/QuickBookingSection'
+
 import { CTASection } from '@/components/marketing/CTASection'
 import { TestimonialsSection } from '@/components/marketing/TestimonialsSection'
 import { ContactStripSection } from '@/components/marketing/ContactStripSection'
@@ -36,7 +36,7 @@ export default function HomePage() {
       <HowItWorksSection />
       <WhyChooseUsSection />
       <ServiceAreaSection />
-      <QuickBookingSection />
+
       <CTASection />
       <TestimonialsSection />
       <ContactStripSection />

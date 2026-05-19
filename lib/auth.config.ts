@@ -5,6 +5,7 @@ import type { NextAuthConfig } from 'next-auth'
  * Used by middleware (Edge runtime) and extended by the full auth.ts.
  */
 export const authConfig: NextAuthConfig = {
+  trustHost: true,
   pages: {
     signIn: '/login',
   },

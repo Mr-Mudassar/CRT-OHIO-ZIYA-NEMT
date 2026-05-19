@@ -14,6 +14,7 @@ import {
   LogOut,
   Menu,
   X,
+  AlertTriangle,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Separator } from '@/components/ui/separator'
@@ -27,6 +28,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuLabel,
 } from '@/components/ui/dropdown-menu'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
+import { Button } from '@/components/ui/button'
 
 type UserData = {
   id: string
@@ -73,6 +83,7 @@ export function DashboardShell({
   children: React.ReactNode
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [showSignOutDialog, setShowSignOutDialog] = useState(false)
   const pathname = usePathname()
 
   const isAdmin = user.role === 'ADMIN'
@@ -164,7 +175,7 @@ export function DashboardShell({
             </div>
           </div>
           <button
-            onClick={handleSignOut}
+            onClick={() => setShowSignOutDialog(true)}
             className="mt-1 w-full flex items-center gap-3 rounded-lg px-2 py-2 text-sm font-medium text-muted-foreground hover:bg-red-50 hover:text-red-600 transition-colors"
           >
             <LogOut className="size-4" />
@@ -195,29 +206,34 @@ export function DashboardShell({
               </Avatar>
               <span className="hidden font-medium sm:inline-block">{displayName}</span>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" sideOffset={8}>
+            <DropdownMenuContent align="end" sideOffset={8} className="w-72">
               <DropdownMenuGroup>
-                <DropdownMenuLabel>
-                  <div className="flex flex-col">
-                    <span className="text-sm font-medium">{displayName}</span>
-                    <span className="text-xs text-muted-foreground">{user.email}</span>
+                <DropdownMenuLabel className="px-3 py-3">
+                  <div className="flex items-center gap-3">
+                    <Avatar size="default">
+                      <AvatarFallback>{initials}</AvatarFallback>
+                    </Avatar>
+                    <div className="flex flex-col min-w-0">
+                      <span className="text-sm font-semibold truncate">{displayName}</span>
+                      <span className="text-xs text-muted-foreground truncate">{user.email}</span>
+                    </div>
                   </div>
                 </DropdownMenuLabel>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <DropdownMenuItem render={<Link href={isAdmin ? '/admin' : '/account'} />}>
+              <DropdownMenuGroup className="p-1">
+                <DropdownMenuItem render={<Link href={isAdmin ? '/admin' : '/account'} />} className="px-3 py-2.5 rounded-md">
                   <LayoutDashboard className="size-4" />
                   Dashboard
                 </DropdownMenuItem>
-                <DropdownMenuItem render={<Link href="/account/profile" />}>
+                <DropdownMenuItem render={<Link href="/account/profile" />} className="px-3 py-2.5 rounded-md">
                   <User className="size-4" />
                   Profile
                 </DropdownMenuItem>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <DropdownMenuItem onClick={handleSignOut}>
+              <DropdownMenuGroup className="p-1">
+                <DropdownMenuItem onClick={() => setShowSignOutDialog(true)} className="px-3 py-2.5 rounded-md text-red-600 focus:text-red-600 focus:bg-red-50">
                   <LogOut className="size-4" />
                   Sign Out
                 </DropdownMenuItem>
@@ -231,6 +247,38 @@ export function DashboardShell({
           {children}
         </main>
       </div>
+
+      {/* Sign Out Confirmation Dialog */}
+      <Dialog open={showSignOutDialog} onOpenChange={setShowSignOutDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <div className="mx-auto mb-2 flex size-12 items-center justify-center rounded-full bg-red-100">
+              <AlertTriangle className="size-6 text-red-600" />
+            </div>
+            <DialogTitle className="text-center">Sign Out</DialogTitle>
+            <DialogDescription className="text-center">
+              Are you sure you want to sign out? You will need to log in again to access your account.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="flex-row gap-3 sm:justify-center">
+            <Button
+              variant="outline"
+              onClick={() => setShowSignOutDialog(false)}
+              className="flex-1"
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={handleSignOut}
+              className="flex-1"
+            >
+              <LogOut className="size-4" />
+              Sign Out
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

@@ -267,7 +267,7 @@ export default async function AdminRideDetailPage({
                   )}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 h-8 px-3 text-xs font-medium bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
+                  className="inline-flex items-center gap-1.5 h-10 px-4 text-sm font-medium bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors shadow-sm"
                 >
                   <NavigationIcon className="size-3.5" />
                   View Route on Map

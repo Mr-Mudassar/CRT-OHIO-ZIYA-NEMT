@@ -68,7 +68,7 @@ export default async function UserRidesPage({
             View all of your ride requests and their current status.
           </p>
         </div>
-        <Button className="bg-primary text-white hover:bg-primary-dark" render={<Link href="/book" />}>
+        <Button className="h-11 px-6 bg-primary text-white hover:bg-primary-dark shadow-sm" render={<Link href="/book" />}>
           <Plus className="size-4" />
           Book a Ride
         </Button>

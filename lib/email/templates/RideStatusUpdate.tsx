@@ -27,6 +27,7 @@ type Props = {
   pickupDateTime: string
   newStatus: string
   declineReason?: string
+  finalPrice?: string
 }
 
 export function RideStatusUpdateEmail({
@@ -37,6 +38,7 @@ export function RideStatusUpdateEmail({
   pickupDateTime,
   newStatus,
   declineReason,
+  finalPrice,
 }: Props) {
   const statusInfo = STATUS_LABELS[newStatus] || {
     label: newStatus.replace(/_/g, ' '),
@@ -123,6 +125,19 @@ export function RideStatusUpdateEmail({
 
             <Text style={label}>Drop-off</Text>
             <Text style={value}>{dropoffAddress}</Text>
+
+            {finalPrice && (
+              <>
+                <Hr style={divider} />
+                <Text style={label}>Confirmed Price</Text>
+                <Text style={{
+                  color: '#0A4D8C',
+                  fontSize: '24px',
+                  fontWeight: '700' as const,
+                  margin: '0 0 4px',
+                }}>${finalPrice}</Text>
+              </>
+            )}
 
             <Hr style={divider} />
 

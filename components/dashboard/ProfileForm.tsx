@@ -225,8 +225,8 @@ export function ProfileForm({
               </div>
             )}
 
-            <Button type="submit" disabled={profileLoading}>
-              {profileLoading && <Loader2 className="size-4 animate-spin" />}
+            <Button type="submit" disabled={profileLoading} className="h-11 px-6 text-sm">
+              {profileLoading ? <Loader2 className="size-4 animate-spin" /> : <CheckCircle2 className="size-4" />}
               Save Changes
             </Button>
           </form>
@@ -347,8 +347,8 @@ export function ProfileForm({
               </div>
             )}
 
-            <Button type="submit" disabled={passwordLoading}>
-              {passwordLoading && <Loader2 className="size-4 animate-spin" />}
+            <Button type="submit" disabled={passwordLoading} className="h-11 px-6 text-sm">
+              {passwordLoading ? <Loader2 className="size-4 animate-spin" /> : <Lock className="size-4" />}
               Change Password
             </Button>
           </form>

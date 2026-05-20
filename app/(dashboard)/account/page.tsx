@@ -97,11 +97,11 @@ export default async function AccountDashboardPage() {
 
       {/* Quick actions */}
       <div className="flex flex-wrap gap-3">
-        <Button className="bg-primary text-white hover:bg-primary-dark" render={<Link href="/book" />}>
+        <Button className="h-11 px-6 bg-primary text-white hover:bg-primary-dark shadow-sm" render={<Link href="/book" />}>
           <Plus className="size-4" />
           Book a New Ride
         </Button>
-        <Button variant="outline" render={<Link href="/account/rides" />}>
+        <Button variant="outline" className="h-11 px-6" render={<Link href="/account/rides" />}>
           View All Rides
           <ArrowRight className="size-4" />
         </Button>

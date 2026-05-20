@@ -66,6 +66,7 @@ type RideRow = {
   payerType: string
   status: RideStatus
   estimatedPrice: unknown
+  finalPrice: unknown
   user: { id: string; name: string | null; email: string } | null
 }
 
@@ -248,7 +249,8 @@ export function AdminRidesClient() {
                         <TableHead className="hidden lg:table-cell">Type</TableHead>
                         <TableHead className="hidden lg:table-cell">Payer</TableHead>
                         <TableHead>Status</TableHead>
-                        <TableHead className="hidden sm:table-cell">Price</TableHead>
+                        <TableHead className="hidden sm:table-cell">Est. Price</TableHead>
+                        <TableHead className="hidden sm:table-cell">Final Price</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -295,6 +297,9 @@ export function AdminRidesClient() {
                             </TableCell>
                             <TableCell className="hidden sm:table-cell font-medium">
                               {formatPrice(ride.estimatedPrice)}
+                            </TableCell>
+                            <TableCell className="hidden sm:table-cell font-medium text-primary">
+                              {formatPrice(ride.finalPrice)}
                             </TableCell>
                           </TableRow>
                         )

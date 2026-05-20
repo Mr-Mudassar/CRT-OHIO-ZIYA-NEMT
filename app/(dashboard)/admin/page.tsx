@@ -134,30 +134,28 @@ export default async function AdminDashboardPage() {
       take: 10,
       include: { user: true },
     }),
-    // Total revenue from all completed rides
+    // Total revenue from all completed rides (based on finalPrice)
     db.ride.aggregate({
       where: { status: 'COMPLETED' },
-      _sum: { finalPrice: true, estimatedPrice: true },
+      _sum: { finalPrice: true },
       _count: true,
     }),
-    // Monthly revenue (current month)
+    // Monthly revenue (current month, based on finalPrice)
     db.ride.aggregate({
       where: {
         status: 'COMPLETED',
         completedAt: { gte: startOfMonth },
       },
-      _sum: { finalPrice: true, estimatedPrice: true },
+      _sum: { finalPrice: true },
       _count: true,
     }),
     db.ride.count({ where: { status: 'IN_PROGRESS' } }),
     db.ride.count({ where: { status: 'CANCELLED' } }),
   ])
 
-  // Calculate revenue: prefer finalPrice, fall back to estimatedPrice
-  function getRevenue(result: { _sum: { finalPrice: unknown; estimatedPrice: unknown }; _count: number }) {
-    const final = result._sum.finalPrice
-    const estimated = result._sum.estimatedPrice
-    const val = final ?? estimated
+  // Calculate revenue based on finalPrice only
+  function getRevenue(result: { _sum: { finalPrice: unknown }; _count: number }) {
+    const val = result._sum.finalPrice
     if (val === null || val === undefined) return 0
     if (typeof val === 'object' && 'toNumber' in (val as object)) {
       return (val as { toNumber(): number }).toNumber()

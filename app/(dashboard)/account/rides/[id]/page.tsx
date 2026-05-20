@@ -18,6 +18,8 @@ import {
   Wallet,
   FileText,
   CheckCircle2,
+  ExternalLinkIcon,
+  NavigationIcon,
 } from 'lucide-react'
 import {
   formatRideStatus,
@@ -28,6 +30,34 @@ import {
   formatDate,
   formatPrice,
 } from '@/lib/ride-helpers'
+
+function formatDistance(miles: number | null | undefined): string {
+  if (!miles) return '--'
+  const km = miles * 1.60934
+  return `${km.toFixed(1)} km`
+}
+
+function formatDuration(minutes: number | null | undefined): string {
+  if (!minutes) return '--'
+  if (minutes < 60) return `${minutes} min`
+  const hours = Math.floor(minutes / 60)
+  const mins = minutes % 60
+  return mins > 0 ? `${hours} hr ${mins} min` : `${hours} hr`
+}
+
+function googleMapsSearchUrl(address: string, lat?: number | null, lng?: number | null): string {
+  if (lat && lng) return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`
+}
+
+function googleMapsDirectionsUrl(
+  pickupAddress: string, pickupLat: number | null | undefined, pickupLng: number | null | undefined,
+  dropoffAddress: string, dropoffLat: number | null | undefined, dropoffLng: number | null | undefined,
+): string {
+  const origin = pickupLat && pickupLng ? `${pickupLat},${pickupLng}` : encodeURIComponent(pickupAddress)
+  const dest = dropoffLat && dropoffLng ? `${dropoffLat},${dropoffLng}` : encodeURIComponent(dropoffAddress)
+  return `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${dest}`
+}
 
 export default async function UserRideDetailPage({
   params,
@@ -145,7 +175,19 @@ export default async function UserRideDetailPage({
             <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
               Pickup Address
             </p>
-            <p className="mt-1 text-sm">{ride.pickupAddress}</p>
+            <div className="mt-1 flex items-start gap-2">
+              <p className="text-sm flex-1">{ride.pickupAddress}</p>
+              <a
+                href={googleMapsSearchUrl(ride.pickupAddress, ride.pickupLat, ride.pickupLng)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 shrink-0 text-xs text-primary hover:underline"
+                title="Open in Google Maps"
+              >
+                <ExternalLinkIcon className="size-3" />
+                Map
+              </a>
+            </div>
             {ride.pickupApt && (
               <p className="text-xs text-muted-foreground">Apt/Suite: {ride.pickupApt}</p>
             )}
@@ -158,7 +200,19 @@ export default async function UserRideDetailPage({
             <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
               Drop-off Address
             </p>
-            <p className="mt-1 text-sm">{ride.dropoffAddress}</p>
+            <div className="mt-1 flex items-start gap-2">
+              <p className="text-sm flex-1">{ride.dropoffAddress}</p>
+              <a
+                href={googleMapsSearchUrl(ride.dropoffAddress, ride.dropoffLat, ride.dropoffLng)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 shrink-0 text-xs text-primary hover:underline"
+                title="Open in Google Maps"
+              >
+                <ExternalLinkIcon className="size-3" />
+                Map
+              </a>
+            </div>
             {ride.dropoffFacilityName && (
               <p className="text-xs text-muted-foreground">
                 Facility: {ride.dropoffFacilityName}
@@ -174,6 +228,22 @@ export default async function UserRideDetailPage({
                 Appointment: {formatDateTime(ride.dropoffAppointmentTime)}
               </p>
             )}
+          </div>
+
+          {/* View Route button */}
+          <div className="pt-2">
+            <a
+              href={googleMapsDirectionsUrl(
+                ride.pickupAddress, ride.pickupLat, ride.pickupLng,
+                ride.dropoffAddress, ride.dropoffLat, ride.dropoffLng,
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 h-11 px-5 bg-primary hover:bg-primary-dark text-white text-sm font-medium rounded-lg transition-colors shadow-sm"
+            >
+              <NavigationIcon className="size-4" />
+              View Route on Map
+            </a>
           </div>
         </CardContent>
       </Card>
@@ -312,34 +382,32 @@ export default async function UserRideDetailPage({
         </CardContent>
       </Card>
 
-      {/* Pricing */}
+      {/* Route & Pricing */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Calendar className="size-4 text-primary" />
-            Pricing
+            Route & Pricing
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-4 sm:grid-cols-3">
-            {ride.estimatedMiles !== null && (
-              <div>
-                <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                  Estimated Distance
-                </p>
-                <p className="mt-1 text-sm font-medium">
-                  {ride.estimatedMiles.toFixed(1)} miles
-                </p>
-              </div>
-            )}
-            {ride.estimatedDuration !== null && (
-              <div>
-                <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                  Estimated Duration
-                </p>
-                <p className="mt-1 text-sm font-medium">{ride.estimatedDuration} min</p>
-              </div>
-            )}
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                Total Distance
+              </p>
+              <p className="mt-1 text-sm font-medium">
+                {formatDistance(ride.estimatedMiles)}
+              </p>
+            </div>
+            <div>
+              <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                Travel Time
+              </p>
+              <p className="mt-1 text-sm font-medium">
+                {formatDuration(ride.estimatedDuration)}
+              </p>
+            </div>
             <div>
               <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
                 Estimated Price
@@ -348,16 +416,14 @@ export default async function UserRideDetailPage({
                 {formatPrice(ride.estimatedPrice)}
               </p>
             </div>
-            {ride.finalPrice !== null && (
-              <div>
-                <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                  Final Price
-                </p>
-                <p className="mt-1 text-lg font-bold text-accent">
-                  {formatPrice(ride.finalPrice)}
-                </p>
-              </div>
-            )}
+            <div>
+              <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                Final Price
+              </p>
+              <p className="mt-1 text-lg font-bold text-primary">
+                {ride.finalPrice !== null ? formatPrice(ride.finalPrice) : <span className="text-sm font-normal text-muted-foreground">Pending confirmation</span>}
+              </p>
+            </div>
           </div>
         </CardContent>
       </Card>
@@ -414,7 +480,7 @@ export default async function UserRideDetailPage({
                   <div
                     className={`mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full ${
                       hasDate
-                        ? 'bg-primary/10 text-primary'
+                        ? 'bg-primary text-white'
                         : 'bg-muted text-muted-foreground'
                     }`}
                   >

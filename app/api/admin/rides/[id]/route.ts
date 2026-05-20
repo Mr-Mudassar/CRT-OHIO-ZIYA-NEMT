@@ -223,6 +223,12 @@ export async function PATCH(
           pickupDateTime: pickupDt,
           newStatus: data.status,
           declineReason: data.declineReason || updatedRide.declineReason || undefined,
+          finalPrice: updatedRide.finalPrice
+            ? (typeof updatedRide.finalPrice === 'object' && 'toNumber' in (updatedRide.finalPrice as object)
+                ? (updatedRide.finalPrice as { toNumber(): number }).toNumber()
+                : Number(updatedRide.finalPrice)
+              ).toFixed(2)
+            : undefined,
         }),
       }).catch((err) => {
         console.error('[Status Email Error]', err)

@@ -6,6 +6,7 @@ import { db } from '@/lib/db'
 import { sendEmail } from '@/lib/email/send'
 import { PasswordResetEmail } from '@/lib/email/templates/PasswordReset'
 import { forgotPasswordSchema } from '@/lib/validations/auth'
+import { SITE_NAME } from '@/lib/constants'
 
 export async function POST(request: Request) {
   try {
@@ -62,7 +63,7 @@ export async function POST(request: Request) {
 
     await sendEmail({
       to: email,
-      subject: 'Reset Your Password — Care Ride Transportation',
+      subject: `Reset Your Password — ${SITE_NAME}`,
       react: PasswordResetEmail({ resetUrl, userName: user.name ?? undefined }),
     })
 

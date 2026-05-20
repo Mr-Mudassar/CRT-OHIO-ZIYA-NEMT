@@ -157,7 +157,7 @@ export default function RecurringServicePage() {
                 track with your care plan.
               </p>
               <p>
-                Care Ride Transportation offers flexible recurring schedules including daily,
+                {SITE_NAME} offers flexible recurring schedules including daily,
                 weekly, multiple days per week (such as Monday-Wednesday-Friday for dialysis), and
                 custom patterns that match your specific treatment calendar. If your schedule
                 changes, we adapt with you. Need to skip a session, add an extra ride, or adjust
@@ -285,7 +285,7 @@ export default function RecurringServicePage() {
       <section className="section-padding">
         <div className="container-custom">
           <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-8">
-            Why Choose Care Ride for Recurring Rides?
+            Why Choose {SITE_NAME} for Recurring Rides?
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {[

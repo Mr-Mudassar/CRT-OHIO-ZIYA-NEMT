@@ -18,9 +18,9 @@ import { SITE_NAME, BUSINESS_PHONE, BUSINESS_EMAIL } from '@/lib/constants'
 import { DriverApplicationForm } from '@/components/marketing/DriverApplicationForm'
 
 export const metadata: Metadata = generatePageMetadata({
-  title: 'Become a Driver — Join the Care Ride Transportation Team',
+  title: `Become a Driver — Join the ${SITE_NAME} Team`,
   description:
-    'Drive with Care Ride Transportation and make a meaningful difference. Competitive pay, flexible scheduling, and the opportunity to help patients access essential medical care across Southwest Ohio.',
+    `Drive with ${SITE_NAME} and make a meaningful difference. Competitive pay, flexible scheduling, and the opportunity to help patients access essential medical care across Southwest Ohio.`,
   path: '/become-a-driver',
 })
 

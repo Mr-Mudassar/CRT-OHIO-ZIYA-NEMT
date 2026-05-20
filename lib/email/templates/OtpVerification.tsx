@@ -7,6 +7,7 @@ import {
   Text,
   Hr,
 } from '@react-email/components'
+import { SITE_NAME, SITE_TAGLINE } from '@/lib/constants'
 
 type OtpVerificationEmailProps = {
   otp: string
@@ -23,7 +24,7 @@ export function OtpVerificationEmail({
       <Body style={main}>
         <Container style={container}>
           <Section style={logoSection}>
-            <Text style={logoText}>Care Ride Transportation</Text>
+            <Text style={logoText}>{SITE_NAME}</Text>
           </Section>
           <Hr style={hr} />
           <Section style={contentSection}>
@@ -46,7 +47,7 @@ export function OtpVerificationEmail({
           <Hr style={hr} />
           <Section style={footer}>
             <Text style={footerText}>
-              Care Ride Transportation | Southwest Ohio
+              {SITE_NAME} | {SITE_TAGLINE}
             </Text>
             <Text style={footerText}>
               For medical emergencies, call 911. We do not provide emergency

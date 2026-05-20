@@ -8,6 +8,7 @@ import {
   Button,
   Hr,
 } from '@react-email/components'
+import { SITE_NAME, SITE_TAGLINE } from '@/lib/constants'
 
 type Props = {
   verificationUrl: string
@@ -47,7 +48,7 @@ export function EmailVerificationEmail({ verificationUrl, userName }: Props) {
                 marginBottom: '16px',
               }}
             >
-              Welcome to Care Ride Transportation
+              Welcome to {SITE_NAME}
             </Text>
             <Text style={{ color: '#64748B', lineHeight: '1.6' }}>
               Hi{userName ? ` ${userName}` : ''}, thank you for creating your
@@ -76,8 +77,7 @@ export function EmailVerificationEmail({ verificationUrl, userName }: Props) {
             </Text>
             <Hr style={{ borderColor: '#e2e8f0', marginTop: '24px' }} />
             <Text style={{ color: '#94a3b8', fontSize: '12px' }}>
-              Care Ride Transportation — Safe, Reliable Medical Transportation
-              in Ohio
+              {SITE_NAME} — {SITE_TAGLINE}
             </Text>
           </Section>
         </Container>

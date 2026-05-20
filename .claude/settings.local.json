@@ -17,7 +17,8 @@
       "Bash(pnpm prisma db seed --config prisma/prisma.config.ts)",
       "Bash(while read f)",
       "Bash(do sed -i 's/text-heading/text-primary/g' \"$f\")",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(npx tsx prisma/seed.ts)"
     ]
   }
 }

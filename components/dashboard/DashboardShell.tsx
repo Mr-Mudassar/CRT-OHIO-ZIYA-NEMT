@@ -1,10 +1,10 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import { usePathname } from 'next/navigation'
-import { signOut } from 'next-auth/react'
+import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { signOut } from "next-auth/react";
 import {
   LayoutDashboard,
   Car,
@@ -15,10 +15,10 @@ import {
   Menu,
   X,
   AlertTriangle,
-} from 'lucide-react'
-import { cn } from '@/lib/utils'
-import { Separator } from '@/components/ui/separator'
-import { Avatar, AvatarFallback } from '@/components/ui/avatar'
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Separator } from "@/components/ui/separator";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -27,7 +27,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuLabel,
-} from '@/components/ui/dropdown-menu'
+} from "@/components/ui/dropdown-menu";
 import {
   Dialog,
   DialogContent,
@@ -35,70 +35,95 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { LOGO_PATH, SITE_NAME } from "@/lib/constants";
 
 type UserData = {
-  id: string
-  name: string | null
-  email: string
-  role: 'ADMIN' | 'USER'
-}
+  id: string;
+  name: string | null;
+  email: string;
+  role: "ADMIN" | "USER";
+};
 
 type NavItem = {
-  label: string
-  href: string
-  icon: React.ReactNode
-}
+  label: string;
+  href: string;
+  icon: React.ReactNode;
+};
 
 const USER_NAV: NavItem[] = [
-  { label: 'Dashboard', href: '/account', icon: <LayoutDashboard className="size-4" /> },
-  { label: 'My Rides', href: '/account/rides', icon: <Car className="size-4" /> },
-  { label: 'Profile', href: '/account/profile', icon: <User className="size-4" /> },
-]
+  {
+    label: "Dashboard",
+    href: "/account",
+    icon: <LayoutDashboard className="size-4" />,
+  },
+  {
+    label: "My Rides",
+    href: "/account/rides",
+    icon: <Car className="size-4" />,
+  },
+  {
+    label: "Profile",
+    href: "/account/profile",
+    icon: <User className="size-4" />,
+  },
+];
 
 const ADMIN_NAV: NavItem[] = [
-  { label: 'Dashboard', href: '/admin', icon: <LayoutDashboard className="size-4" /> },
-  { label: 'All Rides', href: '/admin/rides', icon: <Car className="size-4" /> },
-  { label: 'Users', href: '/admin/users', icon: <Users className="size-4" /> },
-  { label: 'Settings', href: '/admin/settings', icon: <Settings className="size-4" /> },
-]
+  {
+    label: "Dashboard",
+    href: "/admin",
+    icon: <LayoutDashboard className="size-4" />,
+  },
+  {
+    label: "All Rides",
+    href: "/admin/rides",
+    icon: <Car className="size-4" />,
+  },
+  { label: "Users", href: "/admin/users", icon: <Users className="size-4" /> },
+  {
+    label: "Settings",
+    href: "/admin/settings",
+    icon: <Settings className="size-4" />,
+  },
+];
 
 function getInitials(name: string | null, email: string): string {
   if (name) {
-    const parts = name.trim().split(/\s+/)
+    const parts = name.trim().split(/\s+/);
     if (parts.length >= 2) {
-      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
+      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
     }
-    return name.slice(0, 2).toUpperCase()
+    return name.slice(0, 2).toUpperCase();
   }
-  return email.slice(0, 2).toUpperCase()
+  return email.slice(0, 2).toUpperCase();
 }
 
 export function DashboardShell({
   user,
   children,
 }: {
-  user: UserData
-  children: React.ReactNode
+  user: UserData;
+  children: React.ReactNode;
 }) {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [showSignOutDialog, setShowSignOutDialog] = useState(false)
-  const pathname = usePathname()
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showSignOutDialog, setShowSignOutDialog] = useState(false);
+  const pathname = usePathname();
 
-  const isAdmin = user.role === 'ADMIN'
-  const initials = getInitials(user.name, user.email)
-  const displayName = user.name || user.email
+  const isAdmin = user.role === "ADMIN";
+  const initials = getInitials(user.name, user.email);
+  const displayName = user.name || user.email;
 
   function isActive(href: string): boolean {
-    if (href === '/account' || href === '/admin') {
-      return pathname === href
+    if (href === "/account" || href === "/admin") {
+      return pathname === href;
     }
-    return pathname.startsWith(href)
+    return pathname.startsWith(href);
   }
 
   function handleSignOut() {
-    signOut({ callbackUrl: '/' })
+    signOut({ callbackUrl: "/" });
   }
 
   return (
@@ -115,19 +140,19 @@ export function DashboardShell({
       {/* Sidebar */}
       <aside
         className={cn(
-          'fixed inset-y-0 left-0 z-50 flex w-[260px] flex-col border-r border-border bg-card transition-transform duration-200 lg:static lg:z-auto lg:translate-x-0',
-          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+          "fixed inset-y-0 left-0 z-50 flex w-[260px] flex-col border-r border-border bg-card transition-transform duration-200 lg:static lg:z-auto lg:translate-x-0",
+          sidebarOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >
         {/* Logo area */}
-        <div className="flex h-16 items-center justify-between px-4">
+        <div className="flex h-14 items-center justify-between px-4">
           <Link href="/" className="flex flex-1 items-center justify-center">
             <Image
-              src="/CRTOhio-logo.png"
-              alt="Care Ride Transportation"
+              src={LOGO_PATH}
+              alt={SITE_NAME}
               width={180}
               height={60}
-              className="h-12 w-auto"
+              className="h-8 w-auto"
             />
           </Link>
           <button
@@ -150,10 +175,10 @@ export function DashboardShell({
                 href={item.href}
                 onClick={() => setSidebarOpen(false)}
                 className={cn(
-                  'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
+                  "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
                   isActive(item.href)
-                    ? 'bg-primary text-white'
-                    : 'text-muted-foreground hover:bg-primary/10 hover:text-primary'
+                    ? "bg-primary text-white"
+                    : "text-muted-foreground hover:bg-primary/10 hover:text-primary",
                 )}
               >
                 {item.icon}
@@ -170,8 +195,12 @@ export function DashboardShell({
               <AvatarFallback>{initials}</AvatarFallback>
             </Avatar>
             <div className="flex-1 overflow-hidden">
-              <p className="truncate text-sm font-medium text-foreground">{displayName}</p>
-              <p className="truncate text-xs text-muted-foreground">{user.email}</p>
+              <p className="truncate text-sm font-medium text-foreground">
+                {displayName}
+              </p>
+              <p className="truncate text-xs text-muted-foreground">
+                {user.email}
+              </p>
             </div>
           </div>
           <button
@@ -204,7 +233,9 @@ export function DashboardShell({
               <Avatar size="sm">
                 <AvatarFallback className="text-xs">{initials}</AvatarFallback>
               </Avatar>
-              <span className="hidden font-medium sm:inline-block">{displayName}</span>
+              <span className="hidden font-medium sm:inline-block">
+                {displayName}
+              </span>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" sideOffset={8} className="w-72">
               <DropdownMenuGroup>
@@ -214,27 +245,40 @@ export function DashboardShell({
                       <AvatarFallback>{initials}</AvatarFallback>
                     </Avatar>
                     <div className="flex flex-col min-w-0">
-                      <span className="text-sm font-semibold truncate">{displayName}</span>
-                      <span className="text-xs text-muted-foreground truncate">{user.email}</span>
+                      <span className="text-sm font-semibold truncate">
+                        {displayName}
+                      </span>
+                      <span className="text-xs text-muted-foreground truncate">
+                        {user.email}
+                      </span>
                     </div>
                   </div>
                 </DropdownMenuLabel>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
               <DropdownMenuGroup className="p-1">
-                <DropdownMenuItem render={<Link href={isAdmin ? '/admin' : '/account'} />} className="px-3 py-2.5 rounded-md">
+                <DropdownMenuItem
+                  render={<Link href={isAdmin ? "/admin" : "/account"} />}
+                  className="px-3 py-2.5 rounded-md"
+                >
                   <LayoutDashboard className="size-4" />
                   Dashboard
                 </DropdownMenuItem>
-                <DropdownMenuItem render={<Link href="/account/profile" />} className="px-3 py-2.5 rounded-md">
+                <DropdownMenuItem
+                  render={<Link href="/account/profile" />}
+                  className="px-3 py-2.5 rounded-md"
+                >
                   <User className="size-4" />
                   Profile
                 </DropdownMenuItem>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
               <DropdownMenuGroup className="p-1">
-                <DropdownMenuItem onClick={() => setShowSignOutDialog(true)} className="px-3 py-2.5 rounded-md text-red-600 focus:text-red-600 focus:bg-red-50">
-                  <LogOut className="size-4" />
+                <DropdownMenuItem
+                  onClick={() => setShowSignOutDialog(true)}
+                  className="px-3 py-2.5 rounded-md text-red-600 focus:text-red-600 focus:bg-red-50"
+                >
+                  <LogOut className="size-4 focus:text-red-600" />
                   Sign Out
                 </DropdownMenuItem>
               </DropdownMenuGroup>
@@ -243,9 +287,7 @@ export function DashboardShell({
         </header>
 
         {/* Page content */}
-        <main className="flex-1 overflow-y-auto p-4 lg:p-6">
-          {children}
-        </main>
+        <main className="flex-1 overflow-y-auto p-4 lg:p-6">{children}</main>
       </div>
 
       {/* Sign Out Confirmation Dialog */}
@@ -257,7 +299,8 @@ export function DashboardShell({
             </div>
             <DialogTitle className="text-center">Sign Out</DialogTitle>
             <DialogDescription className="text-center">
-              Are you sure you want to sign out? You will need to log in again to access your account.
+              Are you sure you want to sign out? You will need to log in again
+              to access your account.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="flex-row gap-3 sm:justify-center">
@@ -280,5 +323,5 @@ export function DashboardShell({
         </DialogContent>
       </Dialog>
     </div>
-  )
+  );
 }

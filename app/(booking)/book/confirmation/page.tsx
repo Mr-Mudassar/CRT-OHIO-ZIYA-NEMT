@@ -4,11 +4,11 @@ import { auth } from '@/lib/auth'
 import { generatePageMetadata } from '@/lib/seo'
 import { CheckCircle2, Phone, ArrowRight, UserPlus } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
-import { BUSINESS_PHONE, BOOKING_DISCLAIMER } from '@/lib/constants'
+import { BUSINESS_PHONE, BOOKING_DISCLAIMER, SITE_NAME } from '@/lib/constants'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Ride Request Received',
-  description: 'Your ride request has been submitted to Care Ride Transportation.',
+  description: `Your ride request has been submitted to ${SITE_NAME}.`,
   path: '/book/confirmation',
 })
 
@@ -43,9 +43,12 @@ export default async function ConfirmationPage({
 
         {/* Warning */}
         <Card className="mt-6 border-amber-200 bg-amber-50/80 text-left">
-          <CardContent className="pt-4">
+          <CardContent className="pt-4 space-y-2">
             <p className="text-sm font-medium text-amber-800">
               {BOOKING_DISCLAIMER}
+            </p>
+            <p className="text-sm font-bold text-amber-900">
+              Our team will send you a confirmation email with the confirmed rate and price for your ride.
             </p>
           </CardContent>
         </Card>

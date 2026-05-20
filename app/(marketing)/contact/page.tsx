@@ -256,7 +256,7 @@ export default function ContactPage() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Care Ride Transportation Service Area — Greater Cincinnati, Ohio"
+                title={`${SITE_NAME} Service Area — Greater Cincinnati, Ohio`}
                 className="w-full h-full"
               />
             </div>

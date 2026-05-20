@@ -21,6 +21,8 @@ import {
   MessageSquareIcon,
   CalendarIcon,
   ClockIcon,
+  ExternalLinkIcon,
+  NavigationIcon,
 } from 'lucide-react'
 import RideAdminActions from '@/components/dashboard/RideAdminActions'
 import type { RideStatus } from '@prisma/client'
@@ -102,6 +104,34 @@ function formatPriceRaw(price: unknown): string {
       ? (price as { toNumber(): number }).toNumber()
       : Number(price)
   return num.toFixed(2)
+}
+
+function formatDistance(miles: number | null | undefined): string {
+  if (!miles) return '--'
+  const km = miles * 1.60934
+  return `${km.toFixed(1)} km`
+}
+
+function formatDuration(minutes: number | null | undefined): string {
+  if (!minutes) return '--'
+  if (minutes < 60) return `${minutes} min`
+  const hours = Math.floor(minutes / 60)
+  const mins = minutes % 60
+  return mins > 0 ? `${hours} hr ${mins} min` : `${hours} hr`
+}
+
+function googleMapsSearchUrl(address: string, lat?: number | null, lng?: number | null): string {
+  if (lat && lng) return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`
+}
+
+function googleMapsDirectionsUrl(
+  pickupAddress: string, pickupLat: number | null | undefined, pickupLng: number | null | undefined,
+  dropoffAddress: string, dropoffLat: number | null | undefined, dropoffLng: number | null | undefined,
+): string {
+  const origin = pickupLat && pickupLng ? `${pickupLat},${pickupLng}` : encodeURIComponent(pickupAddress)
+  const dest = dropoffLat && dropoffLng ? `${dropoffLat},${dropoffLng}` : encodeURIComponent(dropoffAddress)
+  return `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${dest}`
 }
 
 export default async function AdminRideDetailPage({
@@ -225,10 +255,24 @@ export default async function AdminRideDetailPage({
           {/* Pickup & Dropoff */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <MapPinIcon className="size-4" />
-                Route Information
-              </CardTitle>
+              <div className="flex items-center justify-between">
+                <CardTitle className="flex items-center gap-2">
+                  <MapPinIcon className="size-4" />
+                  Route Information
+                </CardTitle>
+                <a
+                  href={googleMapsDirectionsUrl(
+                    ride.pickupAddress, ride.pickupLat, ride.pickupLng,
+                    ride.dropoffAddress, ride.dropoffLat, ride.dropoffLng,
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 h-8 px-3 text-xs font-medium bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
+                >
+                  <NavigationIcon className="size-3.5" />
+                  View Route on Map
+                </a>
+              </div>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid gap-4 sm:grid-cols-2">
@@ -241,7 +285,19 @@ export default async function AdminRideDetailPage({
                       <dt className="text-sm font-medium text-muted-foreground">
                         Address
                       </dt>
-                      <dd>{ride.pickupAddress}</dd>
+                      <dd className="flex items-start gap-2">
+                        <span className="flex-1">{ride.pickupAddress}</span>
+                        <a
+                          href={googleMapsSearchUrl(ride.pickupAddress, ride.pickupLat, ride.pickupLng)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="shrink-0 inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-primary-dark transition-colors mt-0.5"
+                          title="Open in Google Maps"
+                        >
+                          <ExternalLinkIcon className="size-3.5" />
+                          Map
+                        </a>
+                      </dd>
                     </div>
                     {ride.pickupApt && (
                       <div>
@@ -279,7 +335,19 @@ export default async function AdminRideDetailPage({
                       <dt className="text-sm font-medium text-muted-foreground">
                         Address
                       </dt>
-                      <dd>{ride.dropoffAddress}</dd>
+                      <dd className="flex items-start gap-2">
+                        <span className="flex-1">{ride.dropoffAddress}</span>
+                        <a
+                          href={googleMapsSearchUrl(ride.dropoffAddress, ride.dropoffLat, ride.dropoffLng)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="shrink-0 inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-primary-dark transition-colors mt-0.5"
+                          title="Open in Google Maps"
+                        >
+                          <ExternalLinkIcon className="size-3.5" />
+                          Map
+                        </a>
+                      </dd>
                     </div>
                     {ride.dropoffFacilityName && (
                       <div>
@@ -409,15 +477,15 @@ export default async function AdminRideDetailPage({
                 </div>
                 <div>
                   <dt className="text-sm font-medium text-muted-foreground">
-                    Estimated Miles
+                    Estimated Distance
                   </dt>
-                  <dd>{ride.estimatedMiles ? `${ride.estimatedMiles.toFixed(1)} mi` : '--'}</dd>
+                  <dd>{formatDistance(ride.estimatedMiles)}</dd>
                 </div>
                 <div>
                   <dt className="text-sm font-medium text-muted-foreground">
                     Estimated Duration
                   </dt>
-                  <dd>{ride.estimatedDuration ? `${ride.estimatedDuration} min` : '--'}</dd>
+                  <dd>{formatDuration(ride.estimatedDuration)}</dd>
                 </div>
                 <div>
                   <dt className="text-sm font-medium text-muted-foreground">

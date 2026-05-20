@@ -25,6 +25,10 @@ import {
   CheckCheckIcon,
   UsersIcon,
   ArrowRightIcon,
+  DollarSignIcon,
+  TrendingUpIcon,
+  CalendarIcon,
+  BanIcon,
 } from 'lucide-react'
 import type { RideStatus } from '@prisma/client'
 
@@ -95,6 +99,9 @@ export default async function AdminDashboardPage() {
   const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate())
   const endOfDay = new Date(startOfDay.getTime() + 24 * 60 * 60 * 1000)
 
+  // Start of current month
+  const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1)
+
   const [
     totalRides,
     newRequests,
@@ -102,6 +109,10 @@ export default async function AdminDashboardPage() {
     completedToday,
     activeUsers,
     recentRides,
+    totalRevenueResult,
+    monthlyRevenueResult,
+    inProgressCount,
+    cancelledCount,
   ] = await Promise.all([
     db.ride.count(),
     db.ride.count({ where: { status: 'NEW_REQUEST' } }),
@@ -123,9 +134,57 @@ export default async function AdminDashboardPage() {
       take: 10,
       include: { user: true },
     }),
+    // Total revenue from all completed rides
+    db.ride.aggregate({
+      where: { status: 'COMPLETED' },
+      _sum: { finalPrice: true, estimatedPrice: true },
+      _count: true,
+    }),
+    // Monthly revenue (current month)
+    db.ride.aggregate({
+      where: {
+        status: 'COMPLETED',
+        completedAt: { gte: startOfMonth },
+      },
+      _sum: { finalPrice: true, estimatedPrice: true },
+      _count: true,
+    }),
+    db.ride.count({ where: { status: 'IN_PROGRESS' } }),
+    db.ride.count({ where: { status: 'CANCELLED' } }),
   ])
 
+  // Calculate revenue: prefer finalPrice, fall back to estimatedPrice
+  function getRevenue(result: { _sum: { finalPrice: unknown; estimatedPrice: unknown }; _count: number }) {
+    const final = result._sum.finalPrice
+    const estimated = result._sum.estimatedPrice
+    const val = final ?? estimated
+    if (val === null || val === undefined) return 0
+    if (typeof val === 'object' && 'toNumber' in (val as object)) {
+      return (val as { toNumber(): number }).toNumber()
+    }
+    return Number(val)
+  }
+
+  const totalRevenue = getRevenue(totalRevenueResult)
+  const monthlyRevenue = getRevenue(monthlyRevenueResult)
+
   const stats = [
+    {
+      title: 'Total Revenue',
+      value: `$${totalRevenue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
+      subtitle: `${totalRevenueResult._count} completed rides`,
+      icon: DollarSignIcon,
+      borderColor: 'border-l-emerald-500',
+      iconColor: 'text-emerald-500',
+    },
+    {
+      title: 'Monthly Revenue',
+      value: `$${monthlyRevenue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
+      subtitle: `${monthlyRevenueResult._count} rides this month`,
+      icon: TrendingUpIcon,
+      borderColor: 'border-l-teal-500',
+      iconColor: 'text-teal-500',
+    },
     {
       title: 'Total Rides',
       value: totalRides,
@@ -139,6 +198,13 @@ export default async function AdminDashboardPage() {
       icon: AlertCircleIcon,
       borderColor: 'border-l-amber-500',
       iconColor: 'text-amber-500',
+    },
+    {
+      title: 'In Progress',
+      value: inProgressCount,
+      icon: CalendarIcon,
+      borderColor: 'border-l-purple-500',
+      iconColor: 'text-purple-500',
     },
     {
       title: 'Confirmed Today',
@@ -155,11 +221,18 @@ export default async function AdminDashboardPage() {
       iconColor: 'text-gray-500',
     },
     {
+      title: 'Cancelled',
+      value: cancelledCount,
+      icon: BanIcon,
+      borderColor: 'border-l-red-500',
+      iconColor: 'text-red-500',
+    },
+    {
       title: 'Active Users',
       value: activeUsers,
       icon: UsersIcon,
-      borderColor: 'border-l-purple-500',
-      iconColor: 'text-purple-500',
+      borderColor: 'border-l-indigo-500',
+      iconColor: 'text-indigo-500',
     },
   ]
 
@@ -191,7 +264,7 @@ export default async function AdminDashboardPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {stats.map((stat) => {
           const Icon = stat.icon
           return (
@@ -206,7 +279,10 @@ export default async function AdminDashboardPage() {
                 <Icon className={`size-5 ${stat.iconColor}`} />
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-bold">{stat.value}</div>
+                <div className="text-2xl font-bold">{stat.value}</div>
+                {'subtitle' in stat && stat.subtitle && (
+                  <p className="text-xs text-muted-foreground mt-1">{stat.subtitle}</p>
+                )}
               </CardContent>
             </Card>
           )

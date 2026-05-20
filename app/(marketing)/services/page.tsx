@@ -96,7 +96,7 @@ export default function ServicesPage() {
             Our Transportation Services
           </h1>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8">
-            Care Ride Transportation offers a comprehensive range of non-emergency medical
+            {SITE_NAME} offers a comprehensive range of non-emergency medical
             transportation services across Cincinnati, Mason, West Chester, and surrounding Ohio
             communities. Whatever your medical transport needs, we have you covered.
           </p>
@@ -177,7 +177,7 @@ export default function ServicesPage() {
         <div className="container-custom">
           <div className="text-center mb-12">
             <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-4">
-              Why Choose Care Ride Transportation?
+              Why Choose {SITE_NAME}?
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               We understand that medical transportation is about more than just getting from point A

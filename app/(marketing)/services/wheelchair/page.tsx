@@ -161,7 +161,7 @@ export default function WheelchairServicePage() {
                 We understand that wheelchair users often face significant barriers to accessing
                 healthcare. Long wait times for paratransit, unreliable scheduling, and vehicles
                 that are not properly equipped can all prevent patients from keeping critical medical
-                appointments. Care Ride Transportation eliminates these barriers by providing
+                appointments. {SITE_NAME} eliminates these barriers by providing
                 dependable, on-time wheelchair transport that you can count on, ride after ride.
               </p>
             </div>
@@ -294,7 +294,7 @@ export default function WheelchairServicePage() {
       <section className="section-padding">
         <div className="container-custom">
           <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-8">
-            Why Choose Care Ride for Wheelchair Transportation?
+            Why Choose {SITE_NAME} for Wheelchair Transportation?
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {[

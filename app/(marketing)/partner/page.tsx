@@ -18,9 +18,9 @@ import { SITE_NAME, BUSINESS_PHONE, BUSINESS_EMAIL } from '@/lib/constants'
 import { PartnerInquiryForm } from '@/components/marketing/PartnerInquiryForm'
 
 export const metadata: Metadata = generatePageMetadata({
-  title: 'Partner With Care Ride — Healthcare Facility Transportation Partnerships',
+  title: `Partner With ${SITE_NAME} — Healthcare Facility Transportation Partnerships`,
   description:
-    'Partner with Care Ride Transportation to provide reliable non-emergency medical transportation for your patients. Reduce no-shows, improve outcomes, and get a dedicated account manager. Hospitals, nursing homes, dialysis centers, and clinics welcome.',
+    `Partner with ${SITE_NAME} to provide reliable non-emergency medical transportation for your patients. Reduce no-shows, improve outcomes, and get a dedicated account manager. Hospitals, nursing homes, dialysis centers, and clinics welcome.`,
   path: '/partner',
 })
 
@@ -29,7 +29,7 @@ const BENEFITS = [
     icon: TrendingDown,
     title: 'Reduce Patient No-Shows',
     description:
-      'Transportation barriers are one of the leading causes of missed medical appointments. By partnering with Care Ride, your facility ensures patients have reliable rides to every appointment, significantly reducing no-show rates and improving health outcomes.',
+      `Transportation barriers are one of the leading causes of missed medical appointments. By partnering with ${SITE_NAME}, your facility ensures patients have reliable rides to every appointment, significantly reducing no-show rates and improving health outcomes.`,
   },
   {
     icon: UserCheck,

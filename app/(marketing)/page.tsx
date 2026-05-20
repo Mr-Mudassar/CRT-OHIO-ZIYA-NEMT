@@ -15,7 +15,7 @@ import { ContactStripSection } from '@/components/marketing/ContactStripSection'
 export const metadata = generatePageMetadata({
   title: `${SITE_NAME} | Safe, Reliable Medical Transportation in Ohio`,
   description:
-    'Care Ride Transportation provides safe, reliable non-emergency medical transportation (NEMT) in Cincinnati, Mason, West Chester, Hamilton, Middletown, and surrounding Ohio areas. Book your ride today.',
+    `${SITE_NAME} provides safe, reliable non-emergency medical transportation (NEMT) in Cincinnati, Mason, West Chester, Hamilton, Middletown, and surrounding Ohio areas. Book your ride today.`,
   path: '/',
 })
 

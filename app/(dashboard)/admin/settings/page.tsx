@@ -18,6 +18,7 @@ import {
   XCircle,
 } from 'lucide-react'
 import {
+  SITE_URL,
   BUSINESS_PHONE,
   BUSINESS_EMAIL,
   BUSINESS_ADDRESS,
@@ -114,9 +115,9 @@ export default async function AdminSettingsPage() {
               <span>
                 <strong>Using Resend test address.</strong> Emails will only be delivered to the email
                 you registered with on Resend. To send to anyone, verify your domain{' '}
-                <strong>crtohio.com</strong> in the Resend dashboard, then update{' '}
+                <strong>{SITE_URL.replace(/^https?:\/\//, '')}</strong> in the Resend dashboard, then update{' '}
                 <code className="bg-amber-100 px-1 rounded">RESEND_FROM_EMAIL</code> to{' '}
-                <strong>operations@crtohio.com</strong>.
+                <strong>operations@{SITE_URL.replace(/^https?:\/\//, '')}</strong>.
               </span>
             </div>
           )}

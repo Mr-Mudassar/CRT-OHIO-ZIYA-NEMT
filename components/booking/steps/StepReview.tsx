@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useBookingStore } from '@/lib/stores/bookingStore'
+import { SITE_NAME } from '@/lib/constants'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Pencil } from 'lucide-react'
@@ -265,7 +266,7 @@ export function StepReview({ registerValidate, onSubmit, isSubmitting }: Props) 
           <span className="text-sm text-muted-foreground">
             I confirm that all information provided is accurate. I understand
             that this is a <strong>ride request</strong>, not a confirmation, and
-            that the Care Ride team will review and contact me to confirm the
+            that the {SITE_NAME} team will review and contact me to confirm the
             ride details and final pricing.
           </span>
         </label>

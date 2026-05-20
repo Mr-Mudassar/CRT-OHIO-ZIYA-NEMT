@@ -8,6 +8,7 @@ import {
   Button,
   Hr,
 } from '@react-email/components'
+import { SITE_NAME, BUSINESS_PHONE, BUSINESS_PHONE_RAW, SITE_TAGLINE } from '@/lib/constants'
 
 type Props = {
   userName: string
@@ -22,7 +23,7 @@ export function WelcomeEmail({ userName, loginUrl }: Props) {
         <Container style={container}>
           {/* Header */}
           <Section style={header}>
-            <Text style={headerText}>Care Ride Transportation</Text>
+            <Text style={headerText}>{SITE_NAME}</Text>
           </Section>
           <Hr style={hr} />
 
@@ -48,8 +49,8 @@ export function WelcomeEmail({ userName, loginUrl }: Props) {
             <Text style={small}>
               If you did not create this account, please contact us immediately
               at{' '}
-              <a href="tel:+15135550100" style={link}>
-                (513) 555-0100
+              <a href={`tel:${BUSINESS_PHONE_RAW}`} style={link}>
+                {BUSINESS_PHONE}
               </a>
               .
             </Text>
@@ -59,7 +60,7 @@ export function WelcomeEmail({ userName, loginUrl }: Props) {
           <Hr style={hr} />
           <Section style={footer}>
             <Text style={footerText}>
-              Care Ride Transportation | Southwest Ohio
+              {SITE_NAME} | {SITE_TAGLINE}
             </Text>
             <Text style={footerText}>
               For medical emergencies, call 911. We do not provide emergency

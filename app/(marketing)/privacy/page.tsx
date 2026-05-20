@@ -6,7 +6,7 @@ import { SITE_NAME, BUSINESS_EMAIL, BUSINESS_PHONE, SITE_URL } from '@/lib/const
 export const metadata: Metadata = generatePageMetadata({
   title: 'Privacy Policy',
   description:
-    'Privacy Policy for Care Ride Transportation. Learn how we collect, use, and protect your personal information when you use our non-emergency medical transportation services.',
+    `Privacy Policy for ${SITE_NAME}. Learn how we collect, use, and protect your personal information when you use our non-emergency medical transportation services.`,
   path: '/privacy',
 })
 

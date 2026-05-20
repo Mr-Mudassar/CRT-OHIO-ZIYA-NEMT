@@ -7,6 +7,7 @@ import {
   Text,
   Hr,
 } from '@react-email/components'
+import { SITE_NAME, BUSINESS_PHONE, SITE_TAGLINE } from '@/lib/constants'
 
 type Props = {
   publicId: string
@@ -39,7 +40,7 @@ export function BookingReceivedEmail({
           <Section style={content}>
             <Text style={greeting}>Hi {passengerName},</Text>
             <Text style={paragraph}>
-              Thank you for choosing Care Ride Transportation. We have received
+              Thank you for choosing {SITE_NAME}. We have received
               your ride request.
             </Text>
 
@@ -84,13 +85,13 @@ export function BookingReceivedEmail({
 
             <Text style={paragraph}>
               If you have any questions, please contact us at{' '}
-              <strong>(513) 555-0100</strong> or reply to this email.
+              <strong>{BUSINESS_PHONE}</strong> or reply to this email.
             </Text>
           </Section>
 
           <Section style={footerSection}>
             <Text style={footer}>
-              Care Ride Transportation — Safe, Reliable Medical Transportation
+              {SITE_NAME} — {SITE_TAGLINE}
             </Text>
             <Text style={footerSmall}>
               For medical emergencies, call 911. We do not provide emergency

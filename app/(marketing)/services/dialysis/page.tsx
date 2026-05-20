@@ -152,7 +152,7 @@ export default function DialysisServicePage() {
                 dangerous health complications.
               </p>
               <p>
-                At Care Ride Transportation, we recognize the unique challenges that dialysis
+                At {SITE_NAME}, we recognize the unique challenges that dialysis
                 patients face. Treatments are physically taxing, and many patients feel fatigued,
                 dizzy, or weak after their sessions. Our drivers are trained to understand these
                 conditions and provide gentle, patient assistance before and after treatment. We
@@ -249,7 +249,7 @@ export default function DialysisServicePage() {
       <section className="section-padding bg-muted">
         <div className="container-custom">
           <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-8">
-            Why Choose Care Ride for Dialysis Transportation?
+            Why Choose {SITE_NAME} for Dialysis Transportation?
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {[

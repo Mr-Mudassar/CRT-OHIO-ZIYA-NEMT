@@ -16,7 +16,7 @@ import { SITE_NAME, BUSINESS_EMAIL, BUSINESS_PHONE } from '@/lib/constants'
 export const metadata: Metadata = generatePageMetadata({
   title: 'Accessibility Statement',
   description:
-    'Accessibility commitment from Care Ride Transportation. Learn about our website accessibility features, ADA-compliant fleet, and how to report accessibility concerns.',
+    `Accessibility commitment from ${SITE_NAME}. Learn about our website accessibility features, ADA-compliant fleet, and how to report accessibility concerns.`,
   path: '/accessibility',
 })
 

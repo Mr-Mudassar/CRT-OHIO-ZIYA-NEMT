@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Poppins, Inter, Geist } from 'next/font/google'
 import './globals.css'
-import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from '@/lib/constants'
+import { SITE_NAME, SITE_DESCRIPTION, SITE_URL, SITE_TAGLINE, BUSINESS_ADDRESS_LOCALITY, BUSINESS_ADDRESS_REGION } from '@/lib/constants'
 import { cn } from "@/lib/utils"
 import { Providers } from '@/components/providers/Providers'
 
@@ -24,19 +24,19 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} | Non-Emergency Medical Transportation in Ohio`,
+    default: `${SITE_NAME} | ${SITE_TAGLINE}`,
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
   keywords: [
     'NEMT',
     'non-emergency medical transportation',
-    'medical transportation Ohio',
-    'wheelchair transportation Cincinnati',
+    `medical transportation ${BUSINESS_ADDRESS_REGION}`,
+    `wheelchair transportation ${BUSINESS_ADDRESS_LOCALITY}`,
     'dialysis transportation',
-    'Medicaid transportation Ohio',
-    'medical rides Cincinnati',
-    'Care Ride Transportation',
+    `Medicaid transportation ${BUSINESS_ADDRESS_REGION}`,
+    `medical rides ${BUSINESS_ADDRESS_LOCALITY}`,
+    SITE_NAME,
   ],
   authors: [{ name: SITE_NAME }],
   openGraph: {

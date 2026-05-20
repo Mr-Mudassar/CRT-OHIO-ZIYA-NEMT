@@ -213,7 +213,7 @@ export default function AboutPage() {
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Every year, millions of Americans miss medical appointments due to
-                  transportation barriers. At Care Ride Transportation, we believe that
+                  transportation barriers. At {SITE_NAME}, we believe that
                   access to reliable transportation should never stand between a person and
                   the healthcare they need.
                 </p>
@@ -226,7 +226,7 @@ export default function AboutPage() {
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-8">
                   Whether you are heading to a routine check-up, a specialist appointment,
-                  or returning home after a hospital stay, Care Ride is here to ensure your
+                  or returning home after a hospital stay, {SITE_NAME} is here to ensure your
                   journey is safe, comfortable, and stress-free.
                 </p>
                 {/* Stats row */}
@@ -251,7 +251,7 @@ export default function AboutPage() {
                 <div className="img-zoom relative aspect-4/3 rounded-2xl overflow-hidden shadow-xl">
                   <Image
                     src="/images/about-team.jpg"
-                    alt="Care Ride Transportation team of healthcare and transportation professionals"
+                    alt={`${SITE_NAME} team of healthcare and transportation professionals`}
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 50vw"
@@ -476,7 +476,7 @@ export default function AboutPage() {
 
         <div className="container-custom relative z-10 text-center">
           <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-white mb-4">
-            Ready to Experience the Care Ride Difference?
+            Ready to Experience the {SITE_NAME} Difference?
           </h2>
           <p className="text-lg text-white/80 max-w-xl mx-auto mb-8">
             Book your ride today and discover why families and facilities trust us with

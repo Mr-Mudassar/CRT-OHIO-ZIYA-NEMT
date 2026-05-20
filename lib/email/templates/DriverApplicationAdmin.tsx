@@ -7,6 +7,7 @@ import {
   Text,
   Hr,
 } from '@react-email/components'
+import { SITE_NAME, SITE_URL } from '@/lib/constants'
 
 type Props = {
   fullName: string
@@ -32,7 +33,7 @@ export function DriverApplicationAdminEmail(props: Props) {
             New Driver Application
           </Text>
           <Text style={{ fontSize: '14px', color: '#64748B', marginBottom: '24px' }}>
-            Someone submitted a driver application on crtohio.com
+            Someone submitted a driver application on {SITE_URL.replace(/^https?:\/\//, '')}
           </Text>
           <Hr style={{ borderColor: '#E2E8F0', marginBottom: '24px' }} />
 
@@ -99,7 +100,7 @@ export function DriverApplicationAdminEmail(props: Props) {
 
           <Hr style={{ borderColor: '#E2E8F0', marginTop: '24px', marginBottom: '16px' }} />
           <Text style={{ fontSize: '12px', color: '#94a3b8' }}>
-            Care Ride Transportation — crtohio.com
+            {SITE_NAME} — {SITE_URL.replace(/^https?:\/\//, '')}
           </Text>
         </Container>
       </Body>

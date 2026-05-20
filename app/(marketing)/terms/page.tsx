@@ -6,7 +6,7 @@ import { SITE_NAME, BUSINESS_EMAIL, BUSINESS_PHONE, SITE_URL } from '@/lib/const
 export const metadata: Metadata = generatePageMetadata({
   title: 'Terms & Conditions',
   description:
-    'Terms and Conditions for Care Ride Transportation. Review our policies on bookings, cancellations, passenger responsibilities, liability, and use of our non-emergency medical transportation services.',
+    `Terms and Conditions for ${SITE_NAME}. Review our policies on bookings, cancellations, passenger responsibilities, liability, and use of our non-emergency medical transportation services.`,
   path: '/terms',
 })
 

@@ -162,7 +162,7 @@ export default function PrivatePayServicePage() {
                 and safe vehicles, just with a simpler payment process.
               </p>
               <p>
-                At Care Ride Transportation, we believe in transparent pricing. When you book a
+                At {SITE_NAME}, we believe in transparent pricing. When you book a
                 private pay ride, you receive an upfront cost estimate based on the distance, vehicle
                 type, and any additional services required. There are no surprise charges or hidden
                 fees. You know exactly what your ride will cost before you confirm your booking,
@@ -305,7 +305,7 @@ export default function PrivatePayServicePage() {
       <section className="section-padding">
         <div className="container-custom">
           <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-8">
-            Why Choose Care Ride for Private Pay?
+            Why Choose {SITE_NAME} for Private Pay?
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {[

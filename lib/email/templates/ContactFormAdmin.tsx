@@ -7,6 +7,7 @@ import {
   Text,
   Hr,
 } from '@react-email/components'
+import { SITE_NAME, SITE_URL } from '@/lib/constants'
 
 type Props = {
   name: string
@@ -26,7 +27,7 @@ export function ContactFormAdminEmail({ name, email, phone, subject, message }: 
             New Contact Form Submission
           </Text>
           <Text style={{ fontSize: '14px', color: '#64748B', marginBottom: '24px' }}>
-            Someone submitted the contact form on crtohio.com
+            Someone submitted the contact form on {SITE_URL.replace(/^https?:\/\//, '')}
           </Text>
           <Hr style={{ borderColor: '#E2E8F0', marginBottom: '24px' }} />
 
@@ -61,7 +62,7 @@ export function ContactFormAdminEmail({ name, email, phone, subject, message }: 
 
           <Hr style={{ borderColor: '#E2E8F0', marginTop: '24px', marginBottom: '16px' }} />
           <Text style={{ fontSize: '12px', color: '#94a3b8' }}>
-            Care Ride Transportation — crtohio.com
+            {SITE_NAME} — {SITE_URL.replace(/^https?:\/\//, '')}
           </Text>
         </Container>
       </Body>

@@ -5,6 +5,7 @@ import { db } from '@/lib/db'
 import { sendEmail } from '@/lib/email/send'
 import { WelcomeEmail } from '@/lib/email/templates/WelcomeEmail'
 import { registerSchema } from '@/lib/validations/auth'
+import { SITE_NAME } from '@/lib/constants'
 
 export async function POST(request: Request) {
   try {
@@ -78,7 +79,7 @@ export async function POST(request: Request) {
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
     sendEmail({
       to: email,
-      subject: 'Welcome to Care Ride Transportation!',
+      subject: `Welcome to ${SITE_NAME}!`,
       react: WelcomeEmail({ userName: name, loginUrl: `${siteUrl}/login` }),
     }).catch((err) => console.error('[Welcome Email Error]', err))
 

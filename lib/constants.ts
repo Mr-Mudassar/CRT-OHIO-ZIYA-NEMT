@@ -1,14 +1,56 @@
-export const SITE_NAME = 'Care Ride Transportation'
-export const SITE_TAGLINE = 'Safe, Reliable Non-Emergency Medical Transportation in Ohio'
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://crtohio.com'
-export const SITE_DESCRIPTION =
-  'Care Ride Transportation provides safe, reliable non-emergency medical transportation (NEMT) in Cincinnati, Mason, West Chester, Hamilton, Middletown, and surrounding Ohio areas. Book your ride today.'
+// --- Demo Mode Toggle ---
+// Set NEXT_PUBLIC_DEMO_MODE=true in .env to switch to demo branding
+const IS_DEMO = process.env.NEXT_PUBLIC_DEMO_MODE === 'true'
 
-// Placeholder — update with real values from client
-export const BUSINESS_PHONE = '(513) 555-0100'
-export const BUSINESS_EMAIL = 'info@crtohio.com'
-export const BUSINESS_ADDRESS = 'Cincinnati, OH'
-export const BUSINESS_HOURS = 'Mon–Fri: 6:00 AM – 8:00 PM | Sat: 7:00 AM – 5:00 PM | Sun: Closed'
+// --- Brand Configurations ---
+const CRT_OHIO_BRAND = {
+  siteName: 'Care Ride Transportation',
+  siteTagline: 'Safe, Reliable Non-Emergency Medical Transportation in Ohio',
+  siteUrl: 'https://crtohio.com',
+  siteDescription:
+    'Care Ride Transportation provides safe, reliable non-emergency medical transportation (NEMT) in Cincinnati, Mason, West Chester, Hamilton, Middletown, and surrounding Ohio areas. Book your ride today.',
+  businessPhone: '(513) 555-0100',
+  businessPhoneRaw: '+15135550100',
+  businessEmail: 'info@crtohio.com',
+  businessAddress: 'Cincinnati, OH',
+  businessAddressLocality: 'Cincinnati',
+  businessAddressRegion: 'OH',
+  businessHours: 'Mon–Fri: 6:00 AM – 8:00 PM | Sat: 7:00 AM – 5:00 PM | Sun: Closed',
+  logoPath: '/CRTOhio-logo.png',
+} as const
+
+const MEDSTATS_BRAND = {
+  siteName: 'MedStats Transportation',
+  siteTagline: 'Safe, Reliable Non-Emergency Medical Transportation in Florida',
+  siteUrl: 'https://medstatsbilling.com',
+  siteDescription:
+    'MedStats Transportation provides safe, reliable non-emergency medical transportation (NEMT) in Tampa, Brandon, Riverview, Lakeland, Clearwater, and surrounding Florida areas. Book your ride today.',
+  businessPhone: '(888) 791-9424',
+  businessPhoneRaw: '+18887919424',
+  businessEmail: 'info@medstatsbilling.com',
+  businessAddress: '4627 W. Sunset Blvd Tampa, FL 33629',
+  businessAddressLocality: 'Tampa',
+  businessAddressRegion: 'FL',
+  businessHours: 'Mon–Fri: 6:00 AM – 8:00 PM | Sat: 7:00 AM – 5:00 PM | Sun: Closed',
+  logoPath: '/Medstats-logo.png',
+} as const
+
+// --- Active Brand (auto-switches based on DEMO_MODE) ---
+const BRAND = IS_DEMO ? MEDSTATS_BRAND : CRT_OHIO_BRAND
+
+// --- Exported Constants ---
+export const SITE_NAME = BRAND.siteName
+export const SITE_TAGLINE = BRAND.siteTagline
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || BRAND.siteUrl
+export const SITE_DESCRIPTION = BRAND.siteDescription
+export const BUSINESS_PHONE = BRAND.businessPhone
+export const BUSINESS_PHONE_RAW = BRAND.businessPhoneRaw
+export const BUSINESS_EMAIL = BRAND.businessEmail
+export const BUSINESS_ADDRESS = BRAND.businessAddress
+export const BUSINESS_ADDRESS_LOCALITY = BRAND.businessAddressLocality
+export const BUSINESS_ADDRESS_REGION = BRAND.businessAddressRegion
+export const BUSINESS_HOURS = BRAND.businessHours
+export const LOGO_PATH = BRAND.logoPath
 
 export const EMERGENCY_DISCLAIMER =
   'For medical emergencies, call 911. We do not provide emergency ambulance services.'
@@ -16,14 +58,24 @@ export const EMERGENCY_DISCLAIMER =
 export const BOOKING_DISCLAIMER =
   'Your ride request has been received. This is not a final confirmation. Our team will review your request and contact you shortly.'
 
-export const SERVICE_AREAS = [
-  { name: 'Cincinnati', slug: 'cincinnati' },
-  { name: 'Mason', slug: 'mason' },
-  { name: 'West Chester', slug: 'west-chester' },
-  { name: 'Liberty Township', slug: 'liberty-township' },
-  { name: 'Hamilton', slug: 'hamilton' },
-  { name: 'Middletown', slug: 'middletown' },
-] as const
+// --- Service Areas (switches by demo mode) ---
+export const SERVICE_AREAS = IS_DEMO
+  ? ([
+      { name: 'Tampa', slug: 'cincinnati' },
+      { name: 'Brandon', slug: 'mason' },
+      { name: 'Riverview', slug: 'west-chester' },
+      { name: 'Lakeland', slug: 'liberty-township' },
+      { name: 'Clearwater', slug: 'hamilton' },
+      { name: 'St. Petersburg', slug: 'middletown' },
+    ] as const)
+  : ([
+      { name: 'Cincinnati', slug: 'cincinnati' },
+      { name: 'Mason', slug: 'mason' },
+      { name: 'West Chester', slug: 'west-chester' },
+      { name: 'Liberty Township', slug: 'liberty-township' },
+      { name: 'Hamilton', slug: 'hamilton' },
+      { name: 'Middletown', slug: 'middletown' },
+    ] as const)
 
 export const SERVICES = [
   {

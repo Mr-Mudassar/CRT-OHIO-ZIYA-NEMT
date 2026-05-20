@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { db } from '@/lib/db'
 import { sendEmail } from '@/lib/email/send'
 import { OtpVerificationEmail } from '@/lib/email/templates/OtpVerification'
+import { SITE_NAME } from '@/lib/constants'
 
 const schema = z.object({
   email: z.string().email().transform((v) => v.toLowerCase().trim()),
@@ -48,7 +49,7 @@ export async function POST(request: Request) {
     // Send OTP email
     const emailResult = await sendEmail({
       to: email,
-      subject: 'Your Verification Code — Care Ride Transportation',
+      subject: `Your Verification Code — ${SITE_NAME}`,
       react: OtpVerificationEmail({ otp, userName: name }),
     })
 

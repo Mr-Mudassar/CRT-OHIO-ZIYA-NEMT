@@ -5,6 +5,7 @@ import { z } from 'zod'
 import type { RideStatus } from '@prisma/client'
 import { sendEmail } from '@/lib/email/send'
 import { RideStatusUpdateEmail } from '@/lib/email/templates/RideStatusUpdate'
+import { SITE_NAME } from '@/lib/constants'
 
 const VALID_STATUSES: RideStatus[] = [
   'NEW_REQUEST',
@@ -209,7 +210,7 @@ export async function PATCH(
         UNDER_REVIEW: 'Ride Under Review',
         NO_SHOW: 'Ride Marked No Show',
       }
-      const subject = `Care Ride — ${statusLabels[data.status] || 'Status Update'} (${updatedRide.publicId})`
+      const subject = `${SITE_NAME} — ${statusLabels[data.status] || 'Status Update'} (${updatedRide.publicId})`
 
       await sendEmail({
         to: recipientEmail,

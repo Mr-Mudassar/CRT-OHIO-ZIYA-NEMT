@@ -7,6 +7,7 @@ import {
   Text,
   Hr,
 } from '@react-email/components'
+import { SITE_NAME, SITE_URL } from '@/lib/constants'
 
 type Props = {
   organizationName: string
@@ -27,7 +28,7 @@ export function PartnerInquiryAdminEmail({ organizationName, contactName, email,
             New Partnership Inquiry
           </Text>
           <Text style={{ fontSize: '14px', color: '#64748B', marginBottom: '24px' }}>
-            A healthcare facility submitted a partnership inquiry on crtohio.com
+            A healthcare facility submitted a partnership inquiry on {SITE_URL.replace(/^https?:\/\//, '')}
           </Text>
           <Hr style={{ borderColor: '#E2E8F0', marginBottom: '24px' }} />
 
@@ -68,7 +69,7 @@ export function PartnerInquiryAdminEmail({ organizationName, contactName, email,
 
           <Hr style={{ borderColor: '#E2E8F0', marginTop: '24px', marginBottom: '16px' }} />
           <Text style={{ fontSize: '12px', color: '#94a3b8' }}>
-            Care Ride Transportation — crtohio.com
+            {SITE_NAME} — {SITE_URL.replace(/^https?:\/\//, '')}
           </Text>
         </Container>
       </Body>

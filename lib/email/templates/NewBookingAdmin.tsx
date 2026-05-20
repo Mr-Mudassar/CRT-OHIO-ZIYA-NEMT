@@ -8,6 +8,7 @@ import {
   Button,
   Hr,
 } from '@react-email/components'
+import { SITE_NAME } from '@/lib/constants'
 
 type Props = {
   publicId: string
@@ -111,7 +112,7 @@ export function NewBookingAdminEmail({
           </Section>
 
           <Text style={footer}>
-            Care Ride Transportation — Admin Notification
+            {SITE_NAME} — Admin Notification
           </Text>
         </Container>
       </Body>

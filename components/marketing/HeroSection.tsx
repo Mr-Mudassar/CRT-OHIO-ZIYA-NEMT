@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ArrowRight, Phone, ShieldCheck, Clock, Users, Star, CheckCircle2 } from 'lucide-react'
 import { FloatingElement } from '@/components/shared/FloatingElement'
-import { BUSINESS_PHONE } from '@/lib/constants'
+import { BUSINESS_PHONE, SITE_NAME } from '@/lib/constants'
 
 export function HeroSection() {
   return (
@@ -14,7 +14,7 @@ export function HeroSection() {
       <div className="absolute inset-0">
         <Image
           src="/images/hero-ambulance.jpg"
-          alt="Care Ride Transportation medical transport vehicle providing safe patient transportation"
+          alt={`${SITE_NAME} medical transport vehicle providing safe patient transportation`}
           fill
           className="object-cover"
           priority

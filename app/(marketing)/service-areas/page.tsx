@@ -8,7 +8,7 @@ import { SERVICE_AREAS, SITE_NAME, BUSINESS_PHONE } from '@/lib/constants'
 export const metadata: Metadata = generatePageMetadata({
   title: 'Service Areas — Medical Transportation in Ohio',
   description:
-    'Care Ride Transportation serves Cincinnati, Mason, West Chester, Liberty Township, Hamilton, Middletown, and surrounding Ohio communities with reliable non-emergency medical transportation.',
+    `${SITE_NAME} serves Cincinnati, Mason, West Chester, Liberty Township, Hamilton, Middletown, and surrounding Ohio communities with reliable non-emergency medical transportation.`,
   path: '/service-areas',
 })
 

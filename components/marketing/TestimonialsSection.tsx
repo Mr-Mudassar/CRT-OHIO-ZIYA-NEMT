@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react'
 import { MotionWrapper } from '@/components/shared/MotionWrapper'
+import { SITE_NAME } from '@/lib/constants'
 
 const TESTIMONIALS = [
   {
@@ -13,7 +14,7 @@ const TESTIMONIALS = [
     initials: 'MT',
     color: 'bg-primary',
     quote:
-      'Care Ride has been a lifesaver for my dialysis appointments. The drivers are always on time and so kind. I feel safe every trip.',
+      `${SITE_NAME} has been a lifesaver for my dialysis appointments. The drivers are always on time and so kind. I feel safe every trip.`,
   },
   {
     name: 'James R.',
@@ -22,7 +23,7 @@ const TESTIMONIALS = [
     initials: 'JR',
     color: 'bg-accent',
     quote:
-      'After my hip surgery, I needed reliable wheelchair transportation. Care Ride made my recovery appointments stress-free. Highly recommend!',
+      `After my hip surgery, I needed reliable wheelchair transportation. ${SITE_NAME} made my recovery appointments stress-free. Highly recommend!`,
   },
   {
     name: 'Sarah M.',
@@ -49,7 +50,7 @@ const TESTIMONIALS = [
     initials: 'LW',
     color: 'bg-rose-500',
     quote:
-      'As a hospital case manager, I refer patients to Care Ride regularly. They consistently deliver reliable, compassionate transportation.',
+      `As a hospital case manager, I refer patients to ${SITE_NAME} regularly. They consistently deliver reliable, compassionate transportation.`,
   },
   {
     name: 'David P.',
@@ -58,7 +59,7 @@ const TESTIMONIALS = [
     initials: 'DP',
     color: 'bg-indigo-500',
     quote:
-      'My father needs weekly rides to his cardiologist. Care Ride has never missed a pickup. The peace of mind they provide is priceless.',
+      `My father needs weekly rides to his cardiologist. ${SITE_NAME} has never missed a pickup. The peace of mind they provide is priceless.`,
   },
   {
     name: 'Nancy H.',
@@ -67,7 +68,7 @@ const TESTIMONIALS = [
     initials: 'NH',
     color: 'bg-teal-500',
     quote:
-      'Switching to Care Ride was the best decision for our facility. Their professionalism and reliability have been outstanding from day one.',
+      `Switching to ${SITE_NAME} was the best decision for our facility. Their professionalism and reliability have been outstanding from day one.`,
   },
   {
     name: 'Carlos G.',
@@ -76,7 +77,7 @@ const TESTIMONIALS = [
     initials: 'CG',
     color: 'bg-orange-500',
     quote:
-      'The drivers are incredibly respectful and the vehicles are always spotless. I recommend Care Ride to everyone at our senior center.',
+      `The drivers are incredibly respectful and the vehicles are always spotless. I recommend ${SITE_NAME} to everyone at our senior center.`,
   },
 ]
 

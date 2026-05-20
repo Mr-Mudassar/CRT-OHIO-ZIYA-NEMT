@@ -157,7 +157,7 @@ export default function FacilityServicePage() {
                 their residents to off-site medical appointments, therapies, and procedures.
               </p>
               <p>
-                Care Ride Transportation serves as a transportation partner for facilities, working
+                {SITE_NAME} serves as a transportation partner for facilities, working
                 directly with your activities coordinators, nursing staff, and administrative team
                 to streamline the booking and scheduling process. We understand the complexities of
                 facility operations: varying mobility levels among residents, the need for
@@ -221,7 +221,7 @@ export default function FacilityServicePage() {
               {
                 step: '2',
                 title: 'Account Setup',
-                text: 'Your facility receives a dedicated account with streamlined booking access, priority scheduling, and a direct contact at Care Ride.',
+                text: `Your facility receives a dedicated account with streamlined booking access, priority scheduling, and a direct contact at ${SITE_NAME}.`,
               },
               {
                 step: '3',
@@ -255,14 +255,14 @@ export default function FacilityServicePage() {
       <section className="section-padding bg-muted">
         <div className="container-custom">
           <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-8">
-            Why Facilities Choose Care Ride
+            Why Facilities Choose {SITE_NAME}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {[
               {
                 icon: Handshake,
                 title: 'Dedicated Account Management',
-                text: 'Your facility gets a dedicated point of contact at Care Ride who understands your operations, residents, and scheduling patterns.',
+                text: `Your facility gets a dedicated point of contact at ${SITE_NAME} who understands your operations, residents, and scheduling patterns.`,
               },
               {
                 icon: Users,
@@ -351,7 +351,7 @@ export default function FacilityServicePage() {
         <div className="absolute inset-0 bg-gradient-to-br from-[#030712]/90 via-primary/85 to-primary-dark/90" />
         <div className="relative z-10 container-custom text-center">
           <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-white mb-4">
-            Partner With Care Ride for Your Facility
+            Partner With {SITE_NAME} for Your Facility
           </h2>
           <p className="text-white/80 text-lg max-w-2xl mx-auto mb-8">
             Let us handle transportation so your staff can focus on care. Contact us to discuss a

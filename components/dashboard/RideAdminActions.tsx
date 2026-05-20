@@ -146,9 +146,9 @@ export default function RideAdminActions({
   return (
     <div className="space-y-6">
       {/* Status & Actions Card */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Admin Actions</CardTitle>
+      <Card className="border-2 border-primary/30 shadow-md shadow-primary/10">
+        <CardHeader className="bg-primary/5 border-b border-primary/10">
+          <CardTitle className="text-primary">Admin Actions</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           {/* Current Status Display */}
@@ -256,7 +256,7 @@ export default function RideAdminActions({
           <Button
             onClick={handleSave}
             disabled={saving}
-            className="w-full"
+            className="w-full h-11 text-base"
           >
             {saving ? (
               <LoaderCircleIcon className="size-4 animate-spin" />

@@ -19,7 +19,7 @@ const FAQS = [
     category: 'Booking & Scheduling',
     questions: [
       {
-        question: 'How do I book a ride with Care Ride Transportation?',
+        question: `How do I book a ride with ${SITE_NAME}?`,
         answer:
           'You can book a ride through our online booking form on this website or by calling us directly. Our online form walks you through a simple step-by-step process where you provide your pickup and drop-off details, transportation needs, and insurance information. No account is required to book.',
       },
@@ -76,7 +76,7 @@ const FAQS = [
       {
         question: 'Is this a taxi service?',
         answer:
-          'No, Care Ride Transportation is not a taxi service. We are a licensed non-emergency medical transportation (NEMT) provider. Our services are specifically designed for patients who need safe, reliable transportation to and from medical appointments, treatments, and healthcare facilities. Unlike taxis, our drivers are trained in passenger assistance, wheelchair securement, and medical sensitivity.',
+          `No, ${SITE_NAME} is not a taxi service. We are a licensed non-emergency medical transportation (NEMT) provider. Our services are specifically designed for patients who need safe, reliable transportation to and from medical appointments, treatments, and healthcare facilities. Unlike taxis, our drivers are trained in passenger assistance, wheelchair securement, and medical sensitivity.`,
       },
       {
         question: 'Do you provide wheelchair-accessible transportation?',
@@ -119,7 +119,7 @@ const FAQS = [
           'We understand that medical appointments do not always run on schedule. For round-trip bookings, we include a reasonable waiting period. If your appointment runs significantly longer than expected, please call our dispatch team to update your pickup time. Additional waiting time may incur a per-minute waiting fee.',
       },
       {
-        question: 'How can I contact Care Ride if I have more questions?',
+        question: `How can I contact ${SITE_NAME} if I have more questions?`,
         answer:
           `You can reach us by phone at ${BUSINESS_PHONE}, by email at ${BUSINESS_EMAIL}, or through our Contact page. Our dispatch team is available during business hours to answer questions, help with bookings, or address any concerns.`,
       },

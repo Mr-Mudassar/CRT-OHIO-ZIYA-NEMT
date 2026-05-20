@@ -140,7 +140,7 @@ export default function AmbulatoryServicePage() {
                 for rides to medical appointments.
               </p>
               <p>
-                At Care Ride Transportation, our ambulatory service goes beyond simply getting you
+                At {SITE_NAME}, our ambulatory service goes beyond simply getting you
                 from one location to another. Our drivers are trained to assist passengers with
                 getting in and out of the vehicle, navigating curbs and steps, and ensuring comfort
                 throughout the journey. Whether you are heading to a routine check-up, a specialist
@@ -236,7 +236,7 @@ export default function AmbulatoryServicePage() {
       <section className="section-padding bg-muted">
         <div className="container-custom">
           <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-8">
-            Why Choose Care Ride for Ambulatory Transportation?
+            Why Choose {SITE_NAME} for Ambulatory Transportation?
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {[

@@ -147,7 +147,7 @@ export default function HospitalDischargeServicePage() {
               <p>
                 The discharge process can be unpredictable. While hospitals try to provide estimated
                 discharge times, the actual release may come earlier or later depending on doctor
-                rounds, test results, and administrative processing. Care Ride Transportation works
+                rounds, test results, and administrative processing. {SITE_NAME} works
                 closely with hospital discharge planners and social workers to coordinate pickup
                 times, and we remain flexible to accommodate the inherent variability of the
                 discharge process.
@@ -243,7 +243,7 @@ export default function HospitalDischargeServicePage() {
       <section className="section-padding bg-muted">
         <div className="container-custom">
           <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-8">
-            Why Choose Care Ride for Hospital Discharge?
+            Why Choose {SITE_NAME} for Hospital Discharge?
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {[
@@ -294,7 +294,7 @@ export default function HospitalDischargeServicePage() {
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
               Are you a hospital social worker or discharge planner looking for a reliable
-              transportation partner? Care Ride Transportation works with hospitals throughout the
+              transportation partner? {SITE_NAME} works with hospitals throughout the
               Cincinnati metro area to provide timely, safe discharge transport for patients.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">

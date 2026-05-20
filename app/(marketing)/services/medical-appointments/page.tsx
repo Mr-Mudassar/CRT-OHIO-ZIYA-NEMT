@@ -154,7 +154,7 @@ export default function MedicalAppointmentsServicePage() {
                 Missing a medical appointment is more than an inconvenience. It can mean delayed
                 diagnoses, interrupted treatment plans, and worsening health conditions. Studies show
                 that patients who miss appointments due to transportation barriers experience
-                significantly worse health outcomes. Care Ride Transportation exists to eliminate
+                significantly worse health outcomes. {SITE_NAME} exists to eliminate
                 that barrier, providing dependable rides that ensure you keep every appointment on
                 your calendar.
               </p>
@@ -252,7 +252,7 @@ export default function MedicalAppointmentsServicePage() {
       <section className="section-padding bg-muted">
         <div className="container-custom">
           <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-primary mb-8">
-            Why Choose Care Ride for Medical Appointments?
+            Why Choose {SITE_NAME} for Medical Appointments?
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {[

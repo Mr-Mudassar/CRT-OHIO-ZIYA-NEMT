@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { sendEmail } from '@/lib/email/send'
 import { WelcomeEmail } from '@/lib/email/templates/WelcomeEmail'
+import { SITE_NAME } from '@/lib/constants'
 
 export async function POST() {
   const session = await auth()
@@ -14,7 +15,7 @@ export async function POST() {
 
   const result = await sendEmail({
     to: toEmail,
-    subject: 'Test Email — Care Ride Transportation',
+    subject: `Test Email — ${SITE_NAME}`,
     react: WelcomeEmail({
       userName: session.user.name || 'Admin',
       loginUrl: `${siteUrl}/admin`,

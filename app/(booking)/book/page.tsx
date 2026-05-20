@@ -2,12 +2,13 @@ import type { Metadata } from 'next'
 import { auth } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { generatePageMetadata } from '@/lib/seo'
+import { SITE_NAME } from '@/lib/constants'
 import { BookingWizard } from '@/components/booking/BookingWizard'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Book a Ride',
   description:
-    'Book your non-emergency medical transportation ride with Care Ride Transportation. Easy online booking for Cincinnati, Mason, West Chester, and surrounding Ohio areas.',
+    `Book your non-emergency medical transportation ride with ${SITE_NAME}. Easy online booking for Cincinnati, Mason, West Chester, and surrounding Ohio areas.`,
   path: '/book',
 })
 

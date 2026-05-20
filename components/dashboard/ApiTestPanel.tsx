@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { CheckCircle2, XCircle, Loader2, Mail, MapPin } from 'lucide-react'
+import { BUSINESS_ADDRESS_LOCALITY, BUSINESS_ADDRESS_REGION } from '@/lib/constants'
 
 type TestStatus = 'idle' | 'testing' | 'success' | 'error'
 
@@ -25,7 +26,7 @@ export function ApiTestPanel() {
         return
       }
 
-      const url = `https://maps.googleapis.com/maps/api/geocode/json?address=Cincinnati+OH&key=${key}`
+      const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(BUSINESS_ADDRESS_LOCALITY + '+' + BUSINESS_ADDRESS_REGION)}&key=${key}`
       const res = await fetch(url)
       const data = await res.json()
 

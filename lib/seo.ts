@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '@/lib/constants'
+import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, BUSINESS_PHONE, BUSINESS_ADDRESS_LOCALITY, BUSINESS_ADDRESS_REGION, SERVICE_AREAS } from '@/lib/constants'
 
 type SeoParams = {
   title: string
@@ -32,21 +32,17 @@ export function generateLocalBusinessJsonLd() {
     name: SITE_NAME,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
-    telephone: '(513) 555-0100',
+    telephone: BUSINESS_PHONE,
     address: {
       '@type': 'PostalAddress',
-      addressLocality: 'Cincinnati',
-      addressRegion: 'OH',
+      addressLocality: BUSINESS_ADDRESS_LOCALITY,
+      addressRegion: BUSINESS_ADDRESS_REGION,
       addressCountry: 'US',
     },
-    areaServed: [
-      { '@type': 'City', name: 'Cincinnati', sameAs: 'https://en.wikipedia.org/wiki/Cincinnati' },
-      { '@type': 'City', name: 'Mason' },
-      { '@type': 'City', name: 'West Chester' },
-      { '@type': 'City', name: 'Liberty Township' },
-      { '@type': 'City', name: 'Hamilton' },
-      { '@type': 'City', name: 'Middletown' },
-    ],
+    areaServed: SERVICE_AREAS.map((area) => ({
+      '@type': 'City' as const,
+      name: area.name,
+    })),
     priceRange: '$$',
     openingHoursSpecification: [
       { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday'], opens: '06:00', closes: '20:00' },
@@ -69,7 +65,7 @@ export function generateServiceJsonLd(name: string, description: string, slug: s
     url: `${SITE_URL}/services/${slug}`,
     areaServed: {
       '@type': 'State',
-      name: 'Ohio',
+      name: BUSINESS_ADDRESS_REGION === 'FL' ? 'Florida' : 'Ohio',
     },
     serviceType: 'Non-Emergency Medical Transportation',
   }

@@ -15,10 +15,13 @@ import {
   BUSINESS_PHONE,
   BUSINESS_EMAIL,
   BUSINESS_ADDRESS,
+  BUSINESS_ADDRESS_REGION,
   BUSINESS_HOURS,
   EMERGENCY_DISCLAIMER,
   SERVICES,
   SERVICE_AREAS,
+  LOGO_PATH,
+  SITE_TAGLINE,
 } from "@/lib/constants";
 
 export function Footer() {
@@ -37,16 +40,15 @@ export function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block mb-0">
               <Image
-                src="/CRTOhio-logo.png"
+                src={LOGO_PATH}
                 alt={SITE_NAME}
-                width={180}
-                height={60}
-                className="h-14 w-auto"
+                width={140}
+                height={48}
+                className="h-10 w-auto"
               />
             </Link>
             <p className="text-white/50 text-sm leading-relaxed mb-2">
-              Safe, reliable non-emergency medical transportation serving
-              Cincinnati and surrounding Ohio communities.
+              {SITE_TAGLINE}
             </p>
             {/* Service Areas */}
             <div className="mt-3 pt-3 border-t">
@@ -194,7 +196,7 @@ export function Footer() {
         <div className="container-custom py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="flex items-center gap-1.5 text-xs text-white/40">
             © {currentYear} {SITE_NAME}. Made with{" "}
-            <Heart className="h-3 w-3 text-emergency fill-emergency" /> in Ohio.
+            <Heart className="h-3 w-3 text-emergency fill-emergency" /> in {BUSINESS_ADDRESS_REGION === 'FL' ? 'Florida' : 'Ohio'}.
           </p>
           <div className="flex items-center gap-5">
             <Link

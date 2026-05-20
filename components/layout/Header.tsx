@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useSession } from 'next-auth/react'
 import { Menu, X, ChevronDown, Phone, ArrowRight, LogIn, UserPlus, Mail, UserCircle } from 'lucide-react'
-import { NAV_LINKS, BUSINESS_PHONE, BUSINESS_EMAIL } from '@/lib/constants'
+import { NAV_LINKS, BUSINESS_PHONE, BUSINESS_EMAIL, LOGO_PATH, SITE_NAME } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 
 export function Header() {
@@ -114,11 +114,11 @@ export function Header() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 shrink-0">
               <Image
-                src="/CRTOhio-logo.png"
-                alt="Care Ride Transportation"
-                width={140}
-                height={100}
-                className="h-10 md:h-12 w-auto"
+                src={LOGO_PATH}
+                alt={SITE_NAME}
+                width={120}
+                height={80}
+                className="h-8 md:h-10 w-auto"
                 priority
               />
             </Link>

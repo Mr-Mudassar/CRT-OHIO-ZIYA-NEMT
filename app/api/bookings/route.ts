@@ -8,6 +8,7 @@ import { checkRateLimit } from '@/lib/rate-limit'
 import { sendEmail } from '@/lib/email/send'
 import { NewBookingAdminEmail } from '@/lib/email/templates/NewBookingAdmin'
 import { BookingReceivedEmail } from '@/lib/email/templates/BookingReceived'
+import { SITE_NAME } from '@/lib/constants'
 
 const bookingSchema = z.object({
   // Ride type
@@ -218,7 +219,7 @@ export async function POST(request: NextRequest) {
     if (data.passengerEmail) {
       sendEmail({
         to: data.passengerEmail,
-        subject: `Ride Request Received — Care Ride Transportation`,
+        subject: `Ride Request Received — ${SITE_NAME}`,
         react: BookingReceivedEmail({
           publicId: ride.publicId,
           passengerName: data.passengerName,

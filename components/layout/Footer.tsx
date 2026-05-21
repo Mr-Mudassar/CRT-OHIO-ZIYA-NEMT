@@ -44,7 +44,7 @@ export function Footer() {
                 alt={SITE_NAME}
                 width={140}
                 height={48}
-                className="h-10 w-auto"
+                className="h-18 w-auto"
               />
             </Link>
             <p className="text-white/50 text-sm leading-relaxed mb-2">

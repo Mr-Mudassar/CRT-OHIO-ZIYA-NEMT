@@ -214,7 +214,7 @@ export function StepReview({ registerValidate, onSubmit, isSubmitting }: Props) 
             <CardTitle className="text-sm">Estimate</CardTitle>
           </CardHeader>
           <CardContent className="px-4 pb-3 pt-0 divide-y divide-border">
-            <InfoRow label="Distance" value={`${Math.round(estimate.miles * 1.60934 * 10) / 10} km`} />
+            <InfoRow label="Distance" value={`${Math.round(estimate.miles * 10) / 10} mi`} />
             <InfoRow
               label="Duration"
               value={estimate.durationMinutes >= 60

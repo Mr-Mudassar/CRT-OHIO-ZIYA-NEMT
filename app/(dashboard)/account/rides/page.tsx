@@ -1,10 +1,10 @@
-import { redirect } from 'next/navigation'
-import Link from 'next/link'
-import { auth } from '@/lib/auth'
-import { db } from '@/lib/db'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
+import { redirect } from "next/navigation";
+import Link from "next/link";
+import { auth } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -12,35 +12,35 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
-import { Car, Plus } from 'lucide-react'
-import { Pagination } from '@/components/shared/Pagination'
+} from "@/components/ui/table";
+import { Car, Plus } from "lucide-react";
+import { Pagination } from "@/components/shared/Pagination";
 import {
   formatRideStatus,
   formatTransportType,
   formatDateTime,
   formatPrice,
-} from '@/lib/ride-helpers'
+} from "@/lib/ride-helpers";
 
-const ITEMS_PER_PAGE = 10
+const ITEMS_PER_PAGE = 10;
 
 export default async function UserRidesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string }>
+  searchParams: Promise<{ page?: string }>;
 }) {
-  const session = await auth()
-  if (!session?.user?.id) redirect('/login')
+  const session = await auth();
+  if (!session?.user?.id) redirect("/login");
 
-  const params = await searchParams
-  const currentPage = Math.max(1, parseInt(params.page || '1', 10) || 1)
+  const params = await searchParams;
+  const currentPage = Math.max(1, parseInt(params.page || "1", 10) || 1);
 
-  const where = { userId: session.user.id }
+  const where = { userId: session.user.id };
 
   const [rides, totalCount] = await Promise.all([
     db.ride.findMany({
       where,
-      orderBy: { pickupDateTime: 'desc' },
+      orderBy: { pickupDateTime: "desc" },
       select: {
         id: true,
         publicId: true,
@@ -55,9 +55,9 @@ export default async function UserRidesPage({
       take: ITEMS_PER_PAGE,
     }),
     db.ride.count({ where }),
-  ])
+  ]);
 
-  const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE)
+  const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
 
   return (
     <div className="mx-auto max-w-5xl space-y-6">
@@ -68,7 +68,10 @@ export default async function UserRidesPage({
             View all of your ride requests and their current status.
           </p>
         </div>
-        <Button className="h-11 px-6 bg-primary text-white hover:bg-primary-dark shadow-sm" render={<Link href="/book" />}>
+        <Button
+          className="h-11 px-6 bg-primary text-white hover:bg-primary-dark shadow-sm"
+          render={<Link href="/book" />}
+        >
           <Plus className="size-4" />
           Book a Ride
         </Button>
@@ -79,12 +82,18 @@ export default async function UserRidesPage({
           <CardContent className="py-12">
             <div className="flex flex-col items-center justify-center text-center">
               <Car className="mb-4 size-12 text-muted-foreground/40" />
-              <h3 className="text-lg font-semibold text-primary">No rides yet</h3>
+              <h3 className="text-lg font-semibold text-primary">
+                No rides yet
+              </h3>
               <p className="mt-1 mb-4 max-w-sm text-sm text-muted-foreground">
-                You haven&apos;t booked any rides yet. Get started by booking your
-                first ride.
+                You haven&apos;t booked any rides yet. Get started by booking
+                your first ride.
               </p>
-              <Button className="bg-primary text-white hover:bg-primary-dark" render={<Link href="/book" />}>
+
+              <Button
+                className="h-11 px-6 bg-primary text-white hover:bg-primary-dark shadow-sm"
+                render={<Link href="/book" />}
+              >
                 <Plus className="size-4" />
                 Book Your First Ride
               </Button>
@@ -94,9 +103,7 @@ export default async function UserRidesPage({
       ) : (
         <Card>
           <CardHeader>
-            <CardTitle>
-              All Rides ({totalCount})
-            </CardTitle>
+            <CardTitle>All Rides ({totalCount})</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             <Table>
@@ -104,15 +111,19 @@ export default async function UserRidesPage({
                 <TableRow>
                   <TableHead>Date</TableHead>
                   <TableHead>Pickup</TableHead>
-                  <TableHead className="hidden md:table-cell">Drop-off</TableHead>
+                  <TableHead className="hidden md:table-cell">
+                    Drop-off
+                  </TableHead>
                   <TableHead className="hidden sm:table-cell">Type</TableHead>
                   <TableHead>Status</TableHead>
-                  <TableHead className="hidden sm:table-cell text-right">Price</TableHead>
+                  <TableHead className="hidden sm:table-cell text-right">
+                    Price
+                  </TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {rides.map((ride) => {
-                  const statusConfig = formatRideStatus(ride.status)
+                  const statusConfig = formatRideStatus(ride.status);
                   return (
                     <TableRow key={ride.id}>
                       <TableCell>
@@ -151,7 +162,7 @@ export default async function UserRidesPage({
                         </span>
                       </TableCell>
                     </TableRow>
-                  )
+                  );
                 })}
               </TableBody>
             </Table>
@@ -168,5 +179,5 @@ export default async function UserRidesPage({
         </Card>
       )}
     </div>
-  )
+  );
 }

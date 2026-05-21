@@ -88,8 +88,7 @@ export function StepMapEstimate({ registerValidate }: Props) {
     fetchEstimate()
   }, [])
 
-  // Convert miles to km for display
-  const distanceKm = distance ? Math.round(distance.miles * 1.60934 * 10) / 10 : 0
+  const distanceMiles = distance ? Math.round(distance.miles * 10) / 10 : 0
   // Format duration as hours and minutes
   const durationFormatted = distance
     ? distance.durationMinutes >= 60
@@ -147,7 +146,7 @@ export function StepMapEstimate({ registerValidate }: Props) {
                     Estimated Distance
                   </p>
                   <p className="text-lg font-bold text-primary">
-                    {distanceKm} km
+                    {distanceMiles} mi
                   </p>
                 </div>
               </CardContent>

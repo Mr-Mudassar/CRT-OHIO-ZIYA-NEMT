@@ -145,14 +145,14 @@ export function DashboardShell({
         )}
       >
         {/* Logo area */}
-        <div className="flex h-14 items-center justify-between px-4">
+        <div className="flex h-18 items-center justify-between px-4">
           <Link href="/" className="flex flex-1 items-center justify-center">
             <Image
               src={LOGO_PATH}
               alt={SITE_NAME}
               width={180}
               height={60}
-              className="h-8 w-auto"
+              className="h-16 w-auto"
             />
           </Link>
           <button

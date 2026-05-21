@@ -108,8 +108,7 @@ function formatPriceRaw(price: unknown): string {
 
 function formatDistance(miles: number | null | undefined): string {
   if (!miles) return '--'
-  const km = miles * 1.60934
-  return `${km.toFixed(1)} km`
+  return `${miles.toFixed(1)} mi`
 }
 
 function formatDuration(minutes: number | null | undefined): string {

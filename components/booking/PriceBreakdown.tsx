@@ -11,7 +11,10 @@ export function PriceBreakdown({ pricing }: { pricing: PricingOutput }) {
       </div>
 
       <div className="flex justify-between text-sm">
-        <span className="text-muted-foreground">Mileage Charge</span>
+        <span className="text-muted-foreground">
+          Mileage Charge
+          <span className="text-xs ml-1">({pricing.effectiveMiles.toFixed(1)} mi × ${pricing.perMileRate.toFixed(2)}/mi)</span>
+        </span>
         <span className="font-medium">${pricing.mileageCharge.toFixed(2)}</span>
       </div>
 

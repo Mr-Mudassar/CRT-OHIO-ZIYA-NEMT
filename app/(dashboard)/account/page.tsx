@@ -1,48 +1,49 @@
-import { redirect } from 'next/navigation'
-import Link from 'next/link'
-import { auth } from '@/lib/auth'
-import { db } from '@/lib/db'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Car, CheckCircle2, Clock, Plus, ArrowRight } from 'lucide-react'
-import { formatRideStatus, formatDateTime } from '@/lib/ride-helpers'
+import { redirect } from "next/navigation";
+import Link from "next/link";
+import { auth } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Car, CheckCircle2, Clock, Plus, ArrowRight } from "lucide-react";
+import { formatRideStatus, formatDateTime } from "@/lib/ride-helpers";
 
 export default async function AccountDashboardPage() {
-  const session = await auth()
-  if (!session?.user?.id) redirect('/login')
+  const session = await auth();
+  if (!session?.user?.id) redirect("/login");
 
-  const userId = session.user.id
+  const userId = session.user.id;
 
-  const [totalRides, upcomingRides, completedRides, recentRides] = await Promise.all([
-    db.ride.count({ where: { userId } }),
-    db.ride.count({
-      where: {
-        userId,
-        pickupDateTime: { gt: new Date() },
-        status: { in: ['CONFIRMED', 'UNDER_REVIEW', 'NEW_REQUEST'] },
-      },
-    }),
-    db.ride.count({
-      where: { userId, status: 'COMPLETED' },
-    }),
-    db.ride.findMany({
-      where: { userId },
-      orderBy: { createdAt: 'desc' },
-      take: 5,
-      select: {
-        id: true,
-        publicId: true,
-        pickupAddress: true,
-        dropoffAddress: true,
-        pickupDateTime: true,
-        status: true,
-        transportType: true,
-      },
-    }),
-  ])
+  const [totalRides, upcomingRides, completedRides, recentRides] =
+    await Promise.all([
+      db.ride.count({ where: { userId } }),
+      db.ride.count({
+        where: {
+          userId,
+          pickupDateTime: { gt: new Date() },
+          status: { in: ["CONFIRMED", "UNDER_REVIEW", "NEW_REQUEST"] },
+        },
+      }),
+      db.ride.count({
+        where: { userId, status: "COMPLETED" },
+      }),
+      db.ride.findMany({
+        where: { userId },
+        orderBy: { createdAt: "desc" },
+        take: 5,
+        select: {
+          id: true,
+          publicId: true,
+          pickupAddress: true,
+          dropoffAddress: true,
+          pickupDateTime: true,
+          status: true,
+          transportType: true,
+        },
+      }),
+    ]);
 
-  const displayName = session.user.name || 'there'
+  const displayName = session.user.name || "there";
 
   return (
     <div className="mx-auto max-w-5xl space-y-6">
@@ -78,7 +79,9 @@ export default async function AccountDashboardPage() {
             <Clock className="size-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-primary">{upcomingRides}</div>
+            <div className="text-2xl font-bold text-primary">
+              {upcomingRides}
+            </div>
           </CardContent>
         </Card>
 
@@ -90,18 +93,27 @@ export default async function AccountDashboardPage() {
             <CheckCircle2 className="size-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-accent">{completedRides}</div>
+            <div className="text-2xl font-bold text-accent">
+              {completedRides}
+            </div>
           </CardContent>
         </Card>
       </div>
 
       {/* Quick actions */}
       <div className="flex flex-wrap gap-3">
-        <Button className="h-11 px-6 bg-primary text-white hover:bg-primary-dark shadow-sm" render={<Link href="/book" />}>
+        <Button
+          className="h-11 px-6 bg-primary text-white hover:bg-primary-dark shadow-sm"
+          render={<Link href="/book" />}
+        >
           <Plus className="size-4" />
           Book a New Ride
         </Button>
-        <Button variant="outline" className="h-11 px-6" render={<Link href="/account/rides" />}>
+        <Button
+          variant="outline"
+          className="h-11 px-6"
+          render={<Link href="/account/rides" />}
+        >
           View All Rides
           <ArrowRight className="size-4" />
         </Button>
@@ -116,12 +128,18 @@ export default async function AccountDashboardPage() {
           {recentRides.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-12 text-center">
               <Car className="mb-4 size-12 text-muted-foreground/40" />
-              <h3 className="text-lg font-semibold text-primary">No rides yet</h3>
+              <h3 className="text-lg font-semibold text-primary">
+                No rides yet
+              </h3>
               <p className="mt-1 mb-4 max-w-sm text-sm text-muted-foreground">
-                You haven&apos;t booked any rides yet. Book your first ride and we will
-                get you where you need to go.
+                You haven&apos;t booked any rides yet. Book your first ride and
+                we will get you where you need to go.
               </p>
-              <Button className="bg-primary text-white hover:bg-primary-dark" render={<Link href="/book" />}>
+
+              <Button
+                className="h-11 px-6 bg-primary text-white hover:bg-primary-dark shadow-sm"
+                render={<Link href="/book" />}
+              >
                 <Plus className="size-4" />
                 Book Your First Ride
               </Button>
@@ -129,7 +147,7 @@ export default async function AccountDashboardPage() {
           ) : (
             <div className="space-y-3">
               {recentRides.map((ride) => {
-                const statusConfig = formatRideStatus(ride.status)
+                const statusConfig = formatRideStatus(ride.status);
                 return (
                   <Link
                     key={ride.id}
@@ -148,19 +166,25 @@ export default async function AccountDashboardPage() {
                         </Badge>
                       </div>
                       <div className="text-sm">
-                        <span className="font-medium text-foreground">{ride.pickupAddress}</span>
-                        <span className="mx-2 text-muted-foreground">&rarr;</span>
-                        <span className="text-muted-foreground">{ride.dropoffAddress}</span>
+                        <span className="font-medium text-foreground">
+                          {ride.pickupAddress}
+                        </span>
+                        <span className="mx-2 text-muted-foreground">
+                          &rarr;
+                        </span>
+                        <span className="text-muted-foreground">
+                          {ride.dropoffAddress}
+                        </span>
                       </div>
                     </div>
                     <ArrowRight className="hidden size-4 shrink-0 text-muted-foreground sm:block" />
                   </Link>
-                )
+                );
               })}
             </div>
           )}
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

@@ -118,7 +118,7 @@ export function Header() {
                 alt={SITE_NAME}
                 width={120}
                 height={80}
-                className="h-8 md:h-10 w-auto"
+                className="h-8 md:h-14 w-auto"
                 priority
               />
             </Link>
@@ -131,7 +131,7 @@ export function Header() {
                     <>
                       <Link
                         href={link.href}
-                        className="flex items-center gap-1 px-3 py-2 text-sm font-semibold text-primary/80 hover:text-primary rounded-lg transition-all duration-200 hover:bg-primary/5"
+                        className="flex items-center gap-1 px-3 py-2 text-sm font-semibold text-primary hover:text-primary rounded-lg transition-all duration-200 hover:bg-primary/5"
                       >
                         {link.label}
                         <ChevronDown className="h-3.5 w-3.5 transition-transform duration-300 group-hover:rotate-180" />
@@ -167,7 +167,7 @@ export function Header() {
             <div className="flex items-center gap-3">
               <Link
                 href="/book"
-                className="hidden sm:inline-flex items-center gap-1.5 px-5 py-2.5 bg-primary hover:bg-primary-dark text-white text-sm font-bold rounded-xl transition-all duration-300 shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5"
+                className="hidden sm:inline-flex items-center gap-1.5 px-5 py-2.5 bg-primary hover:bg-primary-dark text-white text-sm font-bold rounded-md transition-all duration-300 shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5"
               >
                 Book a Ride
                 <ArrowRight className="h-4 w-4" />

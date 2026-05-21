@@ -13,6 +13,8 @@ export type PricingInput = {
 export type PricingOutput = {
   baseFare: number
   mileageCharge: number
+  perMileRate: number
+  effectiveMiles: number
   surcharges: { label: string; amount: number }[]
   subtotal: number
   roundTripDiscount: number
@@ -119,6 +121,8 @@ export function calculatePrice(input: PricingInput): PricingOutput {
   return {
     baseFare,
     mileageCharge,
+    perMileRate: perMile,
+    effectiveMiles,
     surcharges,
     subtotal,
     roundTripDiscount,

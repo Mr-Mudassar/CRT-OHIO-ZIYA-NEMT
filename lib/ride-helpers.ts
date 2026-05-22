@@ -63,6 +63,10 @@ export function formatPayerType(type: string): string {
       return 'Facility'
     case 'private_pay':
       return 'Private Pay'
+    case 'cash':
+      return 'Cash'
+    case 'card':
+      return 'Card'
     default:
       return type
   }

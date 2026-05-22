@@ -379,6 +379,35 @@ h1, h2, h3, h4, h5, h6 {
   display: none !important;
 }
 
+/* Nav dot underline — bigger dots, slide in from left */
+.nav-dot-underline {
+  position: relative;
+}
+
+.nav-dot-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 12px;
+  width: 0;
+  height: 4px;
+  background-image: radial-gradient(circle, var(--color-primary) 2px, transparent 2px);
+  background-size: 10px 4px;
+  background-repeat: repeat-x;
+  opacity: 0;
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.25s ease;
+}
+
+.nav-dot-underline:hover::after {
+  width: calc(100% - 24px);
+  opacity: 0.6;
+}
+
+.nav-dot-underline.active::after {
+  width: calc(100% - 24px);
+  opacity: 1;
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;

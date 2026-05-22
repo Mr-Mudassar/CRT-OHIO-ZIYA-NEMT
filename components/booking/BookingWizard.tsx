@@ -130,6 +130,7 @@ export function BookingWizard({ userPrefill }: { userPrefill?: UserPrefill }) {
         specialInstructions: rideNotes?.specialInstructions || '',
         gateCode: rideNotes?.gateCode || '',
         mobilityNotes: rideNotes?.mobilityNotes || '',
+        preferredLanguage: rideNotes?.preferredLanguage || '',
         additionalInfo: rideNotes?.additionalInfo || '',
       }
 

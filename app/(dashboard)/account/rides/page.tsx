@@ -50,6 +50,7 @@ export default async function UserRidesPage({
         status: true,
         transportType: true,
         estimatedPrice: true,
+        finalPrice: true,
       },
       skip: (currentPage - 1) * ITEMS_PER_PAGE,
       take: ITEMS_PER_PAGE,
@@ -117,7 +118,10 @@ export default async function UserRidesPage({
                   <TableHead className="hidden sm:table-cell">Type</TableHead>
                   <TableHead>Status</TableHead>
                   <TableHead className="hidden sm:table-cell text-right">
-                    Price
+                    Est. Price
+                  </TableHead>
+                  <TableHead className="hidden sm:table-cell text-right">
+                    Final Price
                   </TableHead>
                 </TableRow>
               </TableHeader>
@@ -159,6 +163,11 @@ export default async function UserRidesPage({
                       <TableCell className="hidden sm:table-cell text-right">
                         <span className="text-sm font-medium">
                           {formatPrice(ride.estimatedPrice)}
+                        </span>
+                      </TableCell>
+                      <TableCell className="hidden sm:table-cell text-right">
+                        <span className="text-sm font-medium text-primary">
+                          {formatPrice(ride.finalPrice)}
                         </span>
                       </TableCell>
                     </TableRow>

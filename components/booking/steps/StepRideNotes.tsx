@@ -17,6 +17,7 @@ export function StepRideNotes({ registerValidate }: Props) {
     specialInstructions: saved?.specialInstructions || '',
     gateCode: saved?.gateCode || '',
     mobilityNotes: saved?.mobilityNotes || '',
+    preferredLanguage: saved?.preferredLanguage || '',
     additionalInfo: saved?.additionalInfo || '',
   })
 
@@ -86,6 +87,29 @@ export function StepRideNotes({ registerValidate }: Props) {
             maxLength={500}
             className="w-full rounded-lg border border-input bg-white px-3.5 py-2.5 text-sm transition-all outline-none placeholder:text-muted-foreground/60 focus-visible:border-primary focus-visible:ring-3 focus-visible:ring-primary/10"
           />
+        </div>
+
+        <div>
+          <Label htmlFor="preferredLanguage">Preferred Language for Staff</Label>
+          <select
+            id="preferredLanguage"
+            value={form.preferredLanguage || ''}
+            onChange={(e) => update('preferredLanguage', e.target.value)}
+            className="w-full rounded-lg border border-input bg-white px-3.5 py-2.5 text-sm transition-all outline-none focus-visible:border-primary focus-visible:ring-3 focus-visible:ring-primary/10"
+          >
+            <option value="">English (Default)</option>
+            <option value="spanish">Spanish</option>
+            <option value="french">French</option>
+            <option value="arabic">Arabic</option>
+            <option value="chinese">Chinese (Mandarin)</option>
+            <option value="hindi">Hindi</option>
+            <option value="somali">Somali</option>
+            <option value="swahili">Swahili</option>
+            <option value="other">Other</option>
+          </select>
+          <p className="mt-1 text-xs text-muted-foreground">
+            Select the language you prefer our staff to communicate in during your ride.
+          </p>
         </div>
 
         <div>

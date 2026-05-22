@@ -137,6 +137,14 @@ export async function PATCH(
           break
         case 'COMPLETED':
           updateData.completedAt = now
+          // Auto-set finalPrice from estimatedPrice if not provided
+          if (
+            (data.finalPrice === undefined || data.finalPrice === null || data.finalPrice === 0) &&
+            !ride.finalPrice &&
+            ride.estimatedPrice
+          ) {
+            updateData.finalPrice = ride.estimatedPrice
+          }
           break
         case 'CANCELLED':
           updateData.cancelledAt = now
@@ -223,12 +231,14 @@ export async function PATCH(
           pickupDateTime: pickupDt,
           newStatus: data.status,
           declineReason: data.declineReason || updatedRide.declineReason || undefined,
-          finalPrice: updatedRide.finalPrice
-            ? (typeof updatedRide.finalPrice === 'object' && 'toNumber' in (updatedRide.finalPrice as object)
-                ? (updatedRide.finalPrice as { toNumber(): number }).toNumber()
-                : Number(updatedRide.finalPrice)
-              ).toFixed(2)
-            : undefined,
+          finalPrice: (() => {
+            const fp = updatedRide.finalPrice || updatedRide.estimatedPrice
+            if (!fp) return undefined
+            const num = typeof fp === 'object' && 'toNumber' in (fp as object)
+              ? (fp as { toNumber(): number }).toNumber()
+              : Number(fp)
+            return num > 0 ? num.toFixed(2) : undefined
+          })(),
         }),
       }).catch((err) => {
         console.error('[Status Email Error]', err)

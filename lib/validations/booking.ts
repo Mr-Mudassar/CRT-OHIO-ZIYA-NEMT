@@ -110,11 +110,27 @@ const privatePayPayerSchema = z.object({
     .refine((v) => v === true, 'You must acknowledge the private pay terms'),
 })
 
+const cashPayerSchema = z.object({
+  payerType: z.literal('cash'),
+  cashAcknowledged: z
+    .boolean()
+    .refine((v) => v === true, 'You must acknowledge the cash payment terms'),
+})
+
+const cardPayerSchema = z.object({
+  payerType: z.literal('card'),
+  cardAcknowledged: z
+    .boolean()
+    .refine((v) => v === true, 'You must acknowledge the card payment terms'),
+})
+
 export const payerInfoSchema = z.discriminatedUnion('payerType', [
-  medicaidPayerSchema,
+  // medicaidPayerSchema, // Temporarily disabled
   insurancePayerSchema,
   facilityPayerSchema,
   privatePayPayerSchema,
+  cashPayerSchema,
+  cardPayerSchema,
 ])
 
 // Step 8 — Ride Notes
@@ -122,6 +138,7 @@ export const rideNotesSchema = z.object({
   specialInstructions: z.string().max(1000).optional().or(z.literal('')),
   gateCode: z.string().max(50).optional().or(z.literal('')),
   mobilityNotes: z.string().max(500).optional().or(z.literal('')),
+  preferredLanguage: z.string().optional().or(z.literal('')),
   additionalInfo: z.string().max(1000).optional().or(z.literal('')),
 })
 
@@ -143,7 +160,7 @@ export const fullBookingSchema = rideTypeSchema
   )
   .merge(
     z.object({
-      payerType: z.enum(['medicaid', 'insurance', 'facility', 'private_pay']),
+      payerType: z.enum(['medicaid', 'insurance', 'facility', 'private_pay', 'cash', 'card']),
       payerDetails: z.record(z.string(), z.unknown()),
     })
   )

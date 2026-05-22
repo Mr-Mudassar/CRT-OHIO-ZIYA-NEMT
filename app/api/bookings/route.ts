@@ -49,13 +49,14 @@ const bookingSchema = z.object({
   hasStairs: z.boolean().optional().nullable(),
 
   // Payer
-  payerType: z.enum(['medicaid', 'insurance', 'facility', 'private_pay']),
+  payerType: z.enum(['medicaid', 'insurance', 'facility', 'private_pay', 'cash', 'card']),
   payerDetails: z.record(z.string(), z.unknown()),
 
   // Notes
   specialInstructions: z.string().optional().or(z.literal('')),
   gateCode: z.string().optional().or(z.literal('')),
   mobilityNotes: z.string().optional().or(z.literal('')),
+  preferredLanguage: z.string().optional().or(z.literal('')),
   additionalInfo: z.string().optional().or(z.literal('')),
 })
 
@@ -179,7 +180,10 @@ export async function POST(request: NextRequest) {
         estimatedMiles,
         estimatedDuration,
         estimatedPrice,
-        specialInstructions: data.specialInstructions || null,
+        specialInstructions: [
+          data.preferredLanguage ? `[Preferred Language: ${data.preferredLanguage}]` : '',
+          data.specialInstructions || '',
+        ].filter(Boolean).join('\n') || null,
         gateCode: data.gateCode || null,
         mobilityNotes: data.mobilityNotes || null,
         status: 'NEW_REQUEST',

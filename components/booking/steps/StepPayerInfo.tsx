@@ -6,13 +6,15 @@ import { type PayerInfoData } from '@/lib/validations/booking'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { cn } from '@/lib/utils'
-import { ShieldCheck, Building2, Landmark, Wallet } from 'lucide-react'
+import { Building2, Landmark, Wallet, Banknote, CreditCard, AlertTriangle } from 'lucide-react'
 
 const PAYER_TYPES = [
-  { value: 'medicaid', label: 'Medicaid', icon: ShieldCheck },
+  // { value: 'medicaid', label: 'Medicaid', icon: ShieldCheck }, // Temporarily disabled
   { value: 'insurance', label: 'Insurance', icon: Landmark },
   { value: 'facility', label: 'Facility', icon: Building2 },
   { value: 'private_pay', label: 'Private Pay', icon: Wallet },
+  { value: 'cash', label: 'Cash', icon: Banknote },
+  { value: 'card', label: 'Card', icon: CreditCard },
 ] as const
 
 type Props = {
@@ -20,26 +22,12 @@ type Props = {
 }
 
 export function StepPayerInfo({ registerValidate }: Props) {
-  const { payerInfo: saved, setPayerInfo, markCompleted } = useBookingStore()
+  const { payerInfo: saved, setPayerInfo, markCompleted, pickupInfo } = useBookingStore()
 
   const [payerType, setPayerType] = useState<string>(
-    saved?.payerType || 'medicaid'
+    saved?.payerType || 'insurance'
   )
   const [errors, setErrors] = useState<Record<string, string>>({})
-
-  // Medicaid fields
-  const [medicaidId, setMedicaidId] = useState(
-    (saved as { medicaidId?: string } | null)?.medicaidId || ''
-  )
-  const [medicaidDob, setMedicaidDob] = useState(
-    (saved as { medicaidDob?: string } | null)?.medicaidDob || ''
-  )
-  const [medicaidPlanName, setMedicaidPlanName] = useState(
-    (saved as { medicaidPlanName?: string } | null)?.medicaidPlanName || ''
-  )
-  const [rideApprovalStatus, setRideApprovalStatus] = useState(
-    (saved as { rideApprovalStatus?: string } | null)?.rideApprovalStatus || ''
-  )
 
   // Insurance fields
   const [insuranceCompany, setInsuranceCompany] = useState(
@@ -78,17 +66,38 @@ export function StepPayerInfo({ registerValidate }: Props) {
       ?.privatePayAcknowledged || false
   )
 
+  // Cash
+  const [cashAcknowledged, setCashAcknowledged] = useState(
+    (saved as { cashAcknowledged?: boolean } | null)
+      ?.cashAcknowledged || false
+  )
+
+  // Card
+  const [cardAcknowledged, setCardAcknowledged] = useState(
+    (saved as { cardAcknowledged?: boolean } | null)
+      ?.cardAcknowledged || false
+  )
+
+  // Check if pickup is at least 24 hours from now
+  function isPickupAtLeast24HoursAway(): boolean {
+    if (!pickupInfo?.pickupDate || !pickupInfo?.pickupTime) return false
+    const pickupDateTime = new Date(`${pickupInfo.pickupDate}T${pickupInfo.pickupTime}`)
+    const now = new Date()
+    const diffMs = pickupDateTime.getTime() - now.getTime()
+    const diffHours = diffMs / (1000 * 60 * 60)
+    return diffHours >= 24
+  }
+
   function validate(): boolean {
     const newErrors: Record<string, string> = {}
 
-    if (payerType === 'medicaid') {
-      if (!medicaidId) newErrors.medicaidId = 'Medicaid ID is required'
-      if (!medicaidDob) newErrors.medicaidDob = 'Date of birth is required'
-      if (!medicaidPlanName) newErrors.medicaidPlanName = 'Plan name is required'
-    } else if (payerType === 'insurance') {
+    if (payerType === 'insurance') {
       if (!insuranceCompany)
         newErrors.insuranceCompany = 'Insurance company is required'
       if (!memberId) newErrors.memberId = 'Member ID is required'
+      if (!isPickupAtLeast24HoursAway()) {
+        newErrors.insurance24hr = 'Insurance rides must be booked at least 24 hours before pickup time.'
+      }
     } else if (payerType === 'facility') {
       if (!facilityName) newErrors.facilityName = 'Facility name is required'
       if (!contactPerson) newErrors.contactPerson = 'Contact person is required'
@@ -96,6 +105,12 @@ export function StepPayerInfo({ registerValidate }: Props) {
     } else if (payerType === 'private_pay') {
       if (!privatePayAcknowledged)
         newErrors.privatePayAcknowledged = 'You must acknowledge the terms'
+    } else if (payerType === 'cash') {
+      if (!cashAcknowledged)
+        newErrors.cashAcknowledged = 'You must acknowledge the terms'
+    } else if (payerType === 'card') {
+      if (!cardAcknowledged)
+        newErrors.cardAcknowledged = 'You must acknowledge the terms'
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -104,15 +119,7 @@ export function StepPayerInfo({ registerValidate }: Props) {
     }
 
     let data: PayerInfoData
-    if (payerType === 'medicaid') {
-      data = {
-        payerType: 'medicaid',
-        medicaidId,
-        medicaidDob,
-        medicaidPlanName,
-        rideApprovalStatus,
-      }
-    } else if (payerType === 'insurance') {
+    if (payerType === 'insurance') {
       data = {
         payerType: 'insurance',
         insuranceCompany,
@@ -129,6 +136,16 @@ export function StepPayerInfo({ registerValidate }: Props) {
         facilityEmail,
         billingContact,
       }
+    } else if (payerType === 'cash') {
+      data = {
+        payerType: 'cash',
+        cashAcknowledged: true,
+      }
+    } else if (payerType === 'card') {
+      data = {
+        payerType: 'card',
+        cardAcknowledged: true,
+      }
     } else {
       data = {
         payerType: 'private_pay',
@@ -144,6 +161,8 @@ export function StepPayerInfo({ registerValidate }: Props) {
   // Re-register on every render so validate always captures current state
   useEffect(() => { registerValidate(validate) })
 
+  const insuranceNotEarly = payerType === 'insurance' && !isPickupAtLeast24HoursAway()
+
   return (
     <div className="space-y-6">
       <div>
@@ -154,7 +173,7 @@ export function StepPayerInfo({ registerValidate }: Props) {
       </div>
 
       {/* Payer type tabs */}
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
         {PAYER_TYPES.map((type) => {
           const Icon = type.icon
           const selected = payerType === type.value
@@ -192,73 +211,40 @@ export function StepPayerInfo({ registerValidate }: Props) {
         })}
       </div>
 
-      {/* Conditional sub-forms */}
-      {payerType === 'medicaid' && (
-        <div className="grid gap-5 sm:grid-cols-2 rounded-xl border border-border/60 bg-muted/20 p-5">
+      {/* Insurance 24-hour warning */}
+      {payerType === 'insurance' && (
+        <div className={cn(
+          'flex items-start gap-3 rounded-lg border p-4',
+          insuranceNotEarly
+            ? 'border-red-300 bg-red-50'
+            : 'border-amber-200 bg-amber-50'
+        )}>
+          <AlertTriangle className={cn(
+            'size-5 shrink-0 mt-0.5',
+            insuranceNotEarly ? 'text-red-600' : 'text-amber-600'
+          )} />
           <div>
-            <Label>
-              Medicaid ID <span className="text-red-500">*</span>
-            </Label>
-            <Input
-              value={medicaidId}
-              onChange={(e) => {
-                setMedicaidId(e.target.value)
-                setErrors((p) => ({ ...p, medicaidId: '' }))
-              }}
-              placeholder="Enter Medicaid ID"
-              aria-invalid={!!errors.medicaidId}
-            />
-            {errors.medicaidId && (
-              <p className="mt-1 text-xs text-red-600">{errors.medicaidId}</p>
-            )}
-          </div>
-          <div>
-            <Label>
-              Date of Birth <span className="text-red-500">*</span>
-            </Label>
-            <Input
-              type="date"
-              value={medicaidDob}
-              onChange={(e) => {
-                setMedicaidDob(e.target.value)
-                setErrors((p) => ({ ...p, medicaidDob: '' }))
-              }}
-              aria-invalid={!!errors.medicaidDob}
-            />
-            {errors.medicaidDob && (
-              <p className="mt-1 text-xs text-red-600">{errors.medicaidDob}</p>
-            )}
-          </div>
-          <div>
-            <Label>
-              Medicaid Plan Name <span className="text-red-500">*</span>
-            </Label>
-            <Input
-              value={medicaidPlanName}
-              onChange={(e) => {
-                setMedicaidPlanName(e.target.value)
-                setErrors((p) => ({ ...p, medicaidPlanName: '' }))
-              }}
-              placeholder="e.g., CareSource, Molina"
-              aria-invalid={!!errors.medicaidPlanName}
-            />
-            {errors.medicaidPlanName && (
-              <p className="mt-1 text-xs text-red-600">
-                {errors.medicaidPlanName}
-              </p>
-            )}
-          </div>
-          <div>
-            <Label>Ride Approval Status</Label>
-            <Input
-              value={rideApprovalStatus}
-              onChange={(e) => setRideApprovalStatus(e.target.value)}
-              placeholder="Approved / Pending"
-            />
+            <p className={cn(
+              'text-sm font-semibold',
+              insuranceNotEarly ? 'text-red-800' : 'text-amber-800'
+            )}>
+              Insurance rides require 24-hour advance booking
+            </p>
+            <p className={cn(
+              'text-xs mt-1',
+              insuranceNotEarly ? 'text-red-700' : 'text-amber-700'
+            )}>
+              We need at least 24 hours before the ride to contact your insurance provider and verify coverage.
+              {insuranceNotEarly && ' Please select a pickup time at least 24 hours from now, or choose a different payment method.'}
+            </p>
           </div>
         </div>
       )}
+      {errors.insurance24hr && (
+        <p className="text-xs text-red-600 -mt-4">{errors.insurance24hr}</p>
+      )}
 
+      {/* Conditional sub-forms */}
       {payerType === 'insurance' && (
         <div className="grid gap-5 sm:grid-cols-2 rounded-xl border border-border/60 bg-muted/20 p-5">
           <div>
@@ -421,6 +407,62 @@ export function StepPayerInfo({ registerValidate }: Props) {
           {errors.privatePayAcknowledged && (
             <p className="mt-2 text-xs text-red-600">
               {errors.privatePayAcknowledged}
+            </p>
+          )}
+        </div>
+      )}
+
+      {payerType === 'cash' && (
+        <div className="rounded-lg border border-amber-200 bg-amber-50 p-4">
+          <p className="text-sm text-amber-800 mb-4">
+            <strong>Cash payment is due at the time of service.</strong>
+            {' '}Please have the exact amount ready. Our team will confirm pricing before your ride.
+          </p>
+          <label className="flex items-start gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={cashAcknowledged}
+              onChange={(e) => {
+                setCashAcknowledged(e.target.checked)
+                setErrors((p) => ({ ...p, cashAcknowledged: '' }))
+              }}
+              className="mt-0.5 size-4 rounded border-border text-primary focus:ring-primary"
+            />
+            <span className="text-sm text-amber-900">
+              I understand that cash payment is required at the time of service.
+            </span>
+          </label>
+          {errors.cashAcknowledged && (
+            <p className="mt-2 text-xs text-red-600">
+              {errors.cashAcknowledged}
+            </p>
+          )}
+        </div>
+      )}
+
+      {payerType === 'card' && (
+        <div className="rounded-lg border border-amber-200 bg-amber-50 p-4">
+          <p className="text-sm text-amber-800 mb-4">
+            <strong>Card payment will be processed at the time of service.</strong>
+            {' '}Our team will confirm pricing before your ride. We accept all major credit and debit cards.
+          </p>
+          <label className="flex items-start gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={cardAcknowledged}
+              onChange={(e) => {
+                setCardAcknowledged(e.target.checked)
+                setErrors((p) => ({ ...p, cardAcknowledged: '' }))
+              }}
+              className="mt-0.5 size-4 rounded border-border text-primary focus:ring-primary"
+            />
+            <span className="text-sm text-amber-900">
+              I understand that card payment will be processed at the time of service.
+            </span>
+          </label>
+          {errors.cardAcknowledged && (
+            <p className="mt-2 text-xs text-red-600">
+              {errors.cardAcknowledged}
             </p>
           )}
         </div>

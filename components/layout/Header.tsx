@@ -3,21 +3,43 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import { useSession } from 'next-auth/react'
-import { Menu, X, ChevronDown, Phone, ArrowRight, LogIn, UserPlus, Mail, UserCircle } from 'lucide-react'
-import { NAV_LINKS, BUSINESS_PHONE, BUSINESS_EMAIL, LOGO_PATH, SITE_NAME } from '@/lib/constants'
+import {
+  Menu, X, ChevronDown, Phone, ArrowRight, LogIn, UserPlus, Mail, UserCircle,
+  PersonStanding, Accessibility, HeartPulse, Stethoscope, Hospital, Building2, Wallet, CalendarClock,
+} from 'lucide-react'
+import { NAV_LINKS, SERVICES, BUSINESS_PHONE, BUSINESS_EMAIL, LOGO_PATH, SITE_NAME } from '@/lib/constants'
+import type { LucideIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
+
+const SERVICE_ICONS: Record<string, LucideIcon> = {
+  ambulatory: PersonStanding,
+  wheelchair: Accessibility,
+  dialysis: HeartPulse,
+  'medical-appointments': Stethoscope,
+  'hospital-discharge': Hospital,
+  facility: Building2,
+  'private-pay': Wallet,
+  recurring: CalendarClock,
+}
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
   const { data: session, status } = useSession()
   const lastScrollY = useRef(0)
 
   const isLoggedIn = !!session?.user
   const isAdmin = session?.user?.role === 'ADMIN'
   const accountHref = isAdmin ? '/admin' : '/account'
+
+  function isActive(href: string) {
+    if (href === '/') return pathname === '/'
+    return pathname.startsWith(href)
+  }
 
   const handleScroll = useCallback(() => {
     const y = window.scrollY
@@ -131,30 +153,62 @@ export function Header() {
                     <>
                       <Link
                         href={link.href}
-                        className="flex items-center gap-1 px-3 py-2 text-sm font-semibold text-primary hover:text-primary rounded-lg transition-all duration-200 hover:bg-primary/5"
+                        className={cn(
+                          'nav-dot-underline relative flex items-center gap-1 px-3 py-2 text-sm font-semibold text-primary rounded-lg transition-all duration-200',
+                          isActive(link.href) && 'active'
+                        )}
                       >
                         {link.label}
                         <ChevronDown className="h-3.5 w-3.5 transition-transform duration-300 group-hover:rotate-180" />
                       </Link>
-                      <div className="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-1 group-hover:translate-y-0">
-                        <div className="bg-white rounded-xl shadow-xl border border-border/60 py-2 min-w-[260px] overflow-hidden">
-                          {link.children.map((child) => (
+                      <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-1 group-hover:translate-y-0">
+                        <div className="bg-white rounded-2xl shadow-2xl border border-border/50 py-4 w-145 overflow-hidden ring-1 ring-black/5">
+                          <div className="px-5 pb-3 mb-1 border-b border-border/40">
+                            <p className="text-xs font-bold text-primary/50 uppercase tracking-wider">Our Services</p>
+                          </div>
+                          <div className="grid grid-cols-2 gap-1 px-2 pt-2">
+                            {SERVICES.map((service) => {
+                              const Icon = SERVICE_ICONS[service.slug] || ArrowRight
+                              return (
+                                <Link
+                                  key={service.slug}
+                                  href={`/services/${service.slug}`}
+                                  className="group/item flex items-start gap-3 px-3 py-3 rounded-xl transition-all duration-200 hover:bg-primary/5"
+                                >
+                                  <span className="flex items-center justify-center size-9 rounded-lg bg-primary/8 group-hover/item:bg-primary/15 transition-colors shrink-0 mt-0.5">
+                                    <Icon className="size-4.5 text-primary/70 group-hover/item:text-primary transition-colors" />
+                                  </span>
+                                  <div className="min-w-0">
+                                    <span className="block text-sm font-semibold text-foreground group-hover/item:text-primary transition-colors">
+                                      {service.title}
+                                    </span>
+                                    <span className="block text-xs text-muted-foreground mt-0.5 leading-relaxed line-clamp-2">
+                                      {service.description}
+                                    </span>
+                                  </div>
+                                </Link>
+                              )
+                            })}
+                          </div>
+                          <div className="px-5 pt-3 mt-2 border-t border-border/40">
                             <Link
-                              key={child.href}
-                              href={child.href}
-                              className="flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:text-primary hover:bg-muted/80 transition-all duration-200"
+                              href="/services"
+                              className="group/all flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary-dark transition-colors"
                             >
-                              <ArrowRight className="h-3 w-3 opacity-0 -translate-x-2 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all" />
-                              {child.label}
+                              View All Services
+                              <ArrowRight className="size-3.5 transition-transform group-hover/all:translate-x-1" />
                             </Link>
-                          ))}
+                          </div>
                         </div>
                       </div>
                     </>
                   ) : (
                     <Link
                       href={link.href}
-                      className="px-3 py-2 text-sm font-semibold text-primary/80 hover:text-primary rounded-lg transition-all duration-200 hover:bg-primary/5"
+                      className={cn(
+                        'nav-dot-underline relative px-3 py-2 text-sm font-semibold text-primary rounded-lg transition-all duration-200',
+                        isActive(link.href) && 'active'
+                      )}
                     >
                       {link.label}
                     </Link>

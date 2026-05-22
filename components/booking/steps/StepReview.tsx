@@ -82,14 +82,16 @@ export function StepReview({ registerValidate, onSubmit, isSubmitting }: Props) 
   function payerLabel(): string {
     if (!payerInfo) return ''
     switch (payerInfo.payerType) {
-      case 'medicaid':
-        return `Medicaid — ${payerInfo.medicaidPlanName}`
       case 'insurance':
         return `Insurance — ${payerInfo.insuranceCompany}`
       case 'facility':
         return `Facility — ${payerInfo.facilityName}`
       case 'private_pay':
         return 'Private Pay'
+      case 'cash':
+        return 'Cash'
+      case 'card':
+        return 'Card'
       default:
         return ''
     }
@@ -233,6 +235,7 @@ export function StepReview({ registerValidate, onSubmit, isSubmitting }: Props) 
       {(rideNotes?.specialInstructions ||
         rideNotes?.gateCode ||
         rideNotes?.mobilityNotes ||
+        rideNotes?.preferredLanguage ||
         rideNotes?.additionalInfo) && (
         <Card>
           <CardHeader className="flex flex-row items-center justify-between py-3 px-4">
@@ -246,6 +249,7 @@ export function StepReview({ registerValidate, onSubmit, isSubmitting }: Props) 
             />
             <InfoRow label="Gate Code" value={rideNotes?.gateCode} />
             <InfoRow label="Mobility Notes" value={rideNotes?.mobilityNotes} />
+            <InfoRow label="Preferred Language" value={rideNotes?.preferredLanguage ? rideNotes.preferredLanguage.charAt(0).toUpperCase() + rideNotes.preferredLanguage.slice(1) : undefined} />
             <InfoRow label="Additional" value={rideNotes?.additionalInfo} />
           </CardContent>
         </Card>

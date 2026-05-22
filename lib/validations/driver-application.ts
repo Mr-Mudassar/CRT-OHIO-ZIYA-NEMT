@@ -45,12 +45,35 @@ export const driverApplicationSchema = z.object({
     .string()
     .min(1, 'Please select an option')
     .refine((v) => ['yes', 'no'].includes(v), { message: 'Please select an option' }),
+  hasOwnCar: z
+    .string()
+    .min(1, 'Please select an option')
+    .refine((v) => ['yes', 'no'].includes(v), { message: 'Please select an option' }),
+  carMake: z.string().max(100).optional().or(z.literal('')),
+  carModel: z.string().max(100).optional().or(z.literal('')),
   availability: z
     .array(z.string())
     .min(1, 'Please select at least one day'),
   backgroundCheckAgreement: z.literal(true, {
     error: 'You must agree to a background check',
   }),
+}).superRefine((data, ctx) => {
+  if (data.hasOwnCar === 'yes') {
+    if (!data.carMake || data.carMake.trim().length === 0) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Car make is required',
+        path: ['carMake'],
+      })
+    }
+    if (!data.carModel || data.carModel.trim().length === 0) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Car model is required',
+        path: ['carModel'],
+      })
+    }
+  }
 })
 
 export type DriverApplicationInput = z.infer<typeof driverApplicationSchema>

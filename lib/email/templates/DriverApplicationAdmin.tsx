@@ -19,6 +19,9 @@ type Props = {
   cleanDrivingRecord: string
   hasCprCert: string
   wheelchairExperience: string
+  hasOwnCar: string
+  carMake?: string
+  carModel?: string
   availability: string[]
   previousTransportExperience?: string
 }
@@ -83,6 +86,18 @@ export function DriverApplicationAdminEmail(props: Props) {
             <Text style={{ fontSize: '12px', color: '#64748B', marginBottom: '2px' }}>Wheelchair Assistance Experience</Text>
             <Text style={{ fontSize: '14px', color: '#0F172A', marginTop: '0', textTransform: 'capitalize' }}>{props.wheelchairExperience}</Text>
           </Section>
+
+          <Section style={{ marginBottom: '16px' }}>
+            <Text style={{ fontSize: '12px', color: '#64748B', marginBottom: '2px' }}>Has Own Car</Text>
+            <Text style={{ fontSize: '14px', color: '#0F172A', marginTop: '0', textTransform: 'capitalize' }}>{props.hasOwnCar}</Text>
+          </Section>
+
+          {props.hasOwnCar === 'yes' && props.carMake && props.carModel && (
+            <Section style={{ marginBottom: '16px' }}>
+              <Text style={{ fontSize: '12px', color: '#64748B', marginBottom: '2px' }}>Vehicle</Text>
+              <Text style={{ fontSize: '14px', color: '#0F172A', marginTop: '0' }}>{props.carMake} {props.carModel}</Text>
+            </Section>
+          )}
 
           <Section style={{ marginBottom: '16px' }}>
             <Text style={{ fontSize: '12px', color: '#64748B', marginBottom: '2px' }}>Availability</Text>

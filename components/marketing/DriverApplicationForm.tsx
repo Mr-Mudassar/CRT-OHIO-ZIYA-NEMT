@@ -16,6 +16,7 @@ import {
   Send,
   CheckCircle,
   Briefcase,
+  Car,
 } from 'lucide-react'
 import { driverApplicationSchema, type DriverApplicationInput } from '@/lib/validations/driver-application'
 
@@ -41,6 +42,9 @@ export function DriverApplicationForm() {
     hasCprCert: '',
     previousTransportExperience: '',
     wheelchairExperience: '',
+    hasOwnCar: '',
+    carMake: '',
+    carModel: '',
     availability: [],
     backgroundCheckAgreement: false,
   })
@@ -328,6 +332,66 @@ export function DriverApplicationForm() {
         </div>
         {fieldErrors.wheelchairExperience && <p className="text-xs text-emergency mt-1">{fieldErrors.wheelchairExperience}</p>}
       </fieldset>
+
+      {/* Own Car */}
+      <fieldset data-has-error={!!fieldErrors.hasOwnCar}>
+        <legend className="flex items-center gap-2 text-sm font-medium text-foreground mb-2">
+          <Car className="size-4 text-primary" />
+          Do you have your own car? <span className="text-emergency">*</span>
+        </legend>
+        <div className="flex gap-6">
+          {(['yes', 'no'] as const).map((val) => (
+            <label key={val} className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="radio"
+                name="hasOwnCar"
+                value={val}
+                checked={form.hasOwnCar === val}
+                onChange={(e) => updateField('hasOwnCar', e.target.value)}
+                className="w-4 h-4 text-primary accent-primary"
+              />
+              <span className="text-sm text-foreground capitalize">{val}</span>
+            </label>
+          ))}
+        </div>
+        {fieldErrors.hasOwnCar && <p className="text-xs text-emergency mt-1">{fieldErrors.hasOwnCar}</p>}
+      </fieldset>
+
+      {/* Car Make & Model (conditional) */}
+      {form.hasOwnCar === 'yes' && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div data-has-error={!!fieldErrors.carMake}>
+            <label htmlFor="carMake" className="flex items-center gap-2 text-sm font-medium text-foreground mb-1.5">
+              <Car className="size-4 text-primary" />
+              Car Make <span className="text-emergency">*</span>
+            </label>
+            <input
+              type="text"
+              id="carMake"
+              placeholder="e.g., Toyota, Honda, Ford"
+              value={form.carMake as string}
+              onChange={(e) => updateField('carMake', e.target.value)}
+              className={`w-full px-4 py-2.5 border rounded-lg text-sm text-foreground bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors ${fieldErrors.carMake ? 'border-emergency' : 'border-border'}`}
+            />
+            {fieldErrors.carMake && <p className="text-xs text-emergency mt-1">{fieldErrors.carMake}</p>}
+          </div>
+          <div data-has-error={!!fieldErrors.carModel}>
+            <label htmlFor="carModel" className="flex items-center gap-2 text-sm font-medium text-foreground mb-1.5">
+              <Car className="size-4 text-primary" />
+              Car Model <span className="text-emergency">*</span>
+            </label>
+            <input
+              type="text"
+              id="carModel"
+              placeholder="e.g., Camry, Civic, Explorer"
+              value={form.carModel as string}
+              onChange={(e) => updateField('carModel', e.target.value)}
+              className={`w-full px-4 py-2.5 border rounded-lg text-sm text-foreground bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors ${fieldErrors.carModel ? 'border-emergency' : 'border-border'}`}
+            />
+            {fieldErrors.carModel && <p className="text-xs text-emergency mt-1">{fieldErrors.carModel}</p>}
+          </div>
+        </div>
+      )}
 
       {/* Availability */}
       <fieldset data-has-error={!!fieldErrors.availability}>

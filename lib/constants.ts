@@ -9,8 +9,8 @@ const CRT_OHIO_BRAND = {
   siteUrl: 'https://crtohio.com',
   siteDescription:
     'Care Ride Transportation provides safe, reliable non-emergency medical transportation (NEMT) in Cincinnati, Mason, West Chester, Hamilton, Middletown, and surrounding Ohio areas. Book your ride today.',
-  businessPhone: '(513) 555-0100',
-  businessPhoneRaw: '+15135550100',
+  businessPhone: '(513) 513-0403',
+  businessPhoneRaw: '+5135130403',
   businessEmail: 'info@crtohio.com',
   businessAddress: 'Cincinnati, OH',
   businessAddressLocality: 'Cincinnati',
